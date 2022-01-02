@@ -1,0 +1,25 @@
+
+:root{
+    --active-bg:#1195c6;
+    --active-color:white;
+    --bg-secondary-color:#857ec4;
+    border-radius: 5px;
+    color:white;
+    --bg-default-color:#272738;
+    background-color:var(--bg-default-color);
+    --bg-tertiary-color:#272738;
+}
+
+body{
+    height: 100%;
+    color: white;
+    background-color:var(--bg-default-color) ;
+}
+
+#pageContenent{
+    margin: auto;
+    max-width: 1317px;
+    width: 100%;
+    background-color: var(--bg-secondary-color);
+    text-align: center;
+}

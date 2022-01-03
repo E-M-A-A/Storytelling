@@ -21,22 +21,22 @@ public class Login extends HttpServlet {
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
         }
-        UtenteDao utenteDao = new UtenteDao();
-        Utente utente = utenteDao.doRetrieveUtente(email);
-        utente.setPassword("");
+        Utente utente = recuperaUtente(email);
         session.setAttribute("Utente",utente);
         session.setAttribute("LoginErrato",failedLogin);
     }
-
+    private Utente recuperaUtente(String email){
+        UtenteDao utenteDao = new UtenteDao();
+        Utente utente = utenteDao.doRetrieveByEmail(email);
+        utente.setPassword("");
+        return utente;
+    }
     private boolean controllaUtente(String email,String password){
         if(!Validazione.emailIsPresent(email))
             return false;
         String hashedPassword = Validazione.passwordHasher(password);
         UtenteDao utenteDao = new UtenteDao();
-        Utente utente = utenteDao.doRetrieveUtente(email);
-        if(!Validazione.passwordTest(hashedPassword,utente.getPassword()))
-            return false;
-        return true;
-        }
+        Utente utente = utenteDao.doRetrieveByEmail(email);
+        return Validazione.passwordTest(hashedPassword, utente.getPassword());
     }
 }

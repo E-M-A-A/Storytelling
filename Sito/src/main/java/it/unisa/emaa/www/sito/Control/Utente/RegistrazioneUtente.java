@@ -37,8 +37,6 @@ public class RegistrazioneUtente extends HttpServlet {
     }
 
     private boolean controlloDati(String email,String password,String passwordTest,String username, boolean eula){
-        if(Validazione.emailIsPresent(email)||Validazione.usernameIsPresent(username)||!Validazione.emailRegex(email)||!Validazione.passwordRegex(password)||!Validazione.passwordTest(password,passwordTest)|| !eula)
-            return false;
-        return true;
+        return !Validazione.emailIsPresent(email) && !Validazione.usernameIsPresent(username) && Validazione.emailRegex(email) && Validazione.passwordRegex(password) && Validazione.passwordTest(password, passwordTest) && eula;
     }
 }

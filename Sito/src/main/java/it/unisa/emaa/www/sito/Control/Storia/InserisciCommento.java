@@ -14,7 +14,14 @@ public class InserisciCommento extends HttpServlet {
         Utente utente = session.getAttribute("utente");
         int idStoria = Integer.parseInt(req.getParameter("storia"));
         String commento = req.getParameter("commento");
+        resp.getWriter().print(inserimentoCommento(utente.getUsername(),idStoria,commento));
+    }
+    private boolean inserimentoCommento(String username,int idStoria,String commento){
         CommentoDao commentoDao = new CommentoDao();
-        commentoDao.doCreate(utente,commento,idStoria);
+        Commento commento = new Commento();
+        commento.setUtente();
+        commento.setCommento();
+        commento.setIdStoria();
+        commentoDao.doSave(commento);
     }
 }

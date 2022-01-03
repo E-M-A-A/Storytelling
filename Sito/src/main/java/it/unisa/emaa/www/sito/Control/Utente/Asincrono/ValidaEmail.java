@@ -16,9 +16,6 @@ public class ValidaEmail extends HttpServlet {
         String email = req.getParameter("email");
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");
-        if(Validazione.emailIsPresent(email))
-            resp.getWriter().print("true");
-        else
-            resp.getWriter().print("false");
+        resp.getWriter().print(Validazione.emailIsPresent(email));
     }
 }

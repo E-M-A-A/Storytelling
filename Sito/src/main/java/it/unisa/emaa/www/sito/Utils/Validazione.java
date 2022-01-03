@@ -8,13 +8,13 @@ import java.util.regex.Pattern;
 public class Validazione {
     public static boolean emailIsPresent(String email){
         UtenteDao userDao = new UtenteDao();
-        Utente utente = utenteDao.doRetrieveByEmail();
+        Utente utente = utenteDao.doRetrieveByEmail(email);
         return utente != null;
     }
 
     public static boolean usernameIsPresent(String username){
         UtenteDao utenteDao = new UtenteDao();
-        Utente utente = utenteDao.doRetrieveByUsername();
+        Utente utente = utenteDao.doRetrieveByUsername(username);
         return utente != null;
     }
 

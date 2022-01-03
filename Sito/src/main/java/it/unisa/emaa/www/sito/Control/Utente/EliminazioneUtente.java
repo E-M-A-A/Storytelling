@@ -14,19 +14,24 @@ public class EliminazioneUtente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String email = (String) session.getAttribute("email");
+        Utente utente = (Utente) session.getAttribute("utente");
         String password = req.getParameter("password");
-        UtenteDao utenteDao = new UtenteDao();
-        Utente utente = utenteDao.doRetrieveUtente(email);
-        String hashedPassword = Validazione.passwordHasher(password);
-        boolean matchedPassword = false;
-        if(!Validazione.passwordTest(utente.getPassword(),hashedPassword)){
-            session.setAttribute("LoginErrato",matchedPassword);
+        boolean matchedPassword = controllaDati(utente.getEmail(),password);
+        if(!matchedPassword){
+            session.setAttribute("LoginErrato",!matchedPassword);
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
         }
+        resp.getWriter().print(eliminaUtente(utente.getEmail()));
     }
-    public static boolean eliminaUtente(email){
-
+    private boolean controllaDati(String email,String password){
+        UtenteDao utenteDao = new UtenteDao();
+        Utente utente = utenteDao.doRetrieveByEmail(email);
+        String hashedPassword = Validazione.passwordHasher(password);
+        return Validazione.passwordTest(utente.getPassword(),hashedPassword);
+    }
+    public static boolean eliminaUtente(String email){
+        UtenteDao utenteDao = new UtenteDao();
+        return utenteDao.doDelete(email);
     }
 }

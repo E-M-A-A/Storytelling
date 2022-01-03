@@ -21,7 +21,7 @@ public class VisualizzaBacheca extends HttpServlet {
     }
     private ArrayList<Storia> recuperaListaStorie(int pagina){
         StoriaDao storiaDao = new StoriaDao();
-        return storiaDao.doRetrieveStorie(pagina*10,10);
+        return storiaDao.doRetrieveByPage(pagina*10,10);
 
     }
 }

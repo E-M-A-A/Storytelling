@@ -17,23 +17,28 @@ public class Login extends HttpServlet {
         HttpSession session = req.getSession(true);
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        try {
-            synchronized (session) {
-                String hashedPassword = Validazione.passwordHasher(password);
-                UserDao userDao = new UserDao();
-                User user = userDao.doRetrieveByEmail(email);
-                boolean failedLogin = true;
-                if (user!=null && hashedPassword.equals(user.getPassword())) {
-                    failedLogin = false;
-                    user.setPassword("");
-                    session.setAttribute("user", user);
-                }
-                session.setAttribute("failedLogin", failedLogin);
-                String referer = req.getHeader("referer");
-                resp.sendRedirect(referer);
-            }
-        } catch (NoSuchAlgorithmException | SQLException e) {
-            e.printStackTrace();
+        boolean failedLogin = true;
+        if(!controllaUtente(email,password)) {
+            session.setAttribute("LoginErrato",failedLogin);
+            String referer = req.getHeader("referer");
+            resp.sendRedirect(referer);
+        }
+        UtenteDao utenteDao = new UtenteDao();
+        Utente utente = utenteDao.doRetrieveUtente(email);
+        utente.setPassword("");
+        session.setAttribute("Utente",utente);
+        session.setAttribute("LoginErrato",failedLogin);
+    }
+
+    private boolean controllaUtente(String email,String password){
+        if(!Validazione.emailIsPresent(email))
+            return false;
+        String hashedPassword = Validazione.passwordHasher(password);
+        UtenteDao utenteDao = new UtenteDao();
+        Utente utente = utenteDao.doRetrieveUtente(email);
+        if(!Validazione.passwordTest(hashedPassword,utente.getPassword()))
+            return false;
+        return true;
         }
     }
 }

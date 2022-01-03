@@ -11,12 +11,19 @@ public class Validazione {
         User user = userDao.doRetrieveByEmail();
         return user != null;
     }
+
     public static boolean usernameIsPresent(String username){
         UserDao userDao = new UserDao();
         User user = userDao.doRetrieveByUsername();
         return user != null;
     }
 
+    public static boolean reactionIsPresent(String email,int idStoria){
+        ReazioneDao reazioneDao = new ReazioneDao();
+        Reazione reazione = reazioneDao.doRetrieve(email,idStoria);
+        return reazione != null;
+
+    }
     public static boolean emailRegex(String email){
         Pattern patternEmail = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
         return patternEmail.matcher(email).matches();
@@ -26,7 +33,9 @@ public class Validazione {
         Pattern patternPassword = Pattern.compile("^(?=.*[a-z])(?=.*\\d)(?=.*[@#$._%-])(?=.*[A-Z]).{8,16}$");
         return patternPassword.matcher(password).matches();
     }
-
+    public static boolean passwordTest(String password,String passwordTest){
+        return password.equals(passwordTest);
+    }
     public static String passwordHasher(String password){
         try {
             // getInstance() method is called with algorithm SHA-512

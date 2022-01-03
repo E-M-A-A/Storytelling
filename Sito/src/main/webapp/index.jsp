@@ -3,10 +3,12 @@
 <html>
 <head>
     <title>BENVENUTO IN E.M.A.A.</title>
+    <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="./customcss/general.css"/>
 </head>
-<body>
-<body style="background-color:#857ec4;">
+
+<body class="text-center">
+
 <div id = "pageContenent">
     <div>
         <h1 style="padding: 10px; background-color: rgba(0,0,0,0.3); text-align: center">
@@ -14,24 +16,22 @@
         </h1>
     </div>
 
-    <div>
-        <h2>Accedi:</h2>
-    </div>
+    <div class = "buttonContainer">
+        <div>
+            <href class="btn btn-lg btn-primary btn-block" type="submit">Accedi</href>
+        </div>
 
-    <div>
-        <h2>Registrati:</h2>
+        <div>
+            <href class="btn btn-lg btn-primary btn-block" type="submit">Registrati</href>
+        </div>
     </div>
 
 </div>
-
-
-
-
-
-
-/*<%= "Ciao" %>*/
+<!--   <%= "Ciao" %>
 
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
+
+-->
 </body>
 </html>

@@ -11,9 +11,9 @@ public class InserisciCommento extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        User user = session.getAttribute("Utente");
-        int idStoria = Integer.parseInt(req.getParameter("Storia"));
-        String commento = req.getParameter("Commento");
+        Utente user = session.getAttribute("utente");
+        int idStoria = Integer.parseInt(req.getParameter("storia"));
+        String commento = req.getParameter("commento");
         CommentoDao commentoDao = new CommentoDao();
         commentoDao.doCreate(commento,idStoria);
     }

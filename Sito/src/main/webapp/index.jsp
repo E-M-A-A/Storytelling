@@ -18,11 +18,11 @@
 
     <div class = "buttonContainer">
         <div>
-            <href class="btn btn-lg btn-primary btn-block" type="submit">Accedi</href>
+            <a class="btn btn-lg btn-primary btn-block" href="./login.jsp">Accedi</a>
         </div>
 
         <div>
-            <href class="btn btn-lg btn-primary btn-block" type="submit">Registrati</href>
+            <a class="btn btn-lg btn-primary btn-block" href="./registrazione.jsp">Registrati</a>
         </div>
     </div>
 

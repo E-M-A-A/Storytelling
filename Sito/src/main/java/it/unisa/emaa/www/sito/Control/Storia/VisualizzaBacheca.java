@@ -11,7 +11,7 @@ import java.io.IOException;
 public class VisualizzaBacheca extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int pagina = Integer.parseInt(req.getParameter("Pagina"));
+        int pagina = Integer.parseInt(req.getParameter("pagina"));
         ArrayList<Storia> listaStorie = recuperaListaStorie(pagina);
         Gson gson = new Gson();
         String json = gson.toJson(listaStorie);

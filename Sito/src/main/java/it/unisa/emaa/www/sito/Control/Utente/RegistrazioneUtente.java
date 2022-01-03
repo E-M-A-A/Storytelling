@@ -13,11 +13,11 @@ public class RegistrazioneUtente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
-        String username = req.getParameter("Username");
-        String email = req.getParameter("Email");
-        String password = req.getParameter("Password");
-        String passwordTest = req.getParameter("PasswordTest");
-        boolean eula = Boolean.parseBoolean(req.getParameter("Eula"));
+        String username = req.getParameter("username");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        String passwordTest = req.getParameter("passwordTest");
+        boolean eula = Boolean.parseBoolean(req.getParameter("eula"));
         if(!controlloDati(email,password,passwordTest,username,eula))
             resp.setStatus(500);
         password = Validazione.passwordHasher(password);

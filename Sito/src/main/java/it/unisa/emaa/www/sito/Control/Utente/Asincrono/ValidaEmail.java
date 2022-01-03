@@ -13,7 +13,7 @@ import java.io.IOException;
 public class ValidaEmail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String email = req.getParameter("Email");
+        String email = req.getParameter("email");
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");
         if(Validazione.emailIsPresent(email))

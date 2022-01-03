@@ -11,7 +11,7 @@ public class PubblicaStoria extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Utente utente = (Utente) session.getAttribute("Utente");
+        Utente utente = (Utente) session.getAttribute("utente");
         String story = req.getParameter("Contenuto");
         StoriaDao storiaDao = new StoriaDao();
         storiaDao.doCreate(utente.getUsername(),story);

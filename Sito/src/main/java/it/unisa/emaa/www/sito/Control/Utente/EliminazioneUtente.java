@@ -14,8 +14,8 @@ public class EliminazioneUtente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String email = (String) session.getAttribute("Email");
-        String password = req.getParameter("Password");
+        String email = (String) session.getAttribute("email");
+        String password = req.getParameter("password");
         UtenteDao utenteDao = new UtenteDao();
         Utente utente = utenteDao.doRetrieveUtente(email);
         String hashedPassword = Validazione.passwordHasher(password);

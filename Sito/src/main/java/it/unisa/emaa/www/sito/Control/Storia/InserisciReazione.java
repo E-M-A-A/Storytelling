@@ -14,8 +14,8 @@ public class InserisciReazione extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         ReazioneDao reazioneDao = new ReazioneDao();
-        Utente utente = session.getAttribute("Utente");
-        int idStoria = Integer.parseInt(req.getParameter("Storia"));
+        Utente utente = session.getAttribute("utente");
+        int idStoria = Integer.parseInt(req.getParameter("storia"));
         if(Validazione.reactionIsPresent(utente.getEmail(),idStoria))
             resp.setStatus(500);
         reazioneDao.doCreate(utente.getEmail(),idStoria);

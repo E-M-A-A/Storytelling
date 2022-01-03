@@ -11,7 +11,7 @@ import java.io.IOException;
 public class VisualizzaPost extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int idStoria = Integer.parseInt(req.getParameter("Storia"));
+        int idStoria = Integer.parseInt(req.getParameter("storia"));
         StoriaDao storiaDao = new StoriaDao();
         CommentoDao commentoDao = new CommentoDao();
         Storia storia = storiaDao.doRetrieveById(idStoria);

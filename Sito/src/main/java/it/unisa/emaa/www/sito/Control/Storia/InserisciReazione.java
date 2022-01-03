@@ -14,10 +14,10 @@ public class InserisciReazione extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         ReazioneDao reazioneDao = new ReazioneDao();
-        User user = session.getAttribute("Utente");
+        Utente utente = session.getAttribute("Utente");
         int idStoria = Integer.parseInt(req.getParameter("Storia"));
-        if(Validazione.reactionIsPresent(user.getEmail(),idStoria))
+        if(Validazione.reactionIsPresent(utente.getEmail(),idStoria))
             resp.setStatus(500);
-        reazioneDao.doCreate(user.getEmail(),idStoria);
+        reazioneDao.doCreate(utente.getEmail(),idStoria);
     }
 }

@@ -7,15 +7,15 @@ import java.util.regex.Pattern;
 
 public class Validazione {
     public static boolean emailIsPresent(String email){
-        UserDao userDao = new UserDao();
-        User user = userDao.doRetrieveByEmail();
-        return user != null;
+        UtenteDao userDao = new UtenteDao();
+        Utente utente = utenteDao.doRetrieveByEmail();
+        return utente != null;
     }
 
     public static boolean usernameIsPresent(String username){
-        UserDao userDao = new UserDao();
-        User user = userDao.doRetrieveByUsername();
-        return user != null;
+        UtenteDao utenteDao = new UtenteDao();
+        Utente utente = utenteDao.doRetrieveByUsername();
+        return utente != null;
     }
 
     public static boolean reactionIsPresent(String email,int idStoria){

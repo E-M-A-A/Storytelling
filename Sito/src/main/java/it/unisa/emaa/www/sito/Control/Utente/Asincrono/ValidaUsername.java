@@ -1,6 +1,6 @@
 package it.unisa.emaa.www.sito.Control.Utente.Asincrono;
 
-import it.unisa.emaa.www.sito.Control.Utils.Validazione;
+import it.unisa.emaa.www.sito.Utils.Validazione;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

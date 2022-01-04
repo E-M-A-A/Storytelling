@@ -1,5 +1,7 @@
 package it.unisa.emaa.www.sito.Utils;
 
+import it.unisa.emaa.www.sito.Model.dao.IUtenteDao;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

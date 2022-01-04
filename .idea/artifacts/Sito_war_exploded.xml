@@ -6,6 +6,7 @@
         <exploded>true</exploded>
         <module>Sito</module>
         <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
@@ -14,9 +15,8 @@
           <element id="module-output" name="Sito" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.7.9" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:jakarta.persistence:2.2.3" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:commonj.sdo:2.1.1" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:3.0.2" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.9" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -2,8 +2,11 @@ package it.unisa.emaa.www.sito.Model.entity;
 
 import javax.persistence.*;
 
-@NamedQueries(
-        @NamedQuery(name="retrieveAll",query= "Select u from Utente u")
+@NamedQueries({
+        @NamedQuery(name = "retrieveAll", query = "Select u from Utente u"), // select all
+        @NamedQuery(name = "retrieveByUsername", query = "Select u from Utente u where u.username = :fusername"),
+        @NamedQuery(name = "retrieveByEmail", query = "Select u from Utente u where u.id = :femail")
+}
 )
 
 @Entity

@@ -1,6 +1,8 @@
 package it.unisa.emaa.www.sito.Utils;
 
 import it.unisa.emaa.www.sito.Model.dao.IUtenteDao;
+import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
+import it.unisa.emaa.www.sito.Model.entity.Utente;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -14,7 +16,7 @@ import java.util.regex.Pattern;
  */
 public class Validazione {
     public static boolean emailIsPresent(String email){
-        UtenteDao userDao = new UtenteDao();
+        UtenteDao utenteDao = new UtenteDao();
         Utente utente = utenteDao.doRetrieveByEmail(email);
         return utente != null;
     }
@@ -81,7 +83,7 @@ public class Validazione {
     public static boolean datiCorrispondenti(String email,String password){
         UtenteDao utenteDao = new UtenteDao();
         String hashedPassword = passwordHasher(password);
-        Utente utente = utenteDao.doRetrieveByEmail();
+        Utente utente = utenteDao.doRetrieveByEmail(email);
         return utente!=null && hashedPassword.equals(utente.getPassword());
 
     }

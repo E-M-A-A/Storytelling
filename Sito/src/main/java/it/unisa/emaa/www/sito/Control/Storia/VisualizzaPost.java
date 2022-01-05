@@ -1,6 +1,8 @@
 package it.unisa.emaa.www.sito.Control.Storia;
 
 import com.google.gson.Gson;
+import it.unisa.emaa.www.sito.Model.dao.StoriaDao;
+import it.unisa.emaa.www.sito.Model.entity.Storia;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

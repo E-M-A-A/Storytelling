@@ -1,5 +1,7 @@
 package it.unisa.emaa.www.sito.Control.Utente;
 
+import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
+import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
 import javax.servlet.ServletException;

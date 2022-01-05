@@ -1,6 +1,8 @@
 package it.unisa.emaa.www.sito.Control.Utente;
 
 
+import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
+import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
 import javax.servlet.ServletException;
@@ -21,13 +23,13 @@ public class EliminazioneUtente extends HttpServlet {
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         String password = req.getParameter("password");
-        boolean matchedPassword = Validazione.datiCorrispondenti(utente.getEmail(),password);
+        boolean matchedPassword = Validazione.datiCorrispondenti(utente.getId(),password);
+        session.setAttribute("LoginErrato", !matchedPassword);
         if(!matchedPassword){
-            session.setAttribute("LoginErrato",!matchedPassword);
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
         }
-        resp.getWriter().print(eliminaUtente(utente.getEmail()));
+        resp.getWriter().print(eliminaUtente(utente.getId()));
     }
     /**
      * Il metodo elimina l'utente con l'email data dal database.

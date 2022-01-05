@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Questa servlet gestisce l'inserimento di una reazione da parte di un utente.
+ * L'operazione fallisce se la reazione è già presente.
+ * @author Alessandro Marigliano
+ */
 public class InserisciReazione extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

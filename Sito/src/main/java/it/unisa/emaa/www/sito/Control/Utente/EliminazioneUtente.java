@@ -30,6 +30,7 @@ public class EliminazioneUtente extends HttpServlet {
             resp.sendRedirect(referer);
         }
         resp.getWriter().print(eliminaUtente(utente.getId()));
+        session.setAttribute("utente",null);
     }
     /**
      * Il metodo elimina l'utente con l'email data dal database.

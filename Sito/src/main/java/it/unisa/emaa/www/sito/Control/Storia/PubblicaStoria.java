@@ -13,6 +13,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * Quseta servlet gestisce la pubblicazione di una storia da parte di un utente.
+ * L'operazione fallisce se la storia non rispetta la regola di lunghezza.
+ * @author Alessandro Marigliano
+ */
 public class PubblicaStoria extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,6 +28,8 @@ public class PubblicaStoria extends HttpServlet {
     }
 
     private boolean pubblicaStoria(String username,String contenuto){
+        if(contenuto.length()<1||contenuto.length()>500)
+            return false;
         StoriaDao storiaDao = new StoriaDao();
         Storia storia = new Storia();
         storia.setContenuto(contenuto);

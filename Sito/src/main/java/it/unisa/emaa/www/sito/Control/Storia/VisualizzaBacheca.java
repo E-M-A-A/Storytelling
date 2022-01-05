@@ -12,6 +12,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Questa servlet gestisce la visualizzazione della bacheca(homepage).
+ * Viene richiesto il numero di pagina per selezionare solo una parte delle storie da visualizzare.
+ * @author Alessandro Marigliano
+ */
 public class VisualizzaBacheca extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

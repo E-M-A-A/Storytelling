@@ -25,9 +25,9 @@ public class Login extends HttpServlet {
         HttpSession session = req.getSession(true);
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        boolean failedLogin = true;
-        if(!Validazione.datiCorrispondenti(email,password)) {
-            session.setAttribute("LoginErrato",failedLogin);
+        boolean failedLogin = !Validazione.datiCorrispondenti(email,password);
+        session.setAttribute("LoginErrato",failedLogin);
+        if(failedLogin) {
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
         }

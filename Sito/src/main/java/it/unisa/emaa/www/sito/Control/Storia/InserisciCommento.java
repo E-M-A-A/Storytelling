@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * Questa servlet gestisce l'inserimento di un commento relativo a una storia.
+ * L'operazione fallisce se il commento non rispetta la regola di lunghezza.
  * @author Alessandro Marigliano
  */
 public class InserisciCommento extends HttpServlet {
@@ -23,11 +24,13 @@ public class InserisciCommento extends HttpServlet {
         resp.getWriter().print(inserimentoCommento(utente.getUsername(),idStoria,commento));
     }
     private boolean inserimentoCommento(String username,int idStoria,String commento){
+        if(commento.length()<3||commento.length()>100)
+            return false;
         CommentoDao commentoDao = new CommentoDao();
         Commento commento = new Commento();
         commento.setUtente();
         commento.setCommento();
         commento.setIdStoria();
-        commentoDao.doSave(commento);
+        return commentoDao.doSave(commento);
     }
 }

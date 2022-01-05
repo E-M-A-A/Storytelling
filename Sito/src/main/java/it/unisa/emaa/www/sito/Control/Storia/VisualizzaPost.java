@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Questa servlet gestisce la visualizzazione di una storia con i relativi commenti.
+ * Crea un oggetto Post che contiene le due entità.
+ * @author Alessandro Marigliano
+ */
 public class VisualizzaPost extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -1,12 +1,23 @@
 package it.unisa.emaa.www.sito.Control.Storia;
 
+import it.unisa.emaa.www.sito.Model.dao.StoriaDao;
+import it.unisa.emaa.www.sito.Model.entity.Storia;
+import it.unisa.emaa.www.sito.Model.entity.Utente;
+import sun.util.resources.LocaleData;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
 
+/**
+ * Quseta servlet gestisce la pubblicazione di una storia da parte di un utente.
+ * L'operazione fallisce se la storia non rispetta la regola di lunghezza.
+ * @author Alessandro Marigliano
+ */
 public class PubblicaStoria extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -17,7 +28,15 @@ public class PubblicaStoria extends HttpServlet {
     }
 
     private boolean pubblicaStoria(String username,String contenuto){
+        if(contenuto.length()<1||contenuto.length()>500)
+            return false;
         StoriaDao storiaDao = new StoriaDao();
-        storiaDao.doSave(username(),contenuto);
+        Storia storia = new Storia();
+        storia.setContenuto(contenuto);
+        storia.setUsername(username);
+        storia.setNCommenti(0);
+        storia.setNReazioni(0);
+        storia.setDataCreazione(LocalDate.now());
+        return storiaDao.doSave(storia);
     }
 }

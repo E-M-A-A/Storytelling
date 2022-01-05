@@ -8,8 +8,8 @@ public interface IUtenteDao {
     public List<Utente> doRetrieveAll();
     public Utente doRetrieveByUsername(String username);
     public Utente doRetrieveByEmail(String email);
-    public boolean doSave(Utente utente);
-    public boolean doDelete(Utente utente);
+    public boolean doSave(String email);
+    public boolean doDelete(String email);
 
 
 

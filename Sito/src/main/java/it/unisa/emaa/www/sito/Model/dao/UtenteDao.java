@@ -41,10 +41,10 @@ public class UtenteDao implements IUtenteDao{
     }
 
     @Override
-    public boolean doSave(String email) {
+    public boolean doSave(Utente utente) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
         EntityManager em = emf.createEntityManager();
-        em.persist(email);
+        em.persist(utente);
         return true;
     }
 

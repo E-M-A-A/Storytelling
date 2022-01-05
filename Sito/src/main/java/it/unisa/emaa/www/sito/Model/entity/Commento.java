@@ -4,6 +4,15 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "commento")
+
+@NamedQueries({
+        @NamedQuery(name = "retrieveAll", query = "select c from Commento c"),
+        @NamedQuery(name = "retrieveByStoria", query ="select c from Commento c where c.id = :fid"),
+
+})
+
+
+
 public class Commento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

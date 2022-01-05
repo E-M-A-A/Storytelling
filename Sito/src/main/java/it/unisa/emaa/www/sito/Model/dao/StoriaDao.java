@@ -57,7 +57,13 @@ public class StoriaDao implements IStoriaDao {
 
     @Override
     public List<Storia> doRetrieveByPage(int limit, int offset) {
-        return null;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNamedQuery("retrieveByPage",Storia.class);
+        query.setFirstResult(offset);
+        query.setMaxResults(limit);
+        ArrayList<Storia> list = (ArrayList<Storia>) query.getResultList();
+        return list;
 
     }
 }

@@ -16,5 +16,5 @@ public class Reazione {
 
     public void setId(ReazioneId id) {
         this.id = id;
-    }
+    }  // da chiedere a manu dopo
 }

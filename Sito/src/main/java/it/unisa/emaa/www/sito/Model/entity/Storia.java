@@ -83,4 +83,16 @@ public class Storia {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Storia(){
+
+    }
+
+    public Storia( String username, String contenuto, Integer nReazioni, Integer nCommenti, LocalDate dataCreazione) {
+        this.username = username;
+        this.contenuto = contenuto;
+        this.nReazioni = nReazioni;
+        this.nCommenti = nCommenti;
+        this.dataCreazione = dataCreazione;
+    }
 }

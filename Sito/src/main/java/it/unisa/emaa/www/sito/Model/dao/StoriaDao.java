@@ -2,10 +2,8 @@ package it.unisa.emaa.www.sito.Model.dao;
 
 import it.unisa.emaa.www.sito.Model.entity.Storia;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,26 +21,43 @@ public class StoriaDao implements IStoriaDao {
     public Storia doRetrieveById(int id) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
         EntityManager em = emf.createEntityManager();
+        Query query = em.createNamedQuery("retrieveById",Storia.class);
+        query.setParameter("fid",id);
+        Storia storia = (Storia) query.getSingleResult();
+        return storia;
 
     }
 
     @Override
     public boolean doDelete(Storia storia) {
-        return false;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
+        EntityManager em = emf.createEntityManager();
+        em.remove(storia);
+        return true; //storia rimossa
     }
 
     @Override
-    public Storia doSave(Storia storia) {
-        return null;
+    public boolean doSave(Storia storia) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
+        EntityManager em = emf.createEntityManager();
+        em.persist(storia);
+        return true;  //storia salvata
     }
 
     @Override
     public List<Storia> doRetrieveByDate(Date date) {
-        return null;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createNamedQuery("retrieveByDate",Storia.class);
+        query.setParameter("fdate",date);
+        ArrayList<Storia> list = (ArrayList<Storia>) query.getResultList();
+        return list;
+
     }
 
     @Override
     public List<Storia> doRetrieveByPage(int limit, int offset) {
         return null;
+
     }
 }

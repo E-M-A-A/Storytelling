@@ -1,5 +1,7 @@
 package it.unisa.emaa.www.sito.Control.Utente;
 
+import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
+import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
 import javax.servlet.ServletException;
@@ -33,7 +35,7 @@ public class RegistrazioneUtente extends HttpServlet {
         password = Validazione.passwordHasher(password);
         Utente utente = new Utente();
         utente.setUsername(username);
-        utente.setEmail(email.toLowerCase());
+        utente.setId(email.toLowerCase());
         utente.setPassword(password);
         if(!effettuaRegistrazione(utente))
             resp.setStatus(500);
@@ -47,6 +49,6 @@ public class RegistrazioneUtente extends HttpServlet {
     }
 
     private boolean controllaDati(String email,String password,String passwordTest,String username, boolean eula){
-        return !Validazione.emailIsPresent(email) && !Validazione.usernameIsPresent(username) && Validazione.emailRegex(email) && Validazione.passwordRegex(password) && Validazione.passwordTest(password, passwordTest) && eula;
+        return !Validazione.emailIsPresent(email) && !Validazione.usernameIsPresent(username) && Validazione.emailRegex(email) && Validazione.passwordRegex(password) && password.equals(passwordTest) && eula;
     }
 }

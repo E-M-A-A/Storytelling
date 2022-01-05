@@ -34,7 +34,7 @@ public class CommentoDao implements ICommentoDao{
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
         EntityManager em = emf.createEntityManager();
         em.persist(commento);
-        return true;
+        return true; // da gestire anche il caso di return false
 
     }
 

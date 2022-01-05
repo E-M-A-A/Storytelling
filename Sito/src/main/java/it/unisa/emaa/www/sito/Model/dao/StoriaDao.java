@@ -33,7 +33,7 @@ public class StoriaDao implements IStoriaDao {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
         EntityManager em = emf.createEntityManager();
         em.remove(id);
-        return true; //storia rimossa
+        return true; //storia rimossa da gestire anche il caso di return false
     }
 
     @Override
@@ -41,7 +41,7 @@ public class StoriaDao implements IStoriaDao {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
         EntityManager em = emf.createEntityManager();
         em.persist(storia);
-        return true;  //storia salvata
+        return true;  //storia salvata da gestire anche il caso di return false
 
     }
 

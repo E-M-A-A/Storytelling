@@ -45,7 +45,7 @@ public class UtenteDao implements IUtenteDao{
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
         EntityManager em = emf.createEntityManager();
         em.persist(utente);
-        return true;
+        return true; // da gestire anche il caso di return false
     }
 
     @Override
@@ -53,6 +53,6 @@ public class UtenteDao implements IUtenteDao{
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
         EntityManager em = emf.createEntityManager();
         em.remove(email);
-        return true;
+        return true; // da gestire anche il caso di return false
     }
 }

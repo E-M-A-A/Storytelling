@@ -29,10 +29,10 @@ public class StoriaDao implements IStoriaDao {
     }
 
     @Override
-    public boolean doDelete(Storia storia) {
+    public boolean doDelete(int id) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
         EntityManager em = emf.createEntityManager();
-        em.remove(storia);
+        em.remove(id);
         return true; //storia rimossa
     }
 

@@ -39,4 +39,20 @@ public class UtenteDao implements IUtenteDao{
         return utente;
 
     }
+
+    @Override
+    public boolean doSave(Utente utente) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
+        EntityManager em = emf.createEntityManager();
+        em.persist(utente);
+        return true;
+    }
+
+    @Override
+    public boolean doDelete(Utente utente) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
+        EntityManager em = emf.createEntityManager();
+        em.remove(utente);
+        return true;
+    }
 }

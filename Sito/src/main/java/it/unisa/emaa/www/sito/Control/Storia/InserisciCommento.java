@@ -1,5 +1,7 @@
 package it.unisa.emaa.www.sito.Control.Storia;
 
+import it.unisa.emaa.www.sito.Model.entity.Utente;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -7,11 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Questa servlet gestisce l'inserimento di un commento relativo a una storia.
+ * @author Alessandro Marigliano
+ */
 public class InserisciCommento extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Utente utente = session.getAttribute("utente");
+        Utente utente = (Utente) session.getAttribute("utente");
         int idStoria = Integer.parseInt(req.getParameter("storia"));
         String commento = req.getParameter("commento");
         resp.getWriter().print(inserimentoCommento(utente.getUsername(),idStoria,commento));

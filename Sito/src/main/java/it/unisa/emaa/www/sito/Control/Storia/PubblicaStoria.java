@@ -30,6 +30,6 @@ public class PubblicaStoria extends HttpServlet {
         storia.setNCommenti(0);
         storia.setNReazioni(0);
         storia.setDataCreazione(LocalDate.now());
-        storiaDao.doSave(storia);
+        return storiaDao.doSave(storia);
     }
 }

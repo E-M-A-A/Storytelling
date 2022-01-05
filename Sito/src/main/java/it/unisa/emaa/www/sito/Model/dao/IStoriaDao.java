@@ -7,7 +7,7 @@ public interface IStoriaDao {
     public List<Storia> doRetrieveAll();
     public Storia doRetrieveById(int id);
     public boolean doDelete(Storia storia);
-    public Storia doSave(Storia storia);
+    public boolean doSave(Storia storia);
     public List<Storia> doRetrieveByDate(Date date);
     public List<Storia> doRetrieveByPage(int limit, int offset);
     // da vedere reazioni

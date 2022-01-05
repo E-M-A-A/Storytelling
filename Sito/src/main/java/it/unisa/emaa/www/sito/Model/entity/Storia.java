@@ -2,6 +2,16 @@ package it.unisa.emaa.www.sito.Model.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+@NamedQueries({
+        @NamedQuery(name = "retrieveAll", query = "select s from Storia s"),
+        @NamedQuery(name = "retrieveById", query = "select s from Storia s where s.id = :fid"),
+        @NamedQuery(name = "retrieveByDate",query = "select s from Storia s where s.dataCreazione = :fdate"),
+        @NamedQuery(name = "retrieveByPage",query = "select s from Storia s") // si aggiungono limit e offset nella classe dao
+
+
+}
+)
+
 
 @Entity
 @Table(name = "storia")
@@ -72,5 +82,17 @@ public class Storia {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Storia(){
+
+    }
+
+    public Storia( String username, String contenuto, Integer nReazioni, Integer nCommenti, LocalDate dataCreazione) {
+        this.username = username;
+        this.contenuto = contenuto;
+        this.nReazioni = nReazioni;
+        this.nCommenti = nCommenti;
+        this.dataCreazione = dataCreazione;
     }
 }

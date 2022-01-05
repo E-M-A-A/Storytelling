@@ -1,9 +1,10 @@
 package it.unisa.emaa.www.sito.Model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+@NamedQueries(
+        @NamedQuery(name="retrieveAll",query= "Select u from Utente u")
+)
 
 @Entity
 @Table(name = "utente")

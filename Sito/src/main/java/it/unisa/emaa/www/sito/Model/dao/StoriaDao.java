@@ -42,6 +42,7 @@ public class StoriaDao implements IStoriaDao {
         EntityManager em = emf.createEntityManager();
         em.persist(storia);
         return true;  //storia salvata
+
     }
 
     @Override

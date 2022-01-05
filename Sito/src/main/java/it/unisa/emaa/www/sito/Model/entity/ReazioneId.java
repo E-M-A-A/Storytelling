@@ -3,10 +3,10 @@ package it.unisa.emaa.www.sito.Model.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-@NamedQueries({})
 
-        @Embeddable
-        public class ReazioneId implements Serializable {
+
+@Embeddable
+public class ReazioneId implements Serializable {
         private static final long serialVersionUID = 2566138142846125823L;
         @Column(name = "idStoria", nullable = false)
         private Integer idStoria;

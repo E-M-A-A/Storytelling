@@ -8,6 +8,7 @@ public class ReazioneDao implements IReazioneDao{
     @Override
     public List<ReazioneId> doRetrieve(int idStoria, String email) {
         return null;
+
     }
 
     @Override
@@ -22,6 +23,7 @@ public class ReazioneDao implements IReazioneDao{
 
     @Override
     public ReazioneId doSave(ReazioneId reazione) {
+
         return null;
     }
 }

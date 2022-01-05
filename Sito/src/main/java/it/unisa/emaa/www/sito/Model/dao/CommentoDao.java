@@ -35,6 +35,7 @@ public class CommentoDao implements ICommentoDao{
         EntityManager em = emf.createEntityManager();
         em.persist(commento);
         return true;
+
     }
 
 

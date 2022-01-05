@@ -9,6 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Questa servlet effettua la registrazione di un utente.
+ * L'operazione fallisce se:
+ * risulta che una chiave passata è già presente all'interno del database;
+ * se la password non corrisponde alla password nella conferma password;
+ * se email o password non seguono il pattern.
+ * Utilizza i metodi statici della classe Validazione.
+ * @see it.unisa.emaa.www.sito.Utils.Validazione
+ * @author Alessandro Marigliano
+ */
 public class RegistrazioneUtente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -18,7 +28,7 @@ public class RegistrazioneUtente extends HttpServlet {
         String password = req.getParameter("password");
         String passwordTest = req.getParameter("passwordTest");
         boolean eula = Boolean.parseBoolean(req.getParameter("eula"));
-        if(!controlloDati(email,password,passwordTest,username,eula))
+        if(!controllaDati(email,password,passwordTest,username,eula))
             resp.setStatus(500);
         password = Validazione.passwordHasher(password);
         Utente utente = new Utente();
@@ -36,7 +46,7 @@ public class RegistrazioneUtente extends HttpServlet {
         return utenteDao.doSave(utente);
     }
 
-    private boolean controlloDati(String email,String password,String passwordTest,String username, boolean eula){
+    private boolean controllaDati(String email,String password,String passwordTest,String username, boolean eula){
         return !Validazione.emailIsPresent(email) && !Validazione.usernameIsPresent(username) && Validazione.emailRegex(email) && Validazione.passwordRegex(password) && Validazione.passwordTest(password, passwordTest) && eula;
     }
 }

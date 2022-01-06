@@ -11,9 +11,13 @@
 
 <div id = "pageContenent">
     <div>
+
         <h1 style="padding: 10px; background-color: rgba(0,0,0,0.3); text-align: center">
             BENVENUTO IN E.M.A.A.!!!
         </h1>
+
+        <img class="mb-4" src="./images/logo3.png" alt="" width="130" height="90">
+
     </div>
 
     <div class = "buttonContainer">
@@ -27,6 +31,8 @@
     </div>
 
 </div>
+<p class="mt-5 mb-3 text-muted">© E.M.A.A. corp</p>
+
 <!--   <%= "Ciao" %>
 
 <br/>

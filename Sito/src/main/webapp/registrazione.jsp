@@ -13,26 +13,32 @@
   <link rel="stylesheet" href="./customcss/general.css"/>
 
 </head>
-<body>
+<body class="text-center">
 <script src="./jslibraries/jQuery.js"></script>
 
-<form class="form-signin" action="./registrazione" method="post" onsubmit="return validateData()">
-  <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <label for="username" class="sr-only" >Nome Utente:</label>
-  <input type="text" id="username" class="form-control" onfocusout="existingusername()" placeholder="Nome Utente" required="" autofocus="">
-  <span id="usernametest-alert" class="alert-info " hidden>Questo nome utente esiste già!</span>
+<div id = "pageContenent">
 
-  <label for="email" class="sr-only">Email</label>
-  <input type="email" id="email" class="form-control" onfocusout="existingEmail()" placeholder="Email" required="">
-  <span id="emailtest-alert" class="alert-info " hidden>Questa email risulta già iscritta!</span>
+    <form class = "form-signin" action="./registrazione" method="post" onsubmit="return validateData()">
+        <img class="mb-4" src="./images/logo3.png" alt="" width="130" height="90">
+        <h1 style="padding: 10px; background-color: rgba(0,0,0,0.3); text-align: center">Registrati</h1>
+        <label for="username" class="sr-only" >Nome Utente:</label>
+        <input type="text" id="username" class="form-control" onfocusout="existingusername()" placeholder="Nome Utente" required="" autofocus="">
+        <span id="usernametest-alert" class="alert-info " hidden>Questo nome utente esiste già!</span>
 
-  <label for="password" class="sr-only">Password</label>
-  <input type="password" id="password" class="form-control" placeholder="Password" required="">
-  <input type="checkbox" value="eula" required=""> Accetto le condizioni sulla privacy
+        <label for="email" class="sr-only">Email</label>
+        <input type="email" id="email" class="form-control" onfocusout="existingEmail()" placeholder="Email" required="">
+        <span id="emailtest-alert" class="alert-info " hidden>Questa email risulta già iscritta!</span>
 
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="Password" required="">
+        <input type="checkbox" value="eula" required=""> Accetto le condizioni sulla privacy
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
+
+    </form>
+</div>
+
+<p class="mt-5 mb-3 text-muted">© E.M.A.A. corp</p>
 
 <script>
 

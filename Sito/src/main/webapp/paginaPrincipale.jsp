@@ -22,24 +22,23 @@
 </head>
 
 <body>
-<jsp:include page = "./pageComponents/navbar.jsp"></jsp:include>
+<jsp:include page = "./pageComponents/navbar3.jsp"></jsp:include>
 <div id = "pageContenent">
 
 
 <main role="main">
 
-    <section class="jumbotron text-center">
+    <section class="jumbotron text-center" style= "background-color: rgba(0,0,0,0.5)">
         <div class="container">
-            <h1 class="jumbotron-heading">Album example</h1>
-            <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-            <p>
-                <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            <h1 class="jumbotron-heading">Benvenuto in Storytelling!</h1>
+            <p class="lead text-muted">Racconta la tua storia e vivi quella degli altri!<p>
+          <!--      <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                <a href="#" class="btn btn-secondary my-2">Secondary action</a>  -->
             </p>
         </div>
     </section>
 
-    <div class="album py-5 bg-light">
+    <div class="album py-5" style= "background-color: rgba(0,0,0,0.3)">
         <div class="container">
 
             <div class="row">

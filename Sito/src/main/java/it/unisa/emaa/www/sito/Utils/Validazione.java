@@ -1,41 +1,97 @@
 package it.unisa.emaa.www.sito.Utils;
 
+import it.unisa.emaa.www.sito.Model.dao.IUtenteDao;
+import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
+import it.unisa.emaa.www.sito.Model.entity.Utente;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.regex.Pattern;
 
+
+/**
+ * Questa classe permette di usare dei metodi statici per effettuare controlli
+ * @author Alessandro Marigliano
+ */
 public class Validazione {
     public static boolean emailIsPresent(String email){
-        UtenteDao userDao = new UtenteDao();
+        UtenteDao utenteDao = new UtenteDao();
         Utente utente = utenteDao.doRetrieveByEmail(email);
         return utente != null;
     }
 
+    /**
+     * @param username
+     * Il metodo prende come input un username.
+     * @return Il metodo ritorna true o false a seconda se l'username dato in input si trova o meno nel database.
+     */
     public static boolean usernameIsPresent(String username){
         UtenteDao utenteDao = new UtenteDao();
         Utente utente = utenteDao.doRetrieveByUsername(username);
         return utente != null;
     }
 
+    /**
+     * Il metodo controlla se una reazione nel databse è presente
+     * @param email Il metodo prende in input un email
+     * @param idStoria Il metodo prende in input un id storia
+     * @return Ritorna se è presente una reazione di un utente da data email alla data storia nel database
+     */
     public static boolean reactionIsPresent(String email,int idStoria){
         ReazioneDao reazioneDao = new ReazioneDao();
         Reazione reazione = reazioneDao.doRetrieve(email,idStoria);
         return reazione != null;
 
     }
+
+    /**
+     * @param email Il metodo prende in input una email.
+     * @return Il metodo ritorna un valore true o false a seconda se l'email data in input rispetta o meno il pattern della regex per le email.
+     */
     public static boolean emailRegex(String email){
         Pattern patternEmail = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
         return patternEmail.matcher(email).matches();
     }
 
+    /**
+     * @param password Il metodo prende in input una password.
+     * @return Il metodo ritorna un valore true o false a seconda se la password data in input rispetta o meno il pattern della regex per le password.
+     */
     public static boolean passwordRegex(String password){
         Pattern patternPassword = Pattern.compile("^(?=.*[a-z])(?=.*\\d)(?=.*[@#$._%-])(?=.*[A-Z]).{8,16}$");
         return patternPassword.matcher(password).matches();
     }
+
+    /**
+     * Il metodo confronta due stringhe passate.
+     * @param password
+     * @param passwordTest
+     * @return Il metodo ritorna true o false a seconda se le password passate sono identiche.
+     */
+    /*
     public static boolean passwordTest(String password,String passwordTest){
         return password.equals(passwordTest);
+    }*/
+
+    /**
+     * Il metodo controlla che l'email passata sia di un utente registrato e che la password inserita corrisponda alla sua.
+     * @param email
+     * @param password
+     * @return Il metodo ritorna true o false a seconda se i dati sono corretti.
+     */
+    public static boolean datiCorrispondenti(String email,String password){
+        UtenteDao utenteDao = new UtenteDao();
+        String hashedPassword = passwordHasher(password);
+        Utente utente = utenteDao.doRetrieveByEmail(email);
+        return utente!=null && hashedPassword.equals(utente.getPassword());
+
     }
+    /**
+     * Il metodo effettua l'hashing della password passata come input.
+     * @param password
+     * @return Il metodo resiste la password dopo che è stato effettuato l'hashing.
+     */
     public static String passwordHasher(String password){
         try {
             // getInstance() method is called with algorithm SHA-512

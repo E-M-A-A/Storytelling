@@ -109,11 +109,38 @@ button, select {
     text-transform: none;
 }
 
+.navbarBottom {
+    background-color: white;
+}
+
+#contenuto {
+    min-height: 100px;
+    min-width: 99%;
+}
+
+.navbar{
+    display: inline;
+    word-wrap: break-word;
+
+}
+
+#scriviTextBox
+{
+    text-align: left;
+}
+
+.pubblicaButton
+{
+    background-color:var(--bg-secondary-color) ;
+
+}
 
 
-
-
-
+.bottoneHome {
+    width: 10px;
+    padding: 10px;
+    text-align: center;
+}
 
 
 

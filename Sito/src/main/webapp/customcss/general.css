@@ -8,6 +8,7 @@
     --bg-default-color:#272738;
     background-color:var(--bg-default-color);
     --bg-tertiary-color:#fbd77c;
+    --bg-storia:#55595C;
 }
 
 .btn-primary:hover {

@@ -1,7 +1,9 @@
 package it.unisa.emaa.www.sito.Control.Storia;
 
 import com.google.gson.Gson;
+import it.unisa.emaa.www.sito.Model.dao.CommentoDao;
 import it.unisa.emaa.www.sito.Model.dao.StoriaDao;
+import it.unisa.emaa.www.sito.Model.entity.Commento;
 import it.unisa.emaa.www.sito.Model.entity.Storia;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Questa servlet gestisce la visualizzazione di una storia con i relativi commenti.

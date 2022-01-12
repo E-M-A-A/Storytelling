@@ -5,6 +5,7 @@ import it.unisa.emaa.www.sito.Model.entity.Commento;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.io.IOException;
  * L'operazione fallisce se il commento non rispetta la regola di lunghezza.
  * @author Alessandro Marigliano
  */
+@WebServlet(name = "InserisciCommento",urlPatterns = "/InserisciCommento")
 public class InserisciCommento extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

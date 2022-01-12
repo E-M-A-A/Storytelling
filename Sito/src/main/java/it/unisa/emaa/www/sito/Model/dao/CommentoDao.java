@@ -32,21 +32,24 @@ public class CommentoDao implements ICommentoDao{
     }
 
     @Override
-    public Commento doRetrieveByStoria(int idStoria) {
+    public List<Commento> doRetrieveByStoria(int idStoria) {
         try(Connection conn = ConnPool.getConnection()){
-            try(PreparedStatement ps = conn.prepareStatement("Select * from storia  where idStoria =?")){
+            try(PreparedStatement ps = conn.prepareStatement("Select * from commento  where idStoria =?")){
                 ps.setInt(1,idStoria);
                 ResultSet rs = ps.executeQuery();
                 if(!rs.isBeforeFirst())
                     return null;
-                rs.next();
-                Commento commento = new Commento();
-                commento.setId(rs.getInt("id"));
-                commento.setIdStoria(rs.getInt("idStoria"));
-                commento.setUsername(rs.getString("username"));
-                commento.setContenuto(rs.getString("contenuto"));
+                List<Commento> commenti = new ArrayList<>();
+                while(rs.next()) {
+                    Commento commento = new Commento();
+                    commento.setId(rs.getInt("id"));
+                    commento.setIdStoria(rs.getInt("idStoria"));
+                    commento.setUsername(rs.getString("username"));
+                    commento.setContenuto(rs.getString("contenuto"));
+                    commenti.add(commento);
+                }
                 rs.close();
-                return commento;
+                return commenti;
             } catch (SQLException e){
                 e.printStackTrace();
             }

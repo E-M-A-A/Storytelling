@@ -17,7 +17,7 @@
 <div id = "pageContenent">
     <form class="form-signin">
         <img class="mb-4" src="./images/logo3.png" alt="" width="130" height="90">
-        <h1 class="h3 mb-3 font-weight-normal">Inserisci le tue credenziali</h1>
+        <h1 class="h3 mb-3 font-weight-normal" style = "background-color: rgba(0,0,0,0.3)">Inserisci le tue credenziali</h1>
         <label for="inputEmail" class="sr-only">Email</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
         <label for="inputPassword" class="sr-only">Password</label>

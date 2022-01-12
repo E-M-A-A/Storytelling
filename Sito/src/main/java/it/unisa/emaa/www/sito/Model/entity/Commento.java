@@ -1,33 +1,11 @@
 package it.unisa.emaa.www.sito.Model.entity;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "commento")
-
-@NamedQueries({
-        @NamedQuery(name = "retrieveAll", query = "select c from Commento c"),
-        @NamedQuery(name = "retrieveByStoria", query ="select c from Commento c where c.id = :fid"),
-
-})
-
 
 
 public class Commento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "idStoria", nullable = false)
-    private Storia idStoria;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "username", nullable = false)
-    private Utente username;
-
-    @Column(name = "contenuto", nullable = false, length = 128)
+    private int id;
+    private int idStoria;
+    private String username;
     private String contenuto;
 
     public String getContenuto() {
@@ -38,23 +16,23 @@ public class Commento {
         this.contenuto = contenuto;
     }
 
-    public Utente getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(Utente username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public Storia getIdStoria() {
+    public int getIdStoria() {
         return idStoria;
     }
 
-    public void setIdStoria(Storia idStoria) {
+    public void setIdStoria(int idStoria) {
         this.idStoria = idStoria;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

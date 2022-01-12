@@ -1,70 +1,163 @@
 package it.unisa.emaa.www.sito.Model.dao;
 
+import it.unisa.emaa.www.sito.Model.ConnPool;
 import it.unisa.emaa.www.sito.Model.entity.Storia;
-
-import javax.persistence.*;
-import java.awt.print.Pageable;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class StoriaDao implements IStoriaDao {
     @Override
     public List<Storia> doRetrieveAll() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
-        EntityManager em = emf.createEntityManager();
-        ArrayList<Storia> list = (ArrayList<Storia>) em.createNamedQuery("retrieveAll", Storia.class).getResultList();
-        return list;
+        try(Connection conn = ConnPool.getConnection()) {
+            try(PreparedStatement ps = conn.prepareStatement("Select * from storia")){
+                ResultSet rs = ps.executeQuery();
+                ArrayList<Storia> list =  new ArrayList<>();
+                while(rs.next()){
+                    Storia storia = new Storia();
+                    storia.setContenuto(rs.getString("contenuto"));
+                    storia.setDataCreazione(rs.getDate("dataCreazione").toLocalDate());
+                    storia.setNCommenti(rs.getInt("nCommenti"));
+                    storia.setNReazioni(rs.getInt("nReazioni"));
+                    storia.setUsername(rs.getString("username"));
+                    storia.setId(rs.getInt("id"));
+                    list.add(storia);
+                }
+                rs.close();
+                return list;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     @Override
     public Storia doRetrieveById(int id) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
-        EntityManager em = emf.createEntityManager();
-        Query query = em.createNamedQuery("retrieveById",Storia.class);
-        query.setParameter("fid",id);
-        Storia storia = (Storia) query.getSingleResult();
-        return storia;
+        try(Connection conn = ConnPool.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement("Select * from storia  where id =?")){
+                ps.setInt(1,id);
+                ResultSet rs = ps.executeQuery();
+                if(!rs.isBeforeFirst())
+                    return null;
+                rs.next();
+                Storia storia = new Storia();
+                storia.setContenuto(rs.getString("contenuto"));
+                storia.setDataCreazione(rs.getDate("dataCreazione").toLocalDate());
+                storia.setNCommenti(rs.getInt("nCommenti"));
+                storia.setNReazioni(rs.getInt("nReazioni"));
+                storia.setUsername(rs.getString("username"));
+                storia.setId(rs.getInt("id"));
+                rs.close();
+                return storia;
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
 
     }
 
     @Override
     public boolean doDelete(int id) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
-        EntityManager em = emf.createEntityManager();
-        em.remove(id);
-        return true; //storia rimossa da gestire anche il caso di return false
+        try(Connection conn = ConnPool.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement("DELETE FROM Users WHERE id=?;")){
+                ps.setInt(1,id);
+                return ps.executeUpdate()>0;
+            }
+            catch(SQLException e){
+                throw new SQLException();
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
+
 
     @Override
     public boolean doSave(Storia storia) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
-        EntityManager em = emf.createEntityManager();
-        em.persist(storia);
-        return true;  //storia salvata da gestire anche il caso di return false
+        try(Connection conn = ConnPool.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement("INSERT into storia (username,contenuto,nReazioni,nCommenti,dataCreazione) values (?,?,?,?,?)")){
+                ps.setString(1, storia.getUsername());
+                ps.setString(2, storia.getContenuto());
+                ps.setInt(3,storia.getNReazioni());
+                ps.setInt(4,storia.getNCommenti());
+                ps.setDate(5, Date.valueOf(storia.getDataCreazione()));
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                rs.next();
+                storia.setId(rs.getInt(1));  // viene preso l'id autoincrementato dopo l'insert e settato
+                return true;
+
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
 
     }
-
+/*
     @Override
     public List<Storia> doRetrieveByDate(Date date) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
-        EntityManager em = emf.createEntityManager();
-        Query query = em.createNamedQuery("retrieveByDate",Storia.class);
-        query.setParameter("fdate",date);
-        ArrayList<Storia> list = (ArrayList<Storia>) query.getResultList();
-        return list;
+        try(Connection conn = ConnPool.getConnection()) {
+            try(PreparedStatement ps = conn.prepareStatement("Select * from storia where dataCreazione =?")){
+                ResultSet rs = ps.executeQuery();
+                ArrayList<Storia> list =  new ArrayList<>();
+                while(rs.next()){
+                    Storia storia = new Storia();
+                    storia.setContenuto(rs.getString("contenuto"));
+                    storia.setDataCreazione(rs.getDate("dataCreazione"));
+                    storia.setNCommenti(rs.getInt("nCommenti"));
+                    storia.setNReazioni(rs.getInt("nReazioni"));
+                    storia.setId(rs.getInt("id"));
+                    list.add(storia);
+                }
+                rs.close();    ???????????????????????? da vedereeeeeeee ??????????????????????????????
+                return list;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
 
     }
-
+*/
     @Override
     public List<Storia> doRetrieveByPage(int limit, int offset) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Default");
-        EntityManager em = emf.createEntityManager();
-        Query query = em.createNamedQuery("retrieveByPage",Storia.class);
-        query.setFirstResult(offset);
-        query.setMaxResults(limit);
-        ArrayList<Storia> list = (ArrayList<Storia>) query.getResultList();
-        return list;
+        try(Connection conn = ConnPool.getConnection()) {
+            try(PreparedStatement ps = conn.prepareStatement("Select * from storia order by dataCreazione LIMIT ?,? ")){ // primo punto interrogativo offset, il secondo limit
+                 ps.setInt(1,offset);
+                 ps.setInt(2,limit);
+                 ResultSet rs = ps.executeQuery();
+                ArrayList<Storia> list =  new ArrayList<>();
+                while(rs.next()){
+                    Storia storia = new Storia();
+                    storia.setContenuto(rs.getString("contenuto"));
+                    storia.setDataCreazione(rs.getDate("dataCreazione").toLocalDate());
+                    storia.setNCommenti(rs.getInt("nCommenti"));
+                    storia.setNReazioni(rs.getInt("nReazioni"));
+                    storia.setId(rs.getInt("id"));
+                    storia.setUsername(rs.getString("username"));
+                    list.add(storia);
+                }
+                rs.close();
+                return list;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
 
     }
 }
+

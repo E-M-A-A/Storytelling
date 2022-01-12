@@ -3,24 +3,7 @@ package it.unisa.emaa.www.sito.Model.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-@NamedQueries({
-        @NamedQuery(name="retrieveByEmail",query = "select r from Reazione r where r.emailUtente = :femail"),
-        @NamedQuery(name = "retrieveByIdStoria",query = "select r from Reazione r where r.idStoria = :fidStoria" )
 
-})
-
-/*
-* il comando entity from db che ha permesso di realizzare la classe entity dalla tabella del database ha
-* generato 2 classi, una classe ReazioneID e una classe Reazione. Essendo impossibile creare le query facendo riferimento
-* a due classi abbiamo unito le due classi, questo ci ha portato ad avere un attributo in più, l'attributo ID di tipo
-* reazione.
-*
-*
-* */
-
-@Entity
-@Table(name = "reazione")
-@Embeddable
 public class Reazione implements Serializable {
         @EmbeddedId
         private Reazione id;

@@ -1,41 +1,20 @@
 package it.unisa.emaa.www.sito.Model.entity;
 
+import jdk.vm.ci.meta.Local;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-@NamedQueries({
-        @NamedQuery(name = "retrieveAll", query = "select s from Storia s"),
-        @NamedQuery(name = "retrieveById", query = "select s from Storia s where s.id = :fid"),
-        @NamedQuery(name = "retrieveByDate",query = "select s from Storia s where s.dataCreazione = :fdate"),
-        @NamedQuery(name = "retrieveByPage",query = "select s from Storia s") // si aggiungono limit e offset nella classe dao
+import java.util.Date;
 
 
-}
-)
-
-
-@Entity
-@Table(name = "storia")
 public class Storia {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
 
-    @Column(name = "username", nullable = false, length = 20)
+    private int id;
     private String username;
-
-    @Column(name = "contenuto", nullable = false, length = 512)
     private String contenuto;
-
-    @Column(name = "nReazioni", nullable = false)
-    private Integer nReazioni;
-
-    @Column(name = "nCommenti", nullable = false)
-    private Integer nCommenti;
-
-    @Column(name = "dataCreazione", nullable = false)
+    private int nReazioni;
+    private int nCommenti;
     private LocalDate dataCreazione;
-
     public LocalDate getDataCreazione() {
         return dataCreazione;
     }

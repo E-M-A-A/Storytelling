@@ -15,10 +15,10 @@ import java.util.TimeZone;
         public static Connection getConnection() throws SQLException {
             if (datasource == null) {
                 PoolProperties p = new PoolProperties();
-                p.setUrl("jdbc:mysql://localhost:3306/makeyourownpc?serverTimezone=" + TimeZone.getDefault().getID());
+                p.setUrl("jdbc:mysql://localhost:3306/storytelling?serverTimezone=" + TimeZone.getDefault().getID());
                 p.setDriverClassName("com.mysql.cj.jdbc.Driver");
-                p.setUsername("root");
-                p.setPassword("pass");
+                p.setUsername("Storytelling");
+                p.setPassword("Ciao.123");
                 p.setMaxActive(100);
                 p.setInitialSize(10);
                 p.setMinIdle(10);

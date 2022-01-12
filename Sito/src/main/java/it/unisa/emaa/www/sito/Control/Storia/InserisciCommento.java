@@ -1,5 +1,7 @@
 package it.unisa.emaa.www.sito.Control.Storia;
 
+import it.unisa.emaa.www.sito.Model.dao.CommentoDao;
+import it.unisa.emaa.www.sito.Model.entity.Commento;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 
 import javax.servlet.ServletException;
@@ -23,14 +25,14 @@ public class InserisciCommento extends HttpServlet {
         String commento = req.getParameter("commento");
         resp.getWriter().print(inserimentoCommento(utente.getUsername(),idStoria,commento));
     }
-    private boolean inserimentoCommento(String username,int idStoria,String commento){
-        if(commento.length()<3||commento.length()>100)
+    private boolean inserimentoCommento(String username,int idStoria,String contenuto){
+        if(contenuto.length()<3||contenuto.length()>100)
             return false;
         CommentoDao commentoDao = new CommentoDao();
         Commento commento = new Commento();
-        commento.setUtente();
-        commento.setCommento();
-        commento.setIdStoria();
+        commento.setUsername(username);
+        commento.setContenuto(contenuto);
+        commento.setIdStoria(idStoria);
         return commentoDao.doSave(commento);
     }
 }

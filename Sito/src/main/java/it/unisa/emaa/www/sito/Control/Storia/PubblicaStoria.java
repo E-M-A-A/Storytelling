@@ -6,6 +6,7 @@ import it.unisa.emaa.www.sito.Model.entity.Utente;
 import sun.util.resources.LocaleData;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import java.time.LocalDate;
  * L'operazione fallisce se la storia non rispetta la regola di lunghezza.
  * @author Alessandro Marigliano
  */
+@WebServlet(name="PubblicaStoria",urlPatterns = "/PubblicaStoria")
 public class PubblicaStoria extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

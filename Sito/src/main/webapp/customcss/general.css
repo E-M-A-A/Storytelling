@@ -37,13 +37,13 @@ body{
     margin: auto;
     max-width: 300px;
     max-height: 200px;
-    margin-top: 12%;
+    margin-top: 5%;
 }
 
 .buttonContainer > div
 {
     margin: auto;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .btn {
@@ -71,6 +71,79 @@ body{
     line-height: 1.5;
     border-radius: 0.3rem;
 }
+
+.form-signin {
+    margin: auto;
+    margin-top: 10px;
+    box-sizing: border-box;
+    max-width: 300px;
+    max-height: 200px;
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.navbar-toggler:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.navbar-dark .navbar-toggler {
+    color: rgba(255,255,255,.5);
+    border-color: rgba(255,255,255,.1);
+}
+
+[type=reset], [type=submit], button, html [type=button] {
+    -webkit-appearance: button;
+}
+
+.navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+button, select {
+    text-transform: none;
+}
+
+.navbarBottom {
+    background-color: white;
+}
+
+#contenuto {
+    min-height: 100px;
+    min-width: 99%;
+}
+
+.navbar{
+    display: inline;
+    word-wrap: break-word;
+
+}
+
+#scriviTextBox
+{
+    text-align: left;
+}
+
+.pubblicaButton
+{
+    background-color:var(--bg-secondary-color) ;
+
+}
+
+
+.bottoneHome {
+    width: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+
+
 
 
 

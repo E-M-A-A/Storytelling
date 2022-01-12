@@ -30,7 +30,7 @@ public class VisualizzaBacheca extends HttpServlet {
     }
     private List<Storia> recuperaListaStorie(int pagina){
         StoriaDao storiaDao = new StoriaDao();
-        return storiaDao.doRetrieveByPage(pagina*10,10);
+        return storiaDao.doRetrieveByPage(pagina*30,30);
 
     }
 }

@@ -1,10 +1,8 @@
 package it.unisa.emaa.www.sito.Model.entity;
 
-import jdk.vm.ci.meta.Local;
 
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+
 
 
 public class Storia {

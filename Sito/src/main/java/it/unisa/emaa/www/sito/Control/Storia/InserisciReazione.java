@@ -1,5 +1,6 @@
 package it.unisa.emaa.www.sito.Control.Storia;
 
+import it.unisa.emaa.www.sito.Model.dao.ReazioneDao;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
@@ -21,12 +22,12 @@ public class InserisciReazione extends HttpServlet {
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         int idStoria = Integer.parseInt(req.getParameter("storia"));
-        inserimentoReazione(utente.getEmail(),idStoria);
+        inserimentoReazione(utente.getId(),idStoria);
     }
     private boolean inserimentoReazione(String email,int idStoria){
         ReazioneDao reazioneDao = new ReazioneDao();
-        if(Validazione.reactionIsPresent(utente.getEmail(),idStoria))
+        if(Validazione.reactionIsPresent(email,idStoria))
             resp.setStatus(500);
-        reazioneDao.doSave(utente.getEmail(),idStoria);
+        reazioneDao.doSave(email,idStoria);
     }
 }

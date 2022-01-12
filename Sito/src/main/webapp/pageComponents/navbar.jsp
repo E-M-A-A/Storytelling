@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="./customcss/general.css"/>
 
 <header>
-    <div class="bg-dark collapse" id="navbarHeader" style="">
+    <div class="bg-dark collapse" id="navbarHeader" style="" >
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-md-7 py-4">

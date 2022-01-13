@@ -20,6 +20,7 @@ import java.io.IOException;
  */
 @WebServlet(name = "InserisciReazione",urlPatterns = "/InserisciReazione")
 public class InserisciReazione extends HttpServlet {
+    private ReazioneDao reazioneDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -29,12 +30,17 @@ public class InserisciReazione extends HttpServlet {
             resp.setStatus(500);
     }
     private boolean inserimentoReazione(String email,int idStoria){
-        ReazioneDao reazioneDao = new ReazioneDao();
-        if(Validazione.reactionIsPresent(email,idStoria))
+        if(Validazione.reactionIsPresent(email,idStoria,reazioneDao))
             return false;
         Reazione reazione = new Reazione();
         reazione.setIdStoria(idStoria);
         reazione.setEmailUtente(email);
         return reazioneDao.doSave(reazione);
+    }
+    public InserisciReazione(){
+        reazioneDao = new ReazioneDao();
+    }
+    public InserisciReazione(ReazioneDao reazioneDao){
+        this.reazioneDao = reazioneDao;
     }
 }

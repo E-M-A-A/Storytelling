@@ -42,10 +42,9 @@ public class PubblicaStoria extends HttpServlet {
         return storiaDao.doSave(storia);
     }
     public PubblicaStoria(){
-
+        storiaDao = new StoriaDao();
     }
     public PubblicaStoria(StoriaDao storiaDao){
-
-
+        this.storiaDao = storiaDao;
     }
 }

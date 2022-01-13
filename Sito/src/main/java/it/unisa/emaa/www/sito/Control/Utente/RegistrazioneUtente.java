@@ -24,6 +24,7 @@ import java.io.IOException;
  */
 @WebServlet(name = "RegistraUtente",urlPatterns = "/RegistraUtente")
 public class RegistrazioneUtente extends HttpServlet {
+    private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
@@ -46,11 +47,16 @@ public class RegistrazioneUtente extends HttpServlet {
     }
 
     private boolean effettuaRegistrazione(Utente utente){
-        UtenteDao utenteDao = new UtenteDao();
         return utenteDao.doSave(utente);
     }
 
     private boolean controllaDati(String email,String password,String passwordTest,String username, boolean eula){
-        return !Validazione.emailIsPresent(email) && !Validazione.usernameIsPresent(username) && Validazione.emailRegex(email) && Validazione.passwordRegex(password) && password.equals(passwordTest) && eula;
+        return !Validazione.emailIsPresent(email,utenteDao) && !Validazione.usernameIsPresent(username,utenteDao) && Validazione.emailRegex(email) && Validazione.passwordRegex(password) && password.equals(passwordTest) && eula;
+    }
+    public RegistrazioneUtente(){
+        utenteDao = new UtenteDao();
+    }
+    public RegistrazioneUtente(UtenteDao utenteDao){
+        this.utenteDao = utenteDao;
     }
 }

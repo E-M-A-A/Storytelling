@@ -18,12 +18,13 @@ import java.io.IOException;
  * @author Alessandro Marigliano
  */
 public class EliminazioneUtente extends HttpServlet {
+    private static UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         String password = req.getParameter("password");
-        boolean matchedPassword = Validazione.datiCorrispondenti(utente.getId(),password);
+        boolean matchedPassword = Validazione.datiCorrispondenti(utente.getId(),password,utenteDao);
         session.setAttribute("LoginErrato", !matchedPassword);
         if(!matchedPassword){
             String referer = req.getHeader("referer");
@@ -38,7 +39,12 @@ public class EliminazioneUtente extends HttpServlet {
      * @return Il metodo ritorna il risultato dell'operazione.
      */
     public static boolean eliminaUtente(String email){
-        UtenteDao utenteDao = new UtenteDao();
         return utenteDao.doDelete(email);
+    }
+    public EliminazioneUtente(){
+        utenteDao = new UtenteDao();
+    }
+    public EliminazioneUtente(UtenteDao utenteDao){
+        this.utenteDao = utenteDao;
     }
 }

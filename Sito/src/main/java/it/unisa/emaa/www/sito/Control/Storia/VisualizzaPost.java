@@ -25,7 +25,7 @@ public class VisualizzaPost extends HttpServlet {
     private CommentoDao commentoDao;
     private StoriaDao storiaDao;
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idStoria = Integer.parseInt(req.getParameter("storia"));
         Post post = recuperaPost(idStoria);
         Gson gson = new Gson();

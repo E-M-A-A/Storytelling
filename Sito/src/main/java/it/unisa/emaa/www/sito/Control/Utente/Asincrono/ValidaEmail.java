@@ -1,5 +1,6 @@
 package it.unisa.emaa.www.sito.Control.Utente.Asincrono;
 
+import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
 import javax.servlet.ServletException;
@@ -11,11 +12,18 @@ import java.io.IOException;
 
 @WebServlet(name="EmailPresente",urlPatterns = "/EmailPresente")
 public class ValidaEmail extends HttpServlet {
+    private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().print(Validazione.emailIsPresent(email));
+        resp.getWriter().print(Validazione.emailIsPresent(email,utenteDao));
+    }
+    public ValidaEmail(){
+        utenteDao = new UtenteDao();
+    }
+    public ValidaEmail(UtenteDao utenteDao){
+        this.utenteDao = utenteDao;
     }
 }

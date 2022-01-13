@@ -28,6 +28,7 @@ public class PubblicaStoria extends HttpServlet {
         Utente utente = (Utente) session.getAttribute("utente");
         String storia = req.getParameter("contenuto");
         resp.getWriter().print(pubblicaStoria(utente.getUsername(),storia));
+        resp.sendRedirect("/Sito_war_exploded/visualizzaBacheca.jsp");
     }
 
     private boolean pubblicaStoria(String username,String contenuto){

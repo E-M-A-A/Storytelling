@@ -27,6 +27,7 @@ public class InserisciCommento extends HttpServlet {
         int idStoria = Integer.parseInt(req.getParameter("storia"));
         String commento = req.getParameter("commento");
         resp.getWriter().print(inserimentoCommento(utente.getUsername(),idStoria,commento));
+        resp.sendRedirect(req.getHeader("referer"));
     }
     private boolean inserimentoCommento(String username,int idStoria,String contenuto){
         if(contenuto.length()<3||contenuto.length()>100)

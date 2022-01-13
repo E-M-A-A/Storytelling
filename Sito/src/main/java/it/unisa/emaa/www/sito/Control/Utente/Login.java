@@ -37,6 +37,7 @@ public class Login extends HttpServlet {
         HttpSession session = req.getSession(true);
         Utente utente = recuperaUtente(email);
         session.setAttribute("Utente",utente);
+        resp.sendRedirect("/Sito_war_exploded/visualizzaBacheca.jsp");
     }
     private Utente recuperaUtente(String email){
         Utente utente = utenteDao.doRetrieveByEmail(email);

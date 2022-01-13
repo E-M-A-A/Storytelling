@@ -33,6 +33,7 @@ public class VisualizzaPost extends HttpServlet {
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().print(json);
+        resp.sendRedirect("/Site_war_exploded/visualizzazionePost.jsp");
     }
     private Post recuperaPost(int idStoria){
         Storia storia = storiaDao.doRetrieveById(idStoria);

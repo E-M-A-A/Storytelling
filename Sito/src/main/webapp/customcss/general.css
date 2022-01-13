@@ -155,7 +155,12 @@ a:hover
     cursor:pointer;
 }
 
-.card > .card-body
+#commenti > .card
 {
-    padding: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    margin-top: 10px;
 }

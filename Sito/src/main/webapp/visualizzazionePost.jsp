@@ -62,45 +62,41 @@
             <div class="container" >
                 <div class="card mb-4 box-" style = "background-color: var(--bg-secondary-color)">
                     <div class="card-body">
-                        <p class="card-text">Qui saranno contenuti tutti i commenti.</p>
+                        <p class="card-text ">Scrolla verso il basso per visualizzare i commenti meno recenti.</p>
                         <div class="align-items-center" id = "commenti">
                             <div class="card" style = "background-color: var(--bg-default-color)"   >
                                 <h5>Questo è l'autore del commento.</h5>
-                                    <p class="card-text">Questo dovrebbe essere un commento.</p>
+                                    <p class="card-text">Questo è il testo del commento. Ogni utente può commentare una storia esprimendo la propria impressione.</p>
 
                                     <small class="text-muted">9 mins</small>
                             </div>
-                            <div class="card" style = "background-color: var(--bg-default-color)">
+                            <div class="card" style = "background-color: var(--bg-default-color)"   >
                                 <h5>Questo è l'autore del commento.</h5>
-                                <p class="card-text">Questo dovrebbe essere un commento.</p>
+                                <p class="card-text">Questo è il testo del commento. Ogni utente può commentare una storia esprimendo la propria impressione.</p>
 
                                 <small class="text-muted">9 mins</small>
                             </div>
-                            <div class="card" style = "background-color: var(--bg-default-color)">
-                                <h5>Pippo2001:)</h5>
-                                <p class="card-text">Senti, mi piacerebbe molto poter giudicare positivamente
-                                    questa storia ma OHHHHHH CIOEEHHHHH; CHI SONO IO PER FARE UN BEL COMMENTO???
-                                    SONO SOLO UIN BIMBO MINCHIA. Comunque noh, niente, molto bella la storia su
-                                    come hai acquistato la tua lamborghini frah!
-                                </p>
+                            <div class="card" style = "background-color: var(--bg-default-color)"   >
+                                <h5>Questo è l'autore del commento.</h5>
+                                <p class="card-text">Questo è il testo del commento. Ogni utente può commentare una storia esprimendo la propria impressione.</p>
 
                                 <small class="text-muted">9 mins</small>
                             </div>
-                            <div class="card" style = "background-color: var(--bg-default-color)">
+                            <div class="card" style = "background-color: var(--bg-default-color)"   >
                                 <h5>Questo è l'autore del commento.</h5>
-                                <p class="card-text">Questo dovrebbe essere un commento.</p>
+                                <p class="card-text">Questo è il testo del commento. Ogni utente può commentare una storia esprimendo la propria impressione.</p>
 
                                 <small class="text-muted">9 mins</small>
                             </div>
-                            <div class="card" style = "background-color: var(--bg-default-color)">
+                            <div class="card" style = "background-color: var(--bg-default-color)"   >
                                 <h5>Questo è l'autore del commento.</h5>
-                                <p class="card-text">Questo dovrebbe essere un commento.</p>
+                                <p class="card-text">Questo è il testo del commento. Ogni utente può commentare una storia esprimendo la propria impressione.</p>
 
                                 <small class="text-muted">9 mins</small>
                             </div>
-                            <div class="card" style = "background-color: var(--bg-default-color)">
+                            <div class="card" style = "background-color: var(--bg-default-color)"   >
                                 <h5>Questo è l'autore del commento.</h5>
-                                <p class="card-text">Questo dovrebbe essere un commento.</p>
+                                <p class="card-text">Questo è il testo del commento. Ogni utente può commentare una storia esprimendo la propria impressione.</p>
 
                                 <small class="text-muted">9 mins</small>
                             </div>

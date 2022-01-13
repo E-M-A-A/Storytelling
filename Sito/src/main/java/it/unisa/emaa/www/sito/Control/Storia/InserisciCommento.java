@@ -20,7 +20,7 @@ import java.io.IOException;
 @WebServlet(name = "InserisciCommento",urlPatterns = "/InserisciCommento")
 public class InserisciCommento extends HttpServlet {
     private CommentoDao commentoDao;
-    @Override
+  /*  @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
@@ -37,7 +37,7 @@ public class InserisciCommento extends HttpServlet {
         commento.setContenuto(contenuto);
         commento.setIdStoria(idStoria);
         return commentoDao.doSave(commento);
-    }
+    }*/
     public InserisciCommento(){
         commentoDao = new CommentoDao();
     }

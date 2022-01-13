@@ -8,14 +8,7 @@ import java.util.List;
 
 /**
  * La classe CommentoDao è il dao dell'entità commento la classe estende un interfaccia dao contenente i metodi da
- * effettuare, e tramite una connpoll connection ci colleghiamo al database per far sì che
- * vengano effettuate le query scritte qui di seguito
- *
- * I metodi sono:
- * -doRetrieveAll, che effettua una query di selezione di ogni commento
- * -doRetrieveByStoria, che effettua una query di selezione di ogni commento in base alla storia
- * -doSave, che salva un commento nella base di dati
- *
+ * effettuare
  * @author Antonio Scotellaro
  *
  *
@@ -25,6 +18,11 @@ import java.util.List;
 
 
 public class CommentoDao implements ICommentoDao{
+    /**
+     * effettua una query di selezione di ogni commento
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Commento> doRetrieveByAll() throws SQLException {
         try(Connection conn = ConnPool.getConnection()) {
@@ -49,6 +47,11 @@ public class CommentoDao implements ICommentoDao{
         return null;
     }
 
+    /**
+     * effettua una query di selezione di ogni commento in base alla storia
+     * @param idStoria
+     * @return
+     */
     @Override
     public List<Commento> doRetrieveByStoria(int idStoria) {
         try(Connection conn = ConnPool.getConnection()){
@@ -77,6 +80,11 @@ public class CommentoDao implements ICommentoDao{
         return null;
     }
 
+    /**
+     * salva un commento nella base di dati
+     * @param commento
+     * @return
+     */
     @Override
     public boolean doSave(Commento commento) {
         try(Connection conn = ConnPool.getConnection()){

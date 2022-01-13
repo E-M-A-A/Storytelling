@@ -12,17 +12,7 @@ import java.util.List;
 
 /**
  * La classe UtenteDao è il dao dell'entità utente la classe estende un interfaccia dao contenente i metodi da
- * effettuare, e tramite una connpoll connection ci colleghiamo al database per far sì che
- * vengano effettuate le query scritte qui di seguito
- *
- * I metodi sono:
- * -doRetrieveAll, che effettua una query di selezione di ogni utente
- * -doRetrieveByUsername, che effettua una query di selezione di ogni utente in base all'username
- * -doRetrieveByEmail, che effettua una query di selezione di ogni utente in base all'email
- * -doDelete, che cancella un utente dalla base di dati partendo dall'email
- * -doSave, che salva un utente nella base di dati
- *
- *
+ * effettuare
  * @author Antonio Scotellaro
  *
  *
@@ -31,7 +21,9 @@ import java.util.List;
 
 public class UtenteDao implements IUtenteDao{
     @Override
-
+/**
+ * effettua una query di selezione di ogni utente
+ */
     public List<Utente> doRetrieveAll() {
         try(Connection conn = ConnPool.getConnection()) {
             try(PreparedStatement ps = conn.prepareStatement("Select * from utente")){
@@ -53,6 +45,11 @@ public class UtenteDao implements IUtenteDao{
         return null;
     }
 
+    /**
+     * effettua una query di selezione di ogni utente in base all'username
+     * @param username
+     * @return
+     */
     @Override
     public Utente doRetrieveByUsername(String username) {
         try(Connection conn = ConnPool.getConnection()){
@@ -77,6 +74,11 @@ public class UtenteDao implements IUtenteDao{
         return null;
     }
 
+    /**
+     * effettua una query di selezione di ogni utente in base all'email
+     * @param email
+     * @return
+     */
     @Override
     public Utente doRetrieveByEmail(String email) {
         try(Connection conn = ConnPool.getConnection()){
@@ -102,6 +104,11 @@ public class UtenteDao implements IUtenteDao{
         return null;
     }
 
+    /**
+     * salva un utente nella base di dati
+     * @param utente
+     * @return
+     */
     @Override
     public boolean doSave(Utente utente) {
         try(Connection conn = ConnPool.getConnection()){
@@ -121,6 +128,11 @@ public class UtenteDao implements IUtenteDao{
         return false;
     }
 
+    /**
+     * cancella un utente dalla base di dati partendo dall'email
+     * @param email
+     * @return
+     */
     @Override
     public boolean doDelete(String email)  {
         try(Connection conn = ConnPool.getConnection()){

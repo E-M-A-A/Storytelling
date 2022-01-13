@@ -10,27 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  * La classe ReazioneDao è il dao dell'entità reazione la classe estende un interfaccia dao contenente i metodi da
- * effettuare, e tramite una connpoll connection ci colleghiamo al database per far sì che
- * vengano effettuate le query scritte qui di seguito
- *
- * I metodi sono:
- * -doRetrieveByStoria, che effettua una query di selezione di ogni reazione in base alla storia
- * -doRetrieveByEmail, che effettua una query di selezione di ogni reazione in base all'emailUtente
- * -doSave, che salva una reazione nella base di dati
- *
+ * effettuare
  * @author Antonio Scotellaro
- *
- *
  */
-
-
-
-
-
 public class ReazioneDao implements IReazioneDao{
-
-
-
+    /**
+     * effettua una query di selezione di ogni reazione in base alla storia
+     * @param idStoria
+     * @return
+     */
     @Override
     public List<Reazione> doRetrieveByStoria(int idStoria) {
         try(Connection conn = ConnPool.getConnection()) {
@@ -55,6 +43,11 @@ public class ReazioneDao implements IReazioneDao{
 
     }
 
+    /**
+     * effettua una query di selezione di ogni reazione in base all'emailUtente
+     * @param email
+     * @return
+     */
     @Override
     public List<Reazione> doRetrieveByEmail(String email) {
         try(Connection conn = ConnPool.getConnection()) {
@@ -78,6 +71,13 @@ public class ReazioneDao implements IReazioneDao{
         return null;
 
     }
+
+    /**
+     *
+     * @param email
+     * @param idStoria
+     * @return
+     */
     @Override
     public Reazione doRetrieve(String email,int idStoria) {
         try(Connection conn = ConnPool.getConnection()) {
@@ -102,6 +102,11 @@ public class ReazioneDao implements IReazioneDao{
 
     }
 
+    /**
+     * salva una reazione nella base di dati
+     * @param reazione
+     * @return
+     */
     @Override
     public boolean doSave(Reazione reazione) {
         try(Connection conn = ConnPool.getConnection()){

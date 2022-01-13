@@ -1,4 +1,4 @@
-package it.unisa.emaa.www.sito.Control.Utente.Asincrono;
+package it.unisa.emaa.www.sito.Control.Storia.Asincrono;
 
 import it.unisa.emaa.www.sito.Model.dao.ReazioneDao;
 import it.unisa.emaa.www.sito.Model.entity.Reazione;

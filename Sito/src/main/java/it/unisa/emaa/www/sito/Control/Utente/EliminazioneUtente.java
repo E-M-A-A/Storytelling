@@ -18,7 +18,7 @@ import java.io.IOException;
  * @author Alessandro Marigliano
  */
 public class EliminazioneUtente extends HttpServlet {
-    private static UtenteDao utenteDao;
+    private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -38,7 +38,7 @@ public class EliminazioneUtente extends HttpServlet {
      * @param email L'email dell'utente che si vuole eliminare.
      * @return Il metodo ritorna il risultato dell'operazione.
      */
-    public static boolean eliminaUtente(String email){
+    public boolean eliminaUtente(String email){
         return utenteDao.doDelete(email);
     }
     public EliminazioneUtente(){

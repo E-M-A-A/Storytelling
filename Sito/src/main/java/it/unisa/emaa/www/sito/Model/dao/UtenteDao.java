@@ -136,7 +136,7 @@ public class UtenteDao implements IUtenteDao{
     @Override
     public boolean doDelete(String email)  {
         try(Connection conn = ConnPool.getConnection()){
-            try(PreparedStatement ps = conn.prepareStatement("DELETE FROM Users WHERE email=?;")){
+            try(PreparedStatement ps = conn.prepareStatement("DELETE FROM utente WHERE email=?;")){
                 ps.setString(1,email.toLowerCase());
                 return ps.executeUpdate()>0;
             }

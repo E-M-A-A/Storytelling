@@ -1,4 +1,4 @@
-package it.unisa.emaa.www.sito.Control.Utente.Asincrono;
+package it.unisa.emaa.www.sito.Control.Storia.Asincrono;
 
 import com.google.gson.Gson;
 import it.unisa.emaa.www.sito.Model.dao.ReazioneDao;

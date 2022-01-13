@@ -85,9 +85,9 @@ public class Validazione {
 
     }
     /**
-     * Il metodo effettua l'hashing della password passata come input.
+     * Il metodo effettua l'hashing della password passata come input con l'algoritmo SHA-512.
      * @param password
-     * @return Il metodo resiste la password dopo che è stato effettuato l'hashing.
+     * @return Il metodo restituisce la password dopo che ne è stato effettuato l'hashing.
      */
     public static String passwordHasher(String password){
         try {

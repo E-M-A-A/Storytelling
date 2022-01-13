@@ -2,6 +2,7 @@ package it.unisa.emaa.www.sito.Model.entity;
 
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  *Classe entity Storia che è il rispettivo della tabella storia all'interno della base di dati
@@ -22,6 +23,32 @@ public class Storia {
     private int nReazioni;
     private int nCommenti;
     private LocalDate dataCreazione;
+
+    @Override
+    public String toString() {
+        return "Storia{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", contenuto='" + contenuto + '\'' +
+                ", nReazioni=" + nReazioni +
+                ", nCommenti=" + nCommenti +
+                ", dataCreazione=" + dataCreazione +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Storia storia = (Storia) o;
+        return id == storia.id && nReazioni == storia.nReazioni && nCommenti == storia.nCommenti && username.equals(storia.username) && contenuto.equals(storia.contenuto) && Objects.equals(dataCreazione, storia.dataCreazione);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, contenuto, nReazioni, nCommenti, dataCreazione);
+    }
+
     public LocalDate getDataCreazione() {
         return dataCreazione;
     }

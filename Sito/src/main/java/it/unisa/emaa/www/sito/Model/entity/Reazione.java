@@ -34,6 +34,27 @@ public class Reazione implements Serializable {
                 this.emailUtente = emailUtente;
         }
 
+        @Override
+        public String toString() {
+                return "Reazione{" +
+                        "idStoria=" + idStoria +
+                        ", emailUtente='" + emailUtente + '\'' +
+                        '}';
+        }
+
+        @Override
+        public boolean equals(Object o) {
+                if (this == o) return true;
+                if (o == null || getClass() != o.getClass()) return false;
+                Reazione reazione = (Reazione) o;
+                return idStoria == reazione.idStoria && emailUtente.equals(reazione.emailUtente);
+        }
+
+        @Override
+        public int hashCode() {
+                return Objects.hash(idStoria, emailUtente);
+        }
+
         private int idStoria;
         private String emailUtente;
 }

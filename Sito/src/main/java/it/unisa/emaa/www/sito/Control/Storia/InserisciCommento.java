@@ -19,6 +19,7 @@ import java.io.IOException;
  */
 @WebServlet(name = "InserisciCommento",urlPatterns = "/InserisciCommento")
 public class InserisciCommento extends HttpServlet {
+    private CommentoDao commentoDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -30,11 +31,16 @@ public class InserisciCommento extends HttpServlet {
     private boolean inserimentoCommento(String username,int idStoria,String contenuto){
         if(contenuto.length()<3||contenuto.length()>100)
             return false;
-        CommentoDao commentoDao = new CommentoDao();
         Commento commento = new Commento();
         commento.setUsername(username);
         commento.setContenuto(contenuto);
         commento.setIdStoria(idStoria);
         return commentoDao.doSave(commento);
+    }
+    public InserisciCommento(){
+        commentoDao = new CommentoDao();
+    }
+    public InserisciCommento(CommentoDao commentoDao){
+        this.commentoDao = commentoDao;
     }
 }

@@ -1,6 +1,18 @@
 package it.unisa.emaa.www.sito.Model.entity;
 
 
+/**
+ *Classe entity Commento che è il rispettivo della tabella commento all'interno della base di dati
+ * contiene gli attributi della tabella come variabili ed i metodi get e set utili per l'esecuzione
+ * del design pattern dao
+ *
+ * @author Antonio Scotellaro
+ *
+ *
+
+ */
+
+
 
 public class Commento {
     private int id;

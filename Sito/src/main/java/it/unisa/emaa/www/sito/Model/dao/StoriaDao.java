@@ -6,7 +6,22 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La classe StoriaDao è il dao dell'entità storia la classe estende un interfaccia dao contenente i metodi da
+ * effettuare
+ * @author Antonio Scotellaro
+ *
+ *
+ */
+
+
+
+
 public class StoriaDao implements IStoriaDao {
+    /**
+     * effettua una query di selezione di ogni storia
+     * @return
+     */
     @Override
     public List<Storia> doRetrieveAll() {
         try(Connection conn = ConnPool.getConnection()) {
@@ -33,6 +48,11 @@ public class StoriaDao implements IStoriaDao {
         return null;
     }
 
+    /**
+     * effettua una query di selezione di ogni storia in base all'ID
+     * @param id
+     * @return
+     */
     @Override
     public Storia doRetrieveById(int id) {
         try(Connection conn = ConnPool.getConnection()){
@@ -61,6 +81,11 @@ public class StoriaDao implements IStoriaDao {
 
     }
 
+    /**
+     * cancella una storia dalla base di dati partendo dall'ID
+     * @param id
+     * @return
+     */
     @Override
     public boolean doDelete(int id) {
         try(Connection conn = ConnPool.getConnection()){
@@ -78,7 +103,11 @@ public class StoriaDao implements IStoriaDao {
         return false;
     }
 
-
+    /**
+     * salva una storia nella base di dati
+     * @param storia
+     * @return
+     */
     @Override
     public boolean doSave(Storia storia) {
         try(Connection conn = ConnPool.getConnection()){
@@ -131,6 +160,13 @@ public class StoriaDao implements IStoriaDao {
 
     }
 */
+
+    /**
+     * effettua una query prendendo le storie in base ad un limit ed offset che indicano la pagina
+     * @param limit
+     * @param offset
+     * @return
+     */
     @Override
     public List<Storia> doRetrieveByPage(int limit, int offset) {
         try(Connection conn = ConnPool.getConnection()) {

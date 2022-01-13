@@ -20,6 +20,7 @@ import java.util.List;
  */
 @WebServlet(name = "VisualizzaBacheca",urlPatterns = "/VisualizzaBacheca")
 public class VisualizzaBacheca extends HttpServlet {
+    private StoriaDao storiaDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int pagina = Integer.parseInt(req.getParameter("pagina"));
@@ -31,8 +32,12 @@ public class VisualizzaBacheca extends HttpServlet {
         resp.getWriter().print(json);
     }
     private List<Storia> recuperaListaStorie(int pagina){
-        StoriaDao storiaDao = new StoriaDao();
         return storiaDao.doRetrieveByPage(pagina*30,30);
-
+    }
+    public VisualizzaBacheca(){
+        storiaDao = new StoriaDao();
+    }
+    public VisualizzaBacheca(StoriaDao storiaDao){
+        this.storiaDao = storiaDao;
     }
 }

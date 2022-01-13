@@ -22,12 +22,13 @@ import java.io.IOException;
  */
 @WebServlet(name = "Login",urlPatterns = "/Login")
 public class Login extends HttpServlet {
+    private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        boolean failedLogin = !Validazione.datiCorrispondenti(email,password);
+        boolean failedLogin = !Validazione.datiCorrispondenti(email,password,utenteDao);
         session.setAttribute("LoginErrato",failedLogin);
         if(failedLogin) {
             String referer = req.getHeader("referer");
@@ -38,9 +39,14 @@ public class Login extends HttpServlet {
         session.setAttribute("LoginErrato",failedLogin);
     }
     private Utente recuperaUtente(String email){
-        UtenteDao utenteDao = new UtenteDao();
         Utente utente = utenteDao.doRetrieveByEmail(email);
         utente.setPassword("");
         return utente;
+    }
+    public Login(){
+        utenteDao = new UtenteDao();
+    }
+    public Login(UtenteDao utenteDao){
+        this.utenteDao = utenteDao;
     }
 }

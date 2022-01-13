@@ -1,7 +1,9 @@
 package it.unisa.emaa.www.sito.Utils;
 
 import it.unisa.emaa.www.sito.Model.dao.IUtenteDao;
+import it.unisa.emaa.www.sito.Model.dao.ReazioneDao;
 import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
+import it.unisa.emaa.www.sito.Model.entity.Reazione;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 
 import java.math.BigInteger;
@@ -15,8 +17,7 @@ import java.util.regex.Pattern;
  * @author Alessandro Marigliano
  */
 public class Validazione {
-    public static boolean emailIsPresent(String email){
-        UtenteDao utenteDao = new UtenteDao();
+    public static boolean emailIsPresent(String email,UtenteDao utenteDao){
         Utente utente = utenteDao.doRetrieveByEmail(email);
         return utente != null;
     }
@@ -26,8 +27,7 @@ public class Validazione {
      * Il metodo prende come input un username.
      * @return Il metodo ritorna true o false a seconda se l'username dato in input si trova o meno nel database.
      */
-    public static boolean usernameIsPresent(String username){
-        UtenteDao utenteDao = new UtenteDao();
+    public static boolean usernameIsPresent(String username,UtenteDao utenteDao){
         Utente utente = utenteDao.doRetrieveByUsername(username);
         return utente != null;
     }
@@ -38,8 +38,7 @@ public class Validazione {
      * @param idStoria Il metodo prende in input un id storia
      * @return Ritorna se è presente una reazione di un utente da data email alla data storia nel database
      */
-    public static boolean reactionIsPresent(String email,int idStoria){
-        ReazioneDao reazioneDao = new ReazioneDao();
+    public static boolean reactionIsPresent(String email,int idStoria,ReazioneDao reazioneDao){
         Reazione reazione = reazioneDao.doRetrieve(email,idStoria);
         return reazione != null;
 
@@ -80,8 +79,7 @@ public class Validazione {
      * @param password
      * @return Il metodo ritorna true o false a seconda se i dati sono corretti.
      */
-    public static boolean datiCorrispondenti(String email,String password){
-        UtenteDao utenteDao = new UtenteDao();
+    public static boolean datiCorrispondenti(String email,String password,UtenteDao utenteDao){
         String hashedPassword = passwordHasher(password);
         Utente utente = utenteDao.doRetrieveByEmail(email);
         return utente!=null && hashedPassword.equals(utente.getPassword());

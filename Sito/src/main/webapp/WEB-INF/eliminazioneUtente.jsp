@@ -9,17 +9,17 @@
 <html>
 <head>
     <title>eliminazioneUtente</title>
-    <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap-grid.css"/>
-    <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap-reboot.css"/>
-    <link rel="stylesheet" href="./customcss/general.css"/>
+    <link rel="stylesheet" href="../bootstrap-4.5.3-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bootstrap-4.5.3-dist/css/bootstrap-grid.css"/>
+    <link rel="stylesheet" href="../bootstrap-4.5.3-dist/css/bootstrap-reboot.css"/>
+    <link rel="stylesheet" href="../customcss/general.css"/>
 
 </head>
 <body >
     <div id = "pageContenent">
         <form class="form-signin">
             <div class="text-center mb-4">
-                <img class="mb-4" src="./images/logo3.png" alt="" width="100" height="84">
+                <img class="mb-4" src="../images/logo3.png" alt="" width="100" height="84">
                 <h1 class="h3 mb-3 font-weight-normal" style=" background-color: rgba(0,0,0,0.3)">Eliminazione account</h1>
                 <p>Per eliminare il proprio account, compilare questi campi e poi cliccare su "conferma"</p>
             </div>

@@ -12,16 +12,16 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap-grid.css"/>
-    <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap-reboot.css"/>
-    <link rel="stylesheet" href="./customcss/general.css"/>
+    <link rel="stylesheet" href="../bootstrap-4.5.3-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bootstrap-4.5.3-dist/css/bootstrap-grid.css"/>
+    <link rel="stylesheet" href="../bootstrap-4.5.3-dist/css/bootstrap-reboot.css"/>
+    <link rel="stylesheet" href="../customcss/general.css"/>
 
 </head>
 
 <body >
 
-<jsp:include page = "./pageComponents/navbar4.jsp"></jsp:include>
+<jsp:include page = "../pageComponents/navbar4.jsp"></jsp:include>
 <div id = "pageContenent">
     <main role="main">
         <div class="album py-5" style= "background-color: rgba(0,0,0,0.3)">
@@ -29,7 +29,7 @@
                 <div class="card mb-4 box-shadow" style = "background-color: var(--bg-default-color)">
                     <div class="card-body">
                         <h4>Questo è il nome dell'utente</h4>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text" >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-outline-secondary"  >

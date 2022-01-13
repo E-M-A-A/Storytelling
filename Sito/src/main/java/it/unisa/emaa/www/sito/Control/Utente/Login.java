@@ -25,18 +25,18 @@ public class Login extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
+
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        boolean failedLogin = !Validazione.datiCorrispondenti(email,password,utenteDao);
-        session.setAttribute("LoginErrato",failedLogin);
-        if(failedLogin) {
+        boolean login = Validazione.datiCorrispondenti(email,password,utenteDao);
+        req.setAttribute("Login",login);
+        if(!login) {
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
         }
+        HttpSession session = req.getSession(true);
         Utente utente = recuperaUtente(email);
         session.setAttribute("Utente",utente);
-        session.setAttribute("LoginErrato",failedLogin);
     }
     private Utente recuperaUtente(String email){
         Utente utente = utenteDao.doRetrieveByEmail(email);

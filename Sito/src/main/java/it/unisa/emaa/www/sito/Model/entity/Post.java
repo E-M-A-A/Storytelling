@@ -2,6 +2,10 @@ package it.unisa.emaa.www.sito.Model.entity;
 
 import java.util.ArrayList;
 
+/**
+ * Classe realizzata per mettere assieme storia e commenti
+
+*/
 public class Post {
     private Storia storia;
     private ArrayList<Commento> commenti;

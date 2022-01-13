@@ -1,9 +1,17 @@
 package it.unisa.emaa.www.sito.Model.dao;
 
 import it.unisa.emaa.www.sito.Model.entity.Reazione;
-
-
 import java.util.List;
+
+
+/**
+ * Interfaccia IReazioneDao contenente i metodi da far eseguire alla rispettiva classe ReazioneDao
+ *
+ *
+ *
+ * @author Antonio Scotellaro
+ */
+
 
 public interface IReazioneDao {
 

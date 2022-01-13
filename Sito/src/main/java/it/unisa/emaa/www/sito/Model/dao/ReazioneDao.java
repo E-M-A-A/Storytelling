@@ -8,6 +8,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * La classe ReazioneDao è il dao dell'entità reazione la classe estende un interfaccia dao contenente i metodi da
+ * effettuare, e tramite una connpoll connection ci colleghiamo al database per far sì che
+ * vengano effettuate le query scritte qui di seguito
+ *
+ * I metodi sono:
+ * -doRetrieveByStoria, che effettua una query di selezione di ogni reazione in base alla storia
+ * -doRetrieveByEmail, che effettua una query di selezione di ogni reazione in base all'emailUtente
+ * -doSave, che salva una reazione nella base di dati
+ *
+ * @author Antonio Scotellaro
+ *
+ *
+ */
+
+
+
+
 
 public class ReazioneDao implements IReazioneDao{
 

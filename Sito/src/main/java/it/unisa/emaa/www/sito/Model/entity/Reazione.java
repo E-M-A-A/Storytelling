@@ -4,6 +4,19 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ *Classe entity Reazione che è il rispettivo della tabella reazione all'interno della base di dati
+ * contiene gli attributi della tabella come variabili ed i metodi get e set utili per l'esecuzione
+ * del design pattern dao
+ *
+ * @author Antonio Scotellaro
+ *
+ *
+
+ */
+
+
+
 public class Reazione implements Serializable {
         @EmbeddedId
         private Reazione id;

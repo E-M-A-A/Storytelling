@@ -11,15 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Questo è il dao dell'entità utente la classe estende un interfaccia dao contenente i metodi da
+ * La classe UtenteDao è il dao dell'entità utente la classe estende un interfaccia dao contenente i metodi da
  * effettuare, e tramite una connpoll connection ci colleghiamo al database per far sì che
  * vengano effettuate le query scritte qui di seguito
  *
+ * I metodi sono:
+ * -doRetrieveAll, che effettua una query di selezione di ogni utente
+ * -doRetrieveByUsername, che effettua una query di selezione di ogni utente in base all'username
+ * -doRetrieveByEmail, che effettua una query di selezione di ogni utente in base all'email
+ * -doDelete, che cancella un utente dalla base di dati partendo dall'email
+ * -doSave, che salva un utente nella base di dati
  *
- * @author Antonio
+ *
+ * @author Antonio Scotellaro
  *
  *
-*/
+ */
+
 
 public class UtenteDao implements IUtenteDao{
     @Override

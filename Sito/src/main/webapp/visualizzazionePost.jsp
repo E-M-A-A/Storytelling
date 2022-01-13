@@ -21,7 +21,7 @@
 
 <body >
 
-<jsp:include page = "./pageComponents/navbar3.jsp"></jsp:include>
+<jsp:include page = "./pageComponents/navbar4.jsp"></jsp:include>
 <div id = "pageContenent">
     <main role="main">
         <div class="album py-5" style= "background-color: rgba(0,0,0,0.3)">

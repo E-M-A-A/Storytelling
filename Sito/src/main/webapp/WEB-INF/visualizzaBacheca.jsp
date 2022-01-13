@@ -318,8 +318,8 @@
             if (this.readyState == 4 && this.status == 200) {
                 pagina++;
                 let bacheca = document.getElementById("bacheca");
-                var listaStorie = JSON.parse(this.responseText);
-                listaStorie.forEach(listatore);
+                var hashMap = JSON.parse(this.responseText);
+                hashMap.keys.forEach(listatore);
             }
             else if((this.readyState == 4)){
                 let bacheca = document.getElementById("bacheca");
@@ -381,6 +381,7 @@
 
 
 </html>
+
 
 
 

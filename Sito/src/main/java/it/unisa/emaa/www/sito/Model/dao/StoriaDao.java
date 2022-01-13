@@ -6,6 +6,26 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La classe StoriaDao è il dao dell'entità storia la classe estende un interfaccia dao contenente i metodi da
+ * effettuare, e tramite una connpoll connection ci colleghiamo al database per far sì che
+ * vengano effettuate le query scritte qui di seguito
+ *
+ * I metodi sono:
+ * -doRetrieveAll, che effettua una query di selezione di ogni storia
+ * -doRetrieveAll, che effettua una query di selezione di ogni storia in base all'ID
+ * -doDelete, che cancella una storia dalla base di dati partendo dall'ID
+ * -doSave, che salva una storia nella base di dati
+ * -doRetrieveByPage che effettua una query prendendo le storie in base ad un limit ed offset che indicano la pagina
+ *
+ * @author Antonio Scotellaro
+ *
+ *
+ */
+
+
+
+
 public class StoriaDao implements IStoriaDao {
     @Override
     public List<Storia> doRetrieveAll() {

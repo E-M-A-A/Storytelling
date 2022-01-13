@@ -1,7 +1,16 @@
 package it.unisa.emaa.www.sito.Model.entity;
 
-import javax.persistence.*;
 
+/**
+ *Classe entity Utente che è il rispettivo della tabella utente all'interno della base di dati
+ * contiene gli attributi della tabella come variabili ed i metodi get e set utili per l'esecuzione
+ * del design pattern dao
+ *
+ * @author Antonio Scotellaro
+ *
+ *
+
+*/
 public class Utente {
     private String id;
     private String password;

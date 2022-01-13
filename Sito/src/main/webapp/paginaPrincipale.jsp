@@ -42,7 +42,8 @@
             <div class="col-md-4 mr-auto p-2" >
                 <div class="card box-shadow" style = "background-color: var(--bg-default-color)" onclick="visulizzaPost(this)">
                     <div class="card-body">
-                        <p class="card-text" >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <h4>Questo è l'autore della storia.</h4>
+                        <p class="card-text" >Questa è una storia. Attraverso questo elemento, gli utenti di questo social possono esprimersi in modo libero, raccontando delle proprie esperienze e delle proprie emozioni.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-outline-secondary"  >
@@ -73,7 +74,8 @@
             <div class="col-md-4  mr-auto p-2">
                 <div class="card box-shadow" style = "background-color: var(--bg-default-color)">
                     <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <h4>Questo è l'autore della storia.</h4>
+                        <p class="card-text" >Questa è una storia. Attraverso questo elemento, gli utenti di questo social possono esprimersi in modo libero, raccontando delle proprie esperienze e delle proprie emozioni.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-outline-secondary"  >
@@ -104,7 +106,8 @@
             <div class="col-md-4  mr-auto p-2">
                 <div class="card box-shadow" style = "background-color: var(--bg-default-color)">
                     <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <h4>Questo è l'autore della storia.</h4>
+                        <p class="card-text" >Questa è una storia. Attraverso questo elemento, gli utenti di questo social possono esprimersi in modo libero, raccontando delle proprie esperienze e delle proprie emozioni.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-outline-secondary"  >
@@ -137,7 +140,8 @@
             <div class="col-md-4 mr-auto p-2">
                 <div class="card box-shadow" style = "background-color: var(--bg-default-color)">
                     <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <h4>Questo è l'autore della storia.</h4>
+                        <p class="card-text" >Questa è una storia. Attraverso questo elemento, gli utenti di questo social possono esprimersi in modo libero, raccontando delle proprie esperienze e delle proprie emozioni.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-outline-secondary"  >
@@ -168,7 +172,8 @@
             <div class="col-md-4  mr-auto p-2">
                 <div class="card box-shadow" style = "background-color: var(--bg-default-color)">
                     <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <h4>Questo è l'autore della storia.</h4>
+                        <p class="card-text" >Questa è una storia. Attraverso questo elemento, gli utenti di questo social possono esprimersi in modo libero, raccontando delle proprie esperienze e delle proprie emozioni.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-outline-secondary"  >
@@ -199,7 +204,8 @@
             <div class="col-md-4  mr-auto p-2">
                 <div class="card box-shadow" style = "background-color: var(--bg-default-color)">
                     <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <h4>Questo è l'autore della storia.</h4>
+                        <p class="card-text" >Questa è una storia. Attraverso questo elemento, gli utenti di questo social possono esprimersi in modo libero, raccontando delle proprie esperienze e delle proprie emozioni.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-outline-secondary"  >

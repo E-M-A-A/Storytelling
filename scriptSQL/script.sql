@@ -13,7 +13,7 @@ create table utente
 (
     email    varchar(300) not null
         primary key,
-    password varchar(16)  not null,
+    password varchar(64)  not null,
     username varchar(20)  not null,
     constraint Utente_username_uindex
         unique (username)

@@ -21,6 +21,7 @@ import java.time.LocalDate;
  */
 @WebServlet(name="PubblicaStoria",urlPatterns = "/PubblicaStoria")
 public class PubblicaStoria extends HttpServlet {
+    private StoriaDao storiaDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -32,7 +33,6 @@ public class PubblicaStoria extends HttpServlet {
     private boolean pubblicaStoria(String username,String contenuto){
         if(contenuto.length()<1||contenuto.length()>500)
             return false;
-        StoriaDao storiaDao = new StoriaDao();
         Storia storia = new Storia();
         storia.setContenuto(contenuto);
         storia.setUsername(username);
@@ -40,5 +40,12 @@ public class PubblicaStoria extends HttpServlet {
         storia.setNReazioni(0);
         storia.setDataCreazione(LocalDate.now());
         return storiaDao.doSave(storia);
+    }
+    public PubblicaStoria(){
+
+    }
+    public PubblicaStoria(StoriaDao storiaDao){
+
+
     }
 }

@@ -60,6 +60,29 @@ public class ReazioneDao implements IReazioneDao{
         return null;
 
     }
+    @Override
+    public Reazione doRetrieve(String email,int idStoria) {
+        try(Connection conn = ConnPool.getConnection()) {
+            try(PreparedStatement ps = conn.prepareStatement("Select * from reazione where emailUtente =? AND idStoria = ?")){
+                ps.setString(1,email);
+                ps.setInt(2,idStoria);
+                ResultSet rs = ps.executeQuery();
+                if(!rs.isBeforeFirst())
+                    return null;
+                rs.next();
+                Reazione reazione = new Reazione();
+                reazione.setIdStoria(rs.getInt("idStoria"));
+                reazione.setEmailUtente(rs.getString("emailUtente"));
+                rs.close();
+                return reazione;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
 
     @Override
     public boolean doSave(Reazione reazione) {

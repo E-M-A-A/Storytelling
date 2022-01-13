@@ -9,6 +9,7 @@ public interface IReazioneDao {
 
     public List<Reazione> doRetrieveByStoria(int idStoria);
     public List<Reazione> doRetrieveByEmail(String email);
+    public Reazione doRetrieve(String email,int idStoria);
     public boolean doSave(Reazione reazione);
 
 

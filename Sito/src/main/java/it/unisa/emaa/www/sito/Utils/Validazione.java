@@ -41,7 +41,6 @@ public class Validazione {
     public static boolean reactionIsPresent(String email,int idStoria,ReazioneDao reazioneDao){
         Reazione reazione = reazioneDao.doRetrieve(email,idStoria);
         return reazione != null;
-
     }
 
     /**

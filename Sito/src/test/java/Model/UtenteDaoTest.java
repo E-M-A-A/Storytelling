@@ -1,93 +1,152 @@
-package Model;
+package it.unisa.emaa.www.sito.Model.dao;
 
 import it.unisa.emaa.www.sito.Model.ConnPool;
-import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
-import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.Assert.*;
-/*
-/**La classe si occupa di testare la classe UtenteDao nei metodi di communicazione con il database
- * @author Emmanuele Virginio Coppola
+/**
+ * La classe UtenteDao è il dao dell'entità utente la classe estende un interfaccia dao contenente i metodi da
+ * effettuare
+ * @author Antonio Scotellaro
  *
- * Questa classe di test � stata scritta secondo la
- * metodologia WHITE BOX.
+ *
  */
 
-public class UtenteDaoTest {
-    private static Utente utente;
-    private UtenteDao dao = new UtenteDao();
-    private static Connection connection;
-    private String data1 = "INSERT INTO Utente VALUES('e.coppola37@studenti.unisa.it','Casdwa324$','emmavico'";
-    private String data2 = "INSERT INTO Utente VALUES('pippo@gmail.com','GIAcc7£','giaccarello'";
 
-
-    @BeforeAll
-    static void setup() throws SQLException {
-        connection = ConnPool.getConnection();
-
-        utente = new Utente();
-        utente.setId("e.coppola37@studenti.unisa.it");
-        utente.setPassword("Casdwa324$");
-        utente.setUsername("emmavico");
-    }
-
-    @BeforeEach
-    public void generazioneTupleTest() {
-        try {
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(data1);
-            statement.executeUpdate(data2);
-            connection.commit();
+public class UtenteDao implements IUtenteDao{
+    @Override
+/**
+ * effettua una query di selezione di ogni utente
+ */
+    public List<Utente> doRetrieveAll() {
+        try(Connection conn = ConnPool.getConnection()) {
+            try(PreparedStatement ps = conn.prepareStatement("Select * from utente")){
+                ResultSet rs = ps.executeQuery();
+                ArrayList<Utente> list =  new ArrayList<>();
+                while(rs.next()){
+                    Utente utente = new Utente();
+                    utente.setId(rs.getString("email"));
+                    utente.setUsername(rs.getString("username"));
+                    list.add(utente);
+                }
+                rs.close();
+                return list;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
+    /**
+     * effettua una query di selezione di ogni utente in base all'username
+     * @param username
+     * @return
+     */
+    @Override
+    public Utente doRetrieveByUsername(String username) {
+        try(Connection conn = ConnPool.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement("Select * from utente  where username =?")){
+                ps.setString(1,username);
+                ResultSet rs = ps.executeQuery();
+                if(!rs.isBeforeFirst())
+                    return null;
+                rs.next();
+                Utente utente = new Utente();
+                utente.setId(rs.getString("email"));
+                utente.setUsername(rs.getString("username"));
+                utente.setPassword(rs.getString("password"));
+                rs.close();
+                return utente;
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    @AfterEach
-    public void rimozioneDatiTest() {
-        try {
-            Statement statement = connection.createStatement();
-            String qry1 = "DELETE * FROM Utente Where email = 'pippo@gmail.com'";
-            String qry2 = "DELETE * FROM Utente Where email = 'e.coppola37@studenti.unisa.it'";
-            statement.executeUpdate(qry1);
-            statement.executeUpdate(qry2);
-            connection.commit();
+    /**
+     * effettua una query di selezione di ogni utente in base all'email
+     * @param email
+     * @return
+     */
+    @Override
+    public Utente doRetrieveByEmail(String email) {
+        try(Connection conn = ConnPool.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement("Select * from utente  where email =?")){
+                ps.setString(1,email);
+                ResultSet rs = ps.executeQuery();
+                if(!rs.isBeforeFirst())
+                    return null;
+                rs.next();
+                Utente utente = new Utente();
+                utente.setId(rs.getString("email"));
+                utente.setUsername(rs.getString("username"));
+                utente.setPassword(rs.getString("password"));
+                rs.close();
+                return utente;
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     * salva un utente nella base di dati
+     * @param utente
+     * @return
+     */
+    @Override
+    public boolean doSave(Utente utente) {
+        try(Connection conn = ConnPool.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement("INSERT into utente (email,password,username) values (?,?,?)")){
+                ps.setString(1, utente.getId());
+                ps.setString(2, utente.getPassword());
+                ps.setString(3, utente.getUsername());
+                return ps.executeUpdate()>0;
+
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    @Test
-    public void deleteTest() {
-        dao.doDelete("pippo@gmail.com");
-        try {
-            Statement statement = connection.createStatement();
-            String qry = "Select * FROM Utente Where email = 'pippo@gmail.com'";
-            ResultSet rs = statement.executeQuery(qry);
-            assertTrue("Oggetto ancora presente nonostante la cancellazione", !rs.isBeforeFirst());
-        } catch (SQLException e) {
+    /**
+     * cancella un utente dalla base di dati partendo dall'email
+     * @param email
+     * @return
+     */
+    @Override
+    public boolean doDelete(String email)  {
+        try(Connection conn = ConnPool.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement("DELETE FROM utente WHERE email=?;")){
+                ps.setString(1,email.toLowerCase());
+                return ps.executeUpdate()>0;
+            }
+            catch(SQLException e){
+                throw new SQLException();
+            }
+        }
+        catch(SQLException e){
             e.printStackTrace();
         }
-    }
-
-    @Test
-    public void RetrieveByUsernameTest() {
-        assertTrue("Ritornato un'oggetto Errato per email", dao.doRetrieveByEmail("emmavico").equals(utente));
-    }
-
-    @Test
-    public void RetrieveByEmailTest() {
-        assertTrue(dao.doRetrieveByEmail("emmavico").equals(utente));
+        return false;
     }
 }
-

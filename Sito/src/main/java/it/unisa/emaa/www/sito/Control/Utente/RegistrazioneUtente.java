@@ -4,6 +4,7 @@ import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +45,8 @@ public class RegistrazioneUtente extends HttpServlet {
             resp.setStatus(500);
         utente.setPassword("");
         session.setAttribute("Utente",utente);
-        resp.sendRedirect("/Site_war_exploded/visualizzaBacheca.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
+        dispatcher.forward(req,resp);
     }
 
     private boolean effettuaRegistrazione(Utente utente){

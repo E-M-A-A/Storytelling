@@ -1,5 +1,6 @@
 package it.unisa.emaa.www.sito.Control.Storia;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,11 +17,13 @@ import java.io.IOException;
 @WebServlet(name = "VisualizzaHome",urlPatterns = "/VisualizzaHome")
 public class VisualizzaBacheca extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Object user = session.getAttribute("utente");
         if(user == null)
             resp.setStatus(403);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
+        dispatcher.forward(req,resp);
     }
 
 }

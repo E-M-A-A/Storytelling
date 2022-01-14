@@ -3,7 +3,6 @@ package it.unisa.emaa.www.sito.Control.Utente;
 import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,8 +38,7 @@ public class Login extends HttpServlet {
         HttpSession session = req.getSession(true);
         Utente utente = recuperaUtente(email);
         session.setAttribute("Utente",utente);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
-        dispatcher.forward(req,resp);
+        resp.sendRedirect("./VisualizzaHome");
     }
     private Utente recuperaUtente(String email){
         Utente utente = utenteDao.doRetrieveByEmail(email);

@@ -45,8 +45,7 @@ public class RegistrazioneUtente extends HttpServlet {
             resp.setStatus(500);
         utente.setPassword("");
         session.setAttribute("Utente",utente);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
-        dispatcher.forward(req,resp);
+        resp.sendRedirect("./VisualizzaHome");
     }
 
     private boolean effettuaRegistrazione(Utente utente){

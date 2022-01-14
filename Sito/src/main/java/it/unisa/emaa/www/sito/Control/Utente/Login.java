@@ -4,6 +4,7 @@ import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,10 +30,11 @@ public class Login extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         boolean login = Validazione.datiCorrispondenti(email,password,utenteDao);
-        req.setAttribute("Login",login);
+        req.setAttribute("LoginRiuscito",login);
         if(!login) {
-            String referer = req.getHeader("referer");
-            resp.sendRedirect(referer);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/login.jsp");
+            dispatcher.forward(req,resp);
+            return;
         }
         HttpSession session = req.getSession(true);
         Utente utente = recuperaUtente(email);

@@ -50,10 +50,8 @@
     existingEmail();
     let submitable = true;
     let emailvalid=true;
-    let passwordvalid=true;
     let email=document.getElementById("email");
-    let emailtest=document.getElementById("email-alert");
-    let password=document.getElementById("password");
+
 
     if(!email.checkValidity){
       submitable =false;

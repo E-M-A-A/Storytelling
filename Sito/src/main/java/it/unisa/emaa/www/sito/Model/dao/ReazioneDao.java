@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ReazioneDao implements IReazioneDao{
     /**
-     * effettua una query di selezione di ogni reazione in base alla storia
+     * effettua una query di selezione di ogni reazione in base all'idReazione
      * @param idStoria
      * @return
      */

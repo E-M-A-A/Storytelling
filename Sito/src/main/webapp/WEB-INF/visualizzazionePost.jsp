@@ -139,7 +139,7 @@
     <div class="navbar navbar-dark bg-dark fixed-bottom">
 
 
-        <form class = "PubblicaCommento" action="./PubblicaCommento" method="post" onsubmit="return validateData()" style="display: block" aria-multiline="true" text-indent = "initial">
+        <form class = "PubblicaCommento" id = "idCommento" action="./PubblicaCommento" method="post" onsubmit="return validateData()" style="display: block" aria-multiline="true" text-indent = "initial">
             <table>
                 <tr>
                     <td style="width: 95%">
@@ -162,4 +162,37 @@
     </div>
 </div>
 </body>
+
+<script>
+
+    function pubblicaCommento(){
+        let xhttp = new XMLHttpRequest();
+        let formDATA = $("#idCommento").serialize();
+
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                alert("Il tuo commento è stato pubblicato!");
+                setTimeout(aggiornamento, 2000)
+
+
+            }
+
+        }
+
+
+    xhttp.open("POST", "./inserisciCommento", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(formDATA);
+    console.log(formDATA);
+    };
+
+    function aggiornamento()
+    {
+        window.location.reload();
+    };
+
+
+</script>
 </html>

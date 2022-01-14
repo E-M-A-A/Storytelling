@@ -393,13 +393,14 @@
         }
 
         }
-    };
-    xhttp.open("POST", "/MYOPSite_war_exploded/itemsLister", true);
+
+    xhttp.open("POST", "./pubblicaStoria", true);
 
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     xhttp.send(formDATA);
     console.log(formDATA);
+    };
 
     function aggiornamento()
     {

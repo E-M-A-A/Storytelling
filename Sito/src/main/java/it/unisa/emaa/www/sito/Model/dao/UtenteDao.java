@@ -111,8 +111,10 @@ public class UtenteDao implements IUtenteDao{
      */
     @Override
     public boolean doSave(Utente utente) {
-        try(Connection conn = ConnPool.getConnection()){
-            try(PreparedStatement ps = conn.prepareStatement("INSERT into utente (email,password,username) values (?,?,?)")){
+        try{
+            Connection conn = ConnPool.getConnection();
+            try{
+                PreparedStatement ps = conn.prepareStatement("INSERT into utente (email,password,username) values (?,?,?)");
                 ps.setString(1, utente.getId());
                 ps.setString(2, utente.getPassword());
                 ps.setString(3, utente.getUsername());

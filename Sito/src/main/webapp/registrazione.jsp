@@ -31,6 +31,7 @@
 
         <label for="password" class="sr-only">Password</label>
         <input type="password" id="password" class="form-control" placeholder="Password" required="">
+
         <input type="checkbox" value="eula" required=""> Accetto le condizioni sulla privacy
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
@@ -82,7 +83,7 @@
   }
 
 
-  function existingUsername(){
+  function  existingUsername(){
     let xhttp = new XMLHttpRequest();
     let usernametestalert = document.getElementById("usernametest-alert");
     let submit = document.getElementById("submit-registration");

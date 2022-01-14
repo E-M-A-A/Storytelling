@@ -268,7 +268,7 @@
             </button>
             -->
 
-        <form class = "PubblicaStoria" action="./PubblicaStoria" method="post" onsubmit="return validateData()" style="display: block" aria-multiline="true" text-indent = "initial">
+        <form class = "PubblicaStoria" id = "idStoria" action="./PubblicaStoria" method="post" onsubmit="return validateData()" style="display: block" aria-multiline="true" text-indent = "initial">
             <table>
                 <tr>
                     <td style="width: 95%">
@@ -376,6 +376,38 @@
             console.log("Bottom of page");
         }
     };
+
+    function pubblicaStoria(){
+
+    let xhttp = new XMLHttpRequest();
+    let formDATA = $("#idStoria").serialize();
+
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            alert("La tua storia è stata pubblicata!");
+            setTimeout(aggiornamento, 2000)
+
+
+        }
+
+        }
+    };
+    xhttp.open("POST", "/MYOPSite_war_exploded/itemsLister", true);
+
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhttp.send(formDATA);
+    console.log(formDATA);
+
+    function aggiornamento()
+    {
+        window.location.reload();
+    };
+
+
+
 
 </script>
 

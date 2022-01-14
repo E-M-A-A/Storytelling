@@ -44,7 +44,7 @@ public class RegistrazioneUtente extends HttpServlet {
             resp.setStatus(500);
         utente.setPassword("");
         session.setAttribute("Utente",utente);
-        resp.sendRedirect("/Site_war_exploded/visualizzaBacheca.jsp");
+        resp.sendRedirect("/Sito_war_exploded/visualizzaBacheca.jsp");
     }
 
     private boolean effettuaRegistrazione(Utente utente){

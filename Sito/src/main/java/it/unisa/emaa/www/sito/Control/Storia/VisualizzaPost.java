@@ -30,9 +30,7 @@ public class VisualizzaPost extends HttpServlet {
         Post post = recuperaPost(idStoria);
         Gson gson = new Gson();
         String json = gson.toJson(post);
-        resp.setContentType("plain/text");
-        resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().print(json);
+        req.setAttribute("post",json);
         resp.sendRedirect("/Sito_war_exploded/visualizzazionePost.jsp");
     }
     private Post recuperaPost(int idStoria){

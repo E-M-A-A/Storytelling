@@ -139,7 +139,7 @@
     <div class="navbar navbar-dark bg-dark fixed-bottom">
 
 
-        <form class = "PubblicaCommento" id = "idCommento" action="./PubblicaCommento" method="post" onsubmit="return validateData()" style="display: block" aria-multiline="true" text-indent = "initial">
+        <form class = "PubblicaCommento" id = " " action="./PubblicaCommento" method="post" onsubmit="return validateData()" style="display: block" aria-multiline="true" text-indent = "initial">
             <table>
                 <tr>
                     <td style="width: 95%">
@@ -162,4 +162,59 @@
     </div>
 </div>
 </body>
+
+<script>
+
+
+    function aggiungiCommento(commento)
+    {
+        var span = document.getElementById(storia);
+        var pulsante = span.getElementsByTagName("svg")[2].childNodes[2];
+
+        if(pulsante.className.includes("false"))
+        {
+            impostaReazione(storia);
+        }
+    }
+
+
+    function impostaReazione(storia)
+    {
+
+        let xhttp = new XMLHttpRequest();
+        let formDATA = new formDATA();
+        formData.append("storia", storia);
+        let contatore;
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                contatore = document.getElementById(storia + "r").innerHTML;
+                contatore = parseInt(contatore);
+                contatore++;
+                document.getElementById(storia + "r").innerHTML = contatore;
+                alert("La tua reazione è stata aggiunta!");
+                setTimeout(aggiornamento, 2000)
+                var span = document.getElementById(storia);
+                var pulsante = span.getElementsByTagName("div")[1].childNodes[1];
+                pulsante.innerHTML = '';
+                pulsante.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-moon-fill true" viewBox="0 0 16 16">'+
+                    '<path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>'+
+                    '</svg>';
+
+            }
+
+        }
+
+        xhttp.open("POST", "./inserisciReazione", true);
+
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+
+        xhttp.send(formDATA);
+        console.log(formDATA);
+
+    }
+</script>
+
 </html>

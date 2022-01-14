@@ -10,12 +10,14 @@ import java.util.Objects;
 public class Post {
     private Storia storia;
     private ArrayList<Commento> commenti;
+    private Boolean reazione;
 
     @Override
     public String toString() {
         return "Post{" +
                 "storia=" + storia +
                 ", commenti=" + commenti +
+                ", reazione=" + reazione +
                 '}';
     }
 
@@ -24,12 +26,12 @@ public class Post {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return storia.equals(post.storia) && Objects.equals(commenti, post.commenti);
+        return storia.equals(post.storia) && Objects.equals(commenti, post.commenti) && Objects.equals(reazione, post.reazione);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(storia, commenti);
+        return Objects.hash(storia, commenti, reazione);
     }
 
     public Post(){}
@@ -41,4 +43,6 @@ public class Post {
     public ArrayList<Commento> getCommenti(){return commenti;}
     public void setStoria(Storia storia){ this.storia = storia;}
     public void setCommenti(ArrayList<Commento> commenti){ this.commenti = commenti;}
+    public Boolean getReazione(){ return reazione;}
+    public void setReazione(Boolean reazione){ this.reazione=reazione;}
 }

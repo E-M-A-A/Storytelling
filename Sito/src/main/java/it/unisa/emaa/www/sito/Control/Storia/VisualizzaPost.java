@@ -2,16 +2,20 @@ package it.unisa.emaa.www.sito.Control.Storia;
 
 import com.google.gson.Gson;
 import it.unisa.emaa.www.sito.Model.dao.CommentoDao;
+import it.unisa.emaa.www.sito.Model.dao.ReazioneDao;
 import it.unisa.emaa.www.sito.Model.dao.StoriaDao;
 import it.unisa.emaa.www.sito.Model.entity.Commento;
 import it.unisa.emaa.www.sito.Model.entity.Post;
 import it.unisa.emaa.www.sito.Model.entity.Storia;
+import it.unisa.emaa.www.sito.Model.entity.Utente;
+import it.unisa.emaa.www.sito.Utils.Validazione;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -24,31 +28,36 @@ import java.util.ArrayList;
 public class VisualizzaPost extends HttpServlet {
     private CommentoDao commentoDao;
     private StoriaDao storiaDao;
+    private ReazioneDao reazioneDao;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         int idStoria = Integer.parseInt(req.getParameter("storia"));
-        Post post = recuperaPost(idStoria);
+        Utente utente = (Utente) session.getAttribute("utente");
+        String email = utente.getId();
+        Post post = recuperaPost(idStoria,email);
         Gson gson = new Gson();
         String json = gson.toJson(post);
-        resp.setContentType("plain/text");
-        resp.setCharacterEncoding("UTF-8");
         req.setAttribute("post",json);
         resp.sendRedirect("/Sito_war_exploded/visualizzazionePost.jsp");
     }
-    private Post recuperaPost(int idStoria){
+    private Post recuperaPost(int idStoria,String email){
         Storia storia = storiaDao.doRetrieveById(idStoria);
         ArrayList<Commento> listaCommenti = (ArrayList<Commento>) commentoDao.doRetrieveByStoria(idStoria);
         Post post = new Post();
         post.setStoria(storia);
         post.setCommenti(listaCommenti);
+        post.setReazione(Validazione.reactionIsPresent(email,idStoria,reazioneDao));
         return post;
     }
-    public VisualizzaPost(CommentoDao commentoDao,StoriaDao storiaDao){
+    public VisualizzaPost(CommentoDao commentoDao,StoriaDao storiaDao,ReazioneDao reazioneDao){
         this.commentoDao = commentoDao;
         this.storiaDao = storiaDao;
+        this.reazioneDao = reazioneDao;
     }
     public VisualizzaPost(){
         commentoDao = new CommentoDao();
         storiaDao = new StoriaDao();
+        reazioneDao = new ReazioneDao();
     }
 }

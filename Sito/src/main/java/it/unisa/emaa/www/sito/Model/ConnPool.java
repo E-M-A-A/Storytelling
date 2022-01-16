@@ -4,7 +4,6 @@ package it.unisa.emaa.www.sito.Model;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.TimeZone;

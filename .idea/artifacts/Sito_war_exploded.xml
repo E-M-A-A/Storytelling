@@ -58,6 +58,8 @@
           <element id="library" level="project" name="Maven: org.ow2.asm:asm-analysis:9.1" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm-tree:9.1" />
           <element id="library" level="project" name="Maven: org.jacoco:org.jacoco.report:0.8.7" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.15" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

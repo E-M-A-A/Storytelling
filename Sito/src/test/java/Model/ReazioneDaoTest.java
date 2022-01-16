@@ -200,7 +200,7 @@ public class ReazioneDaoTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        utente = dao.doRetrieveByEmail("pippo@gmail.com");
+        //utente = dao.doRetrieveByEmail("pippo@gmail.com");
         assertTrue("Ritornato un utente Errato per email", utente.equals(utente2));
 
         try {
@@ -229,7 +229,7 @@ public class ReazioneDaoTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        utente = dao.doRetrieveByUsername("giaccarello");
+        //utente = dao.doRetrieveByUsername("giaccarello");
         assertTrue("Ritornato un utente Errato per username", utente.equals(utente2));
 
         try {
@@ -256,7 +256,7 @@ public class ReazioneDaoTest {
         Utente utente = new Utente();
 
 
-        dao.doSave(utente2);
+        //dao.doSave(utente2);
         try {
             connection = ConnPool.getConnection();
             Statement statement = connection.createStatement();
@@ -313,7 +313,7 @@ public class ReazioneDaoTest {
         listaUtenti.add(utente1);
         listaUtenti.add(utente2);
 
-        listaUtentiTest = dao.doRetrieveAll();
+        //listaUtentiTest = dao.doRetrieveAll();
         boolean test1 = true;
         boolean test2 = true;
         for(Utente x: listaUtentiTest)

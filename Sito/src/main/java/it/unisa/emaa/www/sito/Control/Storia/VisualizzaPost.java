@@ -32,8 +32,18 @@ public class VisualizzaPost extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        int idStoria = Integer.parseInt(req.getParameter("storia"));
-        Utente utente = (Utente) session.getAttribute("utente");
+        String idStoriaString = req.getParameter("storia");
+        Object obj = session.getAttribute("utente");
+        if(obj == null){
+            resp.setStatus(403);
+            return;
+        }
+        if(idStoriaString==null){
+            resp.setStatus(500);
+            return;
+        }
+        int idStoria = Integer.parseInt(idStoriaString);
+        Utente utente = (Utente) obj;
         String email = utente.getId();
         Post post = recuperaPost(idStoria,email);
         Gson gson = new Gson();

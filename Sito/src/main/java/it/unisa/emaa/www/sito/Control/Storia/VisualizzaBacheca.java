@@ -20,8 +20,10 @@ public class VisualizzaBacheca extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Object user = session.getAttribute("utente");
-        if(user == null)
+        if(user == null) {
             resp.setStatus(403);
+            return;
+        }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
         dispatcher.forward(req,resp);
     }

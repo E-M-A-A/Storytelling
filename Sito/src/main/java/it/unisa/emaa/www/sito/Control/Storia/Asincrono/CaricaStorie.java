@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.unisa.emaa.www.sito.Model.dao.ReazioneDao;
 import it.unisa.emaa.www.sito.Model.dao.StoriaDao;
 import it.unisa.emaa.www.sito.Model.entity.Storia;
+import it.unisa.emaa.www.sito.Model.entity.StoriaReazioni;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
 import javax.servlet.ServletException;
@@ -20,8 +21,13 @@ public class CaricaStorie extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
-        int pagina = Integer.parseInt("pagina");
-        HashMap<Storia, Boolean> storieReazioni = recuperaListaStorie(pagina,email);
+        String stringPagina = req.getParameter("pagina");
+        if(email == null || stringPagina == null){
+            resp.setStatus(500);
+            return;
+        }
+        int pagina = Integer.parseInt(stringPagina);
+        ArrayList<StoriaReazioni> storieReazioni = recuperaListaStorie(pagina,email);
         Gson gson = new Gson();
         String json = gson.toJson(storieReazioni);
         resp.setContentType("plain/text");
@@ -29,13 +35,16 @@ public class CaricaStorie extends HttpServlet {
         resp.getWriter().print(json);
     }
 
-    public HashMap<Storia,Boolean> recuperaListaStorie(int pagina, String email) {
-        HashMap<Storia, Boolean> storieReazioni = new HashMap<>();
+    public ArrayList<StoriaReazioni> recuperaListaStorie(int pagina, String email) {
+        ArrayList<StoriaReazioni> storieReazioni = new ArrayList<>();
         ArrayList<Storia> listaStorie = (ArrayList<Storia>) storiaDao.doRetrieveByPage(30,pagina*30);
         boolean present;
         for (Storia s : listaStorie) {
+            StoriaReazioni storia = new StoriaReazioni();
+            storia.setStoria(s);
             present = Validazione.reactionIsPresent(email, s.getId(), reazioneDao);
-            storieReazioni.put(s, present);
+            storia.setReazionata(present);
+            storieReazioni.add(storia);
         }
         return storieReazioni;
     }

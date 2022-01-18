@@ -20,13 +20,23 @@ import java.io.IOException;
 @WebServlet(name = "InserisciCommento",urlPatterns = "/InserisciCommento")
 public class InserisciCommento extends HttpServlet {
     private CommentoDao commentoDao;
-  /*  @Override
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Utente utente = (Utente) session.getAttribute("utente");
-        int idStoria = Integer.parseInt(req.getParameter("storia"));
+        Object obj = session.getAttribute("utente");
+        String idStoriaString = req.getParameter("storia");
         String commento = req.getParameter("commento");
-        resp.getWriter().print(inserimentoCommento(utente.getUsername(),idStoria,commento));
+        if(obj == null){
+            resp.setStatus(403);
+            return;
+        }
+        if(idStoriaString == null || commento == null){
+            resp.setStatus(500);
+            return;
+        }
+        Utente utente = (Utente) session.getAttribute("utente");
+        int idStoria = Integer.parseInt(idStoriaString);
+        inserimentoCommento(utente.getUsername(),idStoria,commento);
         resp.sendRedirect(req.getHeader("referer"));
     }
     private boolean inserimentoCommento(String username,int idStoria,String contenuto){
@@ -37,7 +47,7 @@ public class InserisciCommento extends HttpServlet {
         commento.setContenuto(contenuto);
         commento.setIdStoria(idStoria);
         return commentoDao.doSave(commento);
-    }*/
+    }
     public InserisciCommento(){
         commentoDao = new CommentoDao();
     }

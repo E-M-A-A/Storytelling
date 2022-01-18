@@ -5,6 +5,7 @@ import it.unisa.emaa.www.sito.Model.entity.Storia;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,8 @@ public class PubblicaStoria extends HttpServlet {
         Utente utente = (Utente) session.getAttribute("utente");
         String storia = req.getParameter("contenuto");
         resp.getWriter().print(pubblicaStoria(utente.getUsername(),storia));
-        resp.sendRedirect("/Sito_war_exploded/visualizzaBacheca.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
+        requestDispatcher.forward(req,resp);
     }
 
     private boolean pubblicaStoria(String username,String contenuto){

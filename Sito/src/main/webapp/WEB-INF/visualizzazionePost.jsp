@@ -143,7 +143,7 @@
                 <tr>
                     <td style="width: 95%">
 
-                        <textarea id="w3review" name="w3review" style="width: 100%" rows="3" placeholder="Scrivi un commento..." required=""></textarea>
+                        <textarea id="commento" name="commento" style="width: 100%" rows="3" placeholder="Scrivi un commento..." required=""></textarea>
                         <span id="lenght-alert" class="alert-info " hidden>Questo commento non ha il numero adeguato di caratteri!</span>
                     </td>
                     <td style="width:5%; height: 100%">
@@ -230,7 +230,7 @@ function listatore(){
     }
 
 
-
+//Il controller restiutuisce un boolean che si può ignorare
     function aggiungiCommento(commento)
     {
 

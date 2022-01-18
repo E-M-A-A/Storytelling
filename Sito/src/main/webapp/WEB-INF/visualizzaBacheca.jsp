@@ -125,7 +125,7 @@
 
     }
     let pagina = 0;
-    let hashMap;
+    let listaStorie;
     let listaReazioni;
     let storia;
     function caricaStorie(){
@@ -133,10 +133,10 @@
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 pagina++;
-                hashMap= hashMapConverter(JSON.parse(this.responseText));
-                console.log(hashMap);
-                let listaStorie = hashMap.keys();
-                for(let i =0;i<hashMap.size;i++) listatore(JSON.parse(listaStorie.next().value))
+                listaStorie= JSON.parse(this.responseText);
+                console.log(listaStorie);
+              //  let listaStorie = listaStorie.keys();
+             //   for(let i =0; i<listaStorie.size; i++) listatore(JSON.parse(listaStorie.next().value))
 
             }
             else if((this.readyState == 4)){
@@ -152,7 +152,7 @@
             }
 
         }
-        xhttp.open("POST", "/Sito_war_exploded/caricaStorie", true);
+        xhttp.open("POST", "/Sito_war_exploded/CaricaStorie", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("pagina="+pagina);
     }
@@ -185,7 +185,7 @@
             '<span id = '+ storia.id +'r>'+storia.nReazioni+'</span>'+
             '<div style="display: inline-block">';
 
-        if(!hashMap.get(JSON.stringify(storia)))
+        if(!listaStorie.get(JSON.stringify(storia)))
         {
             temp += '<svg id = "'+storia.id+'i" xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-moon false" viewBox="0 0 16 16">'+
                 '<path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>'+
@@ -199,7 +199,7 @@
         temp += ('</div>'+
 
             '</button>'+
-            ' <button type="button" class="btn btn-sm btn-outline-secondary">'+
+            ' <button type="button" class="btn btn-sm btn-outline-secondary" onclick="visulizzaPost('+storia.id+')">'+
             '<span>'+storia.nCommenti+' </span>'+
             '<div style="display: inline-block">'+
             '<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">'+
@@ -214,7 +214,6 @@
         variabileBacheca.appendChild(storiaCard);
     }
     function visulizzaPost(id){
-        console.log(object.classList.contains("card"))
         window.location.replace("./visualizzaPost?storia="+id);
     }
 

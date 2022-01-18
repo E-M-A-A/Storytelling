@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.mockito.Mock;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -32,22 +33,10 @@ public class RegistrazioneUtenteTest {
     }
 
     @Test
-    public void testFunzionante() throws Exception {/*
-        Utente utente = new Utente();
-        utente.setId("bellissimo@gmail.com");
-        utente.setUsername("pippo");
-        utente.setPassword("Disney.3");
-        this.controllerCaller.perform(
-                post("/registrazione")
-                .param("username","pippo")
-                .param("email","bellissimo@gmail.com")
-                .param("password","Disney.3")
-                .param("passwordTest","Disney.3")
-                .param("eula","true"))
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.request()
-                        .sessionAttribute("Utente",utente));
-                        */
+    public void testFunzionante() throws Exception {
+        MockHttpServletRequest req= new MockHttpServletRequest();
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
     }
 
 

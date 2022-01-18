@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
         }
         HttpSession session = req.getSession(true);
         Utente utente = recuperaUtente(email);
-        session.setAttribute("Utente",utente);
+        session.setAttribute("utente",utente);
         resp.sendRedirect("./VisualizzaHome");
     }
     private Utente recuperaUtente(String email){

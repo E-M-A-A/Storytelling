@@ -50,4 +50,11 @@ create table reazione
 create index emailUtente
     on reazione (emailUtente);
 
+CREATE TRIGGER aggiorna_nReazioni AFTER INSERT ON reazione
+    FOR EACH ROW
+    UPDATE storia s SET nReazioni = nReazioni+1  WHERE s.id = NEW.idStoria;
+
+CREATE TRIGGER aggiorna_nCommenti AFTER INSERT ON commento
+                                           FOR EACH ROW
+UPDATE storia s SET nCommenti = nCommenti+1  WHERE s.id = NEW.idStoria;
 

@@ -5,29 +5,34 @@ import it.unisa.emaa.www.sito.Model.dao.ReazioneDao;
 import it.unisa.emaa.www.sito.Model.dao.StoriaDao;
 import it.unisa.emaa.www.sito.Model.entity.Storia;
 import it.unisa.emaa.www.sito.Model.entity.StoriaReazioni;
+import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
+@WebServlet(name = "CaricaStorie",urlPatterns = "/CaricaStorie")
 public class CaricaStorie extends HttpServlet {
     private StoriaDao storiaDao;
     private ReazioneDao reazioneDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String email = req.getParameter("email");
+        HttpSession session = req.getSession();
+        Object obj = session.getAttribute("utente");
         String stringPagina = req.getParameter("pagina");
-        if(email == null || stringPagina == null){
+        if(obj == null || stringPagina == null){
             resp.setStatus(500);
             return;
         }
+        Utente utente = (Utente) obj;
         int pagina = Integer.parseInt(stringPagina);
-        ArrayList<StoriaReazioni> storieReazioni = recuperaListaStorie(pagina,email);
+        ArrayList<StoriaReazioni> storieReazioni = recuperaListaStorie(pagina,utente.getId());
         Gson gson = new Gson();
         String json = gson.toJson(storieReazioni);
         resp.setContentType("plain/text");

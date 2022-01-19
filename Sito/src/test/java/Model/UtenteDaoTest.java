@@ -14,10 +14,9 @@ import java.util.List;
 import static org.junit.Assert.*;
 /*
 /**La classe si occupa di testare la classe UtenteDao nei metodi di communicazione con il database
- * @author Emmanuele Virginio Coppola
+ * @author Muriel Rossi
  *
- * Questa classe di test � stata scritta secondo la
- * metodologia WHITE BOX.
+ *
  */
 
 public class UtenteDaoTest {

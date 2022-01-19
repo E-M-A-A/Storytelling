@@ -10,6 +10,8 @@ import it.unisa.emaa.www.sito.Model.entity.Storia;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +51,8 @@ public class VisualizzaPost extends HttpServlet {
         Gson gson = new Gson();
         String json = gson.toJson(post);
         req.setAttribute("post",json);
-        resp.sendRedirect("/Sito_war_exploded/visualizzazionePost.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzazionePost.jsp");
+        dispatcher.forward(req,resp);
     }
     private Post recuperaPost(int idStoria,String email){
         Storia storia = storiaDao.doRetrieveById(idStoria);

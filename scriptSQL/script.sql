@@ -55,6 +55,6 @@ CREATE TRIGGER aggiorna_nReazioni AFTER INSERT ON reazione
     UPDATE storia s SET nReazioni = nReazioni+1  WHERE s.id = NEW.idStoria;
 
 CREATE TRIGGER aggiorna_nCommenti AFTER INSERT ON commento
-                                           FOR EACH ROW
-UPDATE storia s SET nCommenti = nCommenti+1  WHERE s.id = NEW.idStoria;
+    FOR EACH ROW
+    UPDATE storia s SET nCommenti = nCommenti+1  WHERE s.id = NEW.idStoria;
 

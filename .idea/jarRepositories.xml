@@ -2,9 +2,19 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="df8df98f-2507-48c9-b735-a2824b390c81" />
+      <option name="name" value="df8df98f-2507-48c9-b735-a2824b390c81" />
+      <option name="url" value="https://org.apache.tomcat.jdbc.pool.DataSource" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="e35c8f2b-d79a-480e-ad64-3e06ffeffaa8" />
+      <option name="name" value="e35c8f2b-d79a-480e-ad64-3e06ffeffaa8" />
+      <option name="url" value="https://org.apache.tomcat.jdbc.pool.DataSource" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />

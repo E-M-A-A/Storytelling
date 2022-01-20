@@ -19,7 +19,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 /*
-/**La classe si occupa di testare la classe UtenteDao nei metodi di communicazione con il database
+/**La classe si occupa di testare la classe ReazioneDao nei metodi di communicazione con il database
  * @author Muriel Rossi
  *
  * Questa classe di test � stata scritta secondo la
@@ -55,38 +55,6 @@ public class ReazioneDaoTest {
 
 
     String qry = "Select * FROM utente Where email = 'pippo@gmail.com'";
-
-    private void setup() {
-
-
-        utente = new Utente();
-        utente.setId("e.coppola37@studenti.unisa.it");
-        utente.setPassword("Casdwa324$");
-        utente.setUsername("emmavico");
-    }
-
-    private void generazioneTupleTest() {
-        Connection connection;
-
-    }
-
-
-    void rimozioneDatiTest() {
-        Connection connection;
-        try {
-            connection = ConnPool.getConnection();
-
-            Statement statement = connection.createStatement();
-            String qry1 = "DELETE FROM utente Where email = 'pippo@gmail.com'";
-            String qry2 = "DELETE FROM utente Where email = 'e.coppola37@studenti.unisa.it'";
-            statement.executeUpdate(qry1);
-            statement.executeUpdate(qry2);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        this.rimozioneDatiTest();
-    }
 
     @Test
     public void doRetrieveByStoriaTest() throws SQLException {

@@ -111,7 +111,7 @@ public class StoriaDao implements IStoriaDao {
     @Override
     public boolean doSave(Storia storia) {
         try(Connection conn = ConnPool.getConnection()){
-            try(PreparedStatement ps = conn.prepareStatement("INSERT into storia (username,contenuto,nReazioni,nCommenti,dataCreazione) values (?,?,?,?,?)")){
+            try(PreparedStatement ps = conn.prepareStatement("INSERT into storia (username,contenuto,nReazioni,nCommenti,dataCreazione) values (?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS)){
                 ps.setString(1, storia.getUsername());
                 ps.setString(2, storia.getContenuto());
                 ps.setInt(3,storia.getNReazioni());

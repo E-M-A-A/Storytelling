@@ -88,7 +88,7 @@ public class CommentoDao implements ICommentoDao{
     @Override
     public boolean doSave(Commento commento) {
         try(Connection conn = ConnPool.getConnection()){
-            try(PreparedStatement ps = conn.prepareStatement("INSERT into commento (idStoria,username,contenuto) values (?,?,?)")){
+            try(PreparedStatement ps = conn.prepareStatement("INSERT into commento (idStoria,username,contenuto) values (?,?,?)",Statement.RETURN_GENERATED_KEYS)){
                 ps.setInt(1, commento.getIdStoria());
                 ps.setString(2, commento.getUsername());
                 ps.setString(3, commento.getContenuto());

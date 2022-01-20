@@ -22,9 +22,6 @@ import java.util.TimeZone;
  */
 
 
-
-
-
     public class ConnPool {
         private static DataSource datasource;
 
@@ -47,4 +44,6 @@ import java.util.TimeZone;
             return datasource.getConnection();
         }
     }
+
+
 

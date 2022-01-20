@@ -221,24 +221,19 @@
     window.onscroll = function() {
         if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
             caricaStorie();
-
             console.log("Bottom of page");
         }
     };
 
     function pubblicaStoria(){
-
         let xhttp = new XMLHttpRequest();
         let formDATA = $("#idStoria").serialize();
-
-
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 console.log(this.responseText);
                 alert("La tua storia è stata pubblicata!");
                 setTimeout(aggiornamento, 2000)
             }
-
         }
 
         xhttp.open("POST", "./pubblicaStoria", true);
@@ -267,10 +262,8 @@
 
     function impostaReazione(storia)
     {
-
         let xhttp = new XMLHttpRequest();
         let contatore;
-
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 console.log(this.responseText);
@@ -285,14 +278,9 @@
                     '<path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>'+
                     '</svg>';
             }
-
         }
-
         xhttp.open("POST", "./InserisciReazione", true);
-
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-
         xhttp.send("storia="+storia);
         console.log("pubblicando la reazione a "+storia);
 

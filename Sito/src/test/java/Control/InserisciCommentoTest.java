@@ -17,12 +17,14 @@ public class InserisciCommentoTest {
     public void inserimentoTest(){
 
         Utente utente = new Utente();
-        Mockito.when(dao.doSave("molto bello hihi").thenReturn(true));
-        MockHttpServletRequest sex = new MockHttpServletRequest();
-        HttpSession session = sex.getSession();
+        Commento commento = new Commento();
+        commento.setUsername("emmavico");
+        Mockito.when(dao.doSave(commento)).thenReturn(true);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        HttpSession session = request.getSession();
         session.setAttribute("utente",utente);
-        sex.setParameter("storia","1");
-        sex.setParameter("commento","hihi bellissimo");
+        request.setParameter("storia","1");
+        request.setParameter("commento","hihi bellissimo");
 
 
 

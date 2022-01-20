@@ -1,5 +1,11 @@
 package Model;
 
+/*Questa classe si ccoupa del testing del DaoCommento.
+ Tutti i testing non hanno riscontrato errori nei dao.
+
+ * @author Muriel Rossi
+
+*/
 import it.unisa.emaa.www.sito.Model.ConnPool;
 import it.unisa.emaa.www.sito.Model.dao.CommentoDao;
 import it.unisa.emaa.www.sito.Model.dao.ReazioneDao;

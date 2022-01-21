@@ -23,17 +23,26 @@ public class EliminazioneUtente extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        eliminazioneUtente(req,resp);
+    }
+    public void eliminazioneUtente(HttpServletRequest req,HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
-        Utente utente = (Utente) session.getAttribute("utente");
+        Object obj = session.getAttribute("utente");
+        if(obj == null){
+            resp.setStatus(403);
+            return;
+        }
+        Utente utente = (Utente) obj;
         String password = req.getParameter("password");
         boolean matchedPassword = Validazione.datiCorrispondenti(utente.getId(),password,utenteDao);
         session.setAttribute("LoginErrato", !matchedPassword);
-        if(!matchedPassword){
+        if(!matchedPassword||!eliminaUtente(utente.getId())){
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
         }
-        resp.getWriter().print(eliminaUtente(utente.getId()));
         session.setAttribute("utente",null);
+        session.setAttribute("eliminato",true);
+        resp.sendRedirect("/Sito_war_exploded");
     }
     /**
      * Il metodo elimina l'utente con l'email data dal database.

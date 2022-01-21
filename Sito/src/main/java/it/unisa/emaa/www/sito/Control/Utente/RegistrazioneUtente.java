@@ -4,7 +4,6 @@ import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,22 +26,26 @@ import java.io.IOException;
 public class RegistrazioneUtente extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession(true);
         String username = req.getParameter("username");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String passwordTest = req.getParameter("passwordTest");
         boolean eula = Boolean.parseBoolean(req.getParameter("eula"));
-        if(!controllaDati(email,password,passwordTest,username,eula))
+        if(!controllaDati(email,password,passwordTest,username,eula)) {
             resp.setStatus(500);
+            return;
+        }
         password = Validazione.passwordHasher(password);
         Utente utente = new Utente();
         utente.setUsername(username);
         utente.setId(email.toLowerCase());
         utente.setPassword(password);
-        if(!effettuaRegistrazione(utente))
+        if(!effettuaRegistrazione(utente)) {
             resp.setStatus(500);
+            return;
+        }
         utente.setPassword("");
         session.setAttribute("utente",utente);
         resp.sendRedirect("./VisualizzaHome");

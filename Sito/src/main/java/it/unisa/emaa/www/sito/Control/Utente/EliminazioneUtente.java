@@ -28,12 +28,12 @@ public class EliminazioneUtente extends HttpServlet {
         String password = req.getParameter("password");
         boolean matchedPassword = Validazione.datiCorrispondenti(utente.getId(),password,utenteDao);
         session.setAttribute("LoginErrato", !matchedPassword);
-        if(!matchedPassword){
+        if(!matchedPassword||!eliminaUtente(utente.getId())){
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
         }
-        resp.getWriter().print(eliminaUtente(utente.getId()));
         session.setAttribute("utente",null);
+        resp.sendRedirect("/Sito_war_exploded");
     }
     /**
      * Il metodo elimina l'utente con l'email data dal database.

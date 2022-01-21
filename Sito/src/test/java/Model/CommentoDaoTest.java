@@ -289,7 +289,6 @@ public class CommentoDaoTest {
             statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
             statement.executeUpdate("DELETE FROM storia WHERE id  = 1");
             statement.executeUpdate("DELETE FROM storia WHERE id  = 2");
-
             statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'pippo@gmail.com'");
             statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'e.coppola37@studenti.unisa.it'");
 

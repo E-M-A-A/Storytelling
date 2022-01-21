@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -39,8 +40,10 @@ public class InserisciCommento extends HttpServlet {
         }
         Utente utente = (Utente) session.getAttribute("utente");
         int idStoria = Integer.parseInt(idStoriaString);
-        inserimentoCommento(utente.getUsername(),idStoria,commento);
-        resp.sendRedirect(req.getHeader("referer"));
+        if(inserimentoCommento(utente.getUsername(),idStoria,commento))
+            resp.sendRedirect(req.getHeader("referer"));
+        else
+            resp.setStatus(500);
     }
     private boolean inserimentoCommento(String username,int idStoria,String contenuto){
         if(contenuto.length()<3||contenuto.length()>100)

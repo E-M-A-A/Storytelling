@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 
 public class RegistrazioneUtenteTest {
     UtenteDao dao = Mockito.mock(UtenteDao.class);

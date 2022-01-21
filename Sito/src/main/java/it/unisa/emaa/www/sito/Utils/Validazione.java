@@ -33,7 +33,7 @@ public class Validazione {
     }
 
     /**
-     * Il metodo controlla se una reazione nel databse è presente
+     * Il metodo controlla se una reazione nel database è presente
      * @param email Il metodo prende in input un email
      * @param idStoria Il metodo prende in input un id storia
      * @return Ritorna se è presente una reazione di un utente da data email alla data storia nel database

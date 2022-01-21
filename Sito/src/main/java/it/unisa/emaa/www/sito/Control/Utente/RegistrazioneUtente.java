@@ -44,7 +44,7 @@ public class RegistrazioneUtente extends HttpServlet {
         if(!effettuaRegistrazione(utente))
             resp.setStatus(500);
         utente.setPassword("");
-        session.setAttribute("Utente",utente);
+        session.setAttribute("utente",utente);
         resp.sendRedirect("./VisualizzaHome");
     }
 

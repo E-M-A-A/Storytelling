@@ -24,7 +24,12 @@ public class EliminazioneUtente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Utente utente = (Utente) session.getAttribute("utente");
+        Object obj = session.getAttribute("utente");
+        if(obj == null){
+            resp.setStatus(403);
+            return;
+        }
+        Utente utente = (Utente) obj;
         String password = req.getParameter("password");
         boolean matchedPassword = Validazione.datiCorrispondenti(utente.getId(),password,utenteDao);
         session.setAttribute("LoginErrato", !matchedPassword);
@@ -32,7 +37,7 @@ public class EliminazioneUtente extends HttpServlet {
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
         }
-        session.setAttribute("utente",null);
+        session.setAttribute("utente",false);
         resp.sendRedirect("/Sito_war_exploded");
     }
     /**

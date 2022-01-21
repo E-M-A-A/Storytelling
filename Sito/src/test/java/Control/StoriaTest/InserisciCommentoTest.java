@@ -1,4 +1,4 @@
-package Control;
+package Control.StoriaTest;
 
 import it.unisa.emaa.www.sito.Model.dao.CommentoDao;
 import it.unisa.emaa.www.sito.Model.dao.ICommentoDao;

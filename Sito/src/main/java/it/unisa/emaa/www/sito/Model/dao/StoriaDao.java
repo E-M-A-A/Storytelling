@@ -170,7 +170,7 @@ public class StoriaDao implements IStoriaDao {
     @Override
     public List<Storia> doRetrieveByPage(int limit, int offset) {
         try(Connection conn = ConnPool.getConnection()) {
-            try(PreparedStatement ps = conn.prepareStatement("Select * from storia order by dataCreazione LIMIT ?,? ")){ // primo punto interrogativo offset, il secondo limit
+            try(PreparedStatement ps = conn.prepareStatement("Select * from storia order by dataCreazione DESC LIMIT ?,? ")){ // primo punto interrogativo offset, il secondo limit
                  ps.setInt(1,offset);
                  ps.setInt(2,limit);
                  ResultSet rs = ps.executeQuery();

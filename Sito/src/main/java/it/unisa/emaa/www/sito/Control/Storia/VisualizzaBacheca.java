@@ -18,6 +18,9 @@ import java.io.IOException;
 public class VisualizzaBacheca extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        visualizzaBacheca(req,resp);
+    }
+    public void visualizzaBacheca(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Object user = session.getAttribute("utente");
         if(user == null) {
@@ -27,5 +30,4 @@ public class VisualizzaBacheca extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
         dispatcher.forward(req,resp);
     }
-
 }

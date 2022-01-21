@@ -25,7 +25,9 @@ public class Login extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        login(req,resp);
+    }
+    public void login(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         boolean login = Validazione.datiCorrispondenti(email,password,utenteDao);

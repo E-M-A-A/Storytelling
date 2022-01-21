@@ -27,6 +27,10 @@ public class RegistrazioneUtente extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        registrazioneUtente(req,resp);
+    }
+
+    public void registrazioneUtente(HttpServletRequest req,HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession(true);
         String username = req.getParameter("username");
         String email = req.getParameter("email");
@@ -49,8 +53,8 @@ public class RegistrazioneUtente extends HttpServlet {
         utente.setPassword("");
         session.setAttribute("utente",utente);
         resp.sendRedirect("./VisualizzaHome");
-    }
 
+    }
     private boolean effettuaRegistrazione(Utente utente){
         return utenteDao.doSave(utente);
     }

@@ -23,6 +23,9 @@ public class EliminazioneUtente extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        eliminazioneUtente(req,resp);
+    }
+    public void eliminazioneUtente(HttpServletRequest req,HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
         Object obj = session.getAttribute("utente");
         if(obj == null){

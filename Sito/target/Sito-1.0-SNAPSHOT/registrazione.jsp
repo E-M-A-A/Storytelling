@@ -31,7 +31,11 @@
 
         <label for="password" class="sr-only">Password</label>
         <input type="password" id="password"  name="password"  class="form-control" placeholder="Password" required="">
+        <input type="password" id="passwordTest"  name="passwordTest"  class="form-control" placeholder="Conferma la password" required="">
+
         <span id="password-info" class="text-muted">La password deve contenere 8-15 carattere, <br>almeno una lettera Maiuscola,<br> almeno una minuscola,<br>e almeno un numero</span><br>
+        <span id="passwordTest-alert"class="alert-info " hidden> Le due password non coincidono!</span><br>
+
         <span id="password-alert"class="alert-info " hidden> La password non rispetta le caratteristiche richieste</span><br>
         <input type="checkbox" value="eula" id="eula" name="eula" required=""> Accetto le condizioni sulla privacy
 
@@ -69,7 +73,14 @@
     else document.getElementById("email-alert").hidden=true;
 
     let passAlert= document.getElementById("password-alert");
-    let pass = document.getElementById("password").value.match(regexPattern)
+    let pass = document.getElementById("password").value.match(regexPattern);
+    let passTest = document.getElementById("passwordTest").value;
+
+    if(passTest != pass)
+    {
+        submitable = false;
+        document.getElementById("passwordTest-alert").hidden=false;
+    }
 
     if(pass!=document.getElementById("password").value){
       submitable =false;

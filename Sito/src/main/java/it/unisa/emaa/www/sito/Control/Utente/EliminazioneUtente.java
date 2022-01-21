@@ -37,7 +37,8 @@ public class EliminazioneUtente extends HttpServlet {
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
         }
-        session.setAttribute("utente",false);
+        session.setAttribute("utente",null);
+        session.setAttribute("eliminato",true);
         resp.sendRedirect("/Sito_war_exploded");
     }
     /**

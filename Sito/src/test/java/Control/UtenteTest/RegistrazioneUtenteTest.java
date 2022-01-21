@@ -21,8 +21,8 @@ public class RegistrazioneUtenteTest {
 
     @Test
     public void doPostTest()
-    {
-        /*
+    {/*
+
         MockHttpServletRequest richiesta = new MockHttpServletRequest();
         richiesta.setParameter("username", "emmavico");
         richiesta.setParameter("email", "e.coppola37@studenti.unisa.it");
@@ -64,7 +64,7 @@ public class RegistrazioneUtenteTest {
                 .andExpect(content().mimeType("text/html"))
                 .andExpect(forwardedUrl("/WEB-INF/layouts/main.jsp"));
 
-        */
+*/
 
     }
 

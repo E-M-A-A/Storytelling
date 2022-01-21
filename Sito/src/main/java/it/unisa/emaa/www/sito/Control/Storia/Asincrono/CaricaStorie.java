@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-
-@WebServlet(name = "CaricaStorie",urlPatterns = "/CaricaStorie")
+import java.util.HashMap;
+@WebServlet(name="CaricaStorie" ,value="/CaricaStorie" )
 public class CaricaStorie extends HttpServlet {
     private StoriaDao storiaDao;
     private ReazioneDao reazioneDao;

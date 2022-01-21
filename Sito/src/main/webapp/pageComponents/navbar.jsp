@@ -41,7 +41,7 @@
 
 
             <div id = bottoneHome>
-                <a href="#" class="navbar-brand d-flex align-items-center">
+                <a href="/VisualizzaHome" class="navbar-brand d-flex align-items-center">
                     <%@include file="/images/icone/home.svg"%>
                     <!-- <strong>HOME</strong> -->
                 </a>

@@ -23,6 +23,9 @@ public class CaricaStorie extends HttpServlet {
     private ReazioneDao reazioneDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        caricaStorie(req,resp);
+    }
+    public void caricaStorie(HttpServletRequest req,HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
         Object obj = session.getAttribute("utente");
         String stringPagina = req.getParameter("pagina");
@@ -39,7 +42,6 @@ public class CaricaStorie extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().print(json);
     }
-
     public ArrayList<StoriaReazioni> recuperaListaStorie(int pagina, String email) {
         ArrayList<StoriaReazioni> storieReazioni = new ArrayList<>();
         ArrayList<Storia> listaStorie = (ArrayList<Storia>) storiaDao.doRetrieveByPage(30,pagina*30);

@@ -23,6 +23,9 @@ public class InserisciReazione extends HttpServlet {
     private ReazioneDao reazioneDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        inserisciReazione(req,resp);
+    }
+    public void inserisciReazione(HttpServletRequest req,HttpServletResponse resp){
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         int idStoria = Integer.parseInt(req.getParameter("storia"));

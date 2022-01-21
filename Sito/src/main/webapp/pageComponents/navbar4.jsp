@@ -34,7 +34,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a href="./paginaPrincipale.jsp" class="navbar-brand d-flex align-items-center">
+            <a href="/Sito_war_exploded/VisualizzaHome" class="navbar-brand d-flex align-items-center">
                 <%@include file="/images/icone/home.svg"%>         <!--   <strong>  Home</strong>-->
             </a>
 

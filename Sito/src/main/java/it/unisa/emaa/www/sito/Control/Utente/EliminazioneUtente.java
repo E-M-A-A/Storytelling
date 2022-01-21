@@ -6,6 +6,7 @@ import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import java.io.IOException;
  * L'operazione fallisce se la password data non corrisponde a quella dell'utente.
  * @author Alessandro Marigliano
  */
+@WebServlet(name="EliminazioneUtente",value = "/EliminazioneUtente")
 public class EliminazioneUtente extends HttpServlet {
     private UtenteDao utenteDao;
     @Override

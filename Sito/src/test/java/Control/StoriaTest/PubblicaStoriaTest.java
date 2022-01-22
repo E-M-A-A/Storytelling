@@ -51,7 +51,6 @@ public class PubblicaStoriaTest {
     }
 
     @Test
-
     public void contenutoMinoreDi1() throws ServletException, IOException {
         StoriaDao dao = Mockito.mock(StoriaDao.class);
 

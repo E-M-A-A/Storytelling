@@ -1,3 +1,5 @@
+create database storytelling;
+use storytelling;
 create table storia
 (
     id            int auto_increment

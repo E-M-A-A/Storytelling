@@ -46,7 +46,7 @@ public class CommentoDaoTest {
     private String commentoquery3 = "INSERT INTO commento VALUES('3','2','giaccarello', 'Ciao, bella storia!')";
 
     @Test
-    public void doRetrieveByAllTest() throws SQLException {
+    public void doRetrieveAllTest() throws SQLException {
         Connection connection;
         Statement statement;
         try {
@@ -110,10 +110,8 @@ public class CommentoDaoTest {
             test2 = false;
             if (test.contains(x))
                 test2 = true;
-
             else
                 break;
-
         }
 
         assertTrue("La lista di reazioni non è restituita correttamente", test2);
@@ -289,7 +287,6 @@ public class CommentoDaoTest {
             statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
             statement.executeUpdate("DELETE FROM storia WHERE id  = 1");
             statement.executeUpdate("DELETE FROM storia WHERE id  = 2");
-
             statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'pippo@gmail.com'");
             statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'e.coppola37@studenti.unisa.it'");
 

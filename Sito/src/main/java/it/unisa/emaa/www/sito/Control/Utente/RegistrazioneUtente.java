@@ -65,7 +65,7 @@ public class RegistrazioneUtente extends HttpServlet {
         boolean emailRegex = Validazione.emailRegex(email);
         boolean passwordRegex = Validazione.passwordRegex(password);
         boolean passwordEquals = password.equals(passwordTest);
-        return !emailPresente&&!emailUsername&&emailRegex&&passwordRegex&&passwordEquals;
+        return !emailPresente&&!emailUsername&&emailRegex&&passwordRegex&&passwordEquals&&eula;
     }
     public RegistrazioneUtente(){
         utenteDao = new UtenteDao();

@@ -9,6 +9,7 @@
     background-color:var(--bg-default-color);
     --bg-tertiary-color:#fbd77c;
     --bg-storia:#55595C;
+    overflow: auto;
 }
 
 .btn-primary:hover {
@@ -79,7 +80,6 @@ body{
     margin-top: 10px;
     box-sizing: border-box;
     max-width: 300px;
-    max-height: 200px;
     padding: 15px;
     text-align: center;
     vertical-align: middle;

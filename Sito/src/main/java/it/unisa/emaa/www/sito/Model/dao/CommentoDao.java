@@ -24,7 +24,7 @@ public class CommentoDao implements ICommentoDao{
      * @throws SQLException
      */
     @Override
-    public List<Commento> doRetrieveByAll() throws SQLException {
+    public List<Commento> doRetrieveAll() throws SQLException {
         try(Connection conn = ConnPool.getConnection()) {
             try(PreparedStatement ps = conn.prepareStatement("Select * from commento")){
                 ResultSet rs = ps.executeQuery();

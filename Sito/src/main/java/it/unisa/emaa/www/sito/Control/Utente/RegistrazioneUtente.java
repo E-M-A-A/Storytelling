@@ -60,11 +60,11 @@ public class RegistrazioneUtente extends HttpServlet {
     }
 
     private boolean controllaDati(String email,String password,String passwordTest,String username, boolean eula){
-        boolean emailPresente= Validazione.emailIsPresent(email,utenteDao);
-        boolean emailUsername=     Validazione.usernameIsPresent(username,utenteDao);
-        boolean emailRegex=         Validazione.emailRegex(email);
-        boolean passwordRegex=    Validazione.passwordRegex(password);
-        boolean passwordEquals =   password.equals(passwordTest);
+        boolean emailPresente = Validazione.emailIsPresent(email,utenteDao);
+        boolean emailUsername = Validazione.usernameIsPresent(username,utenteDao);
+        boolean emailRegex = Validazione.emailRegex(email);
+        boolean passwordRegex = Validazione.passwordRegex(password);
+        boolean passwordEquals = password.equals(passwordTest);
         return !emailPresente&&!emailUsername&&emailRegex&&passwordRegex&&passwordEquals;
     }
     public RegistrazioneUtente(){

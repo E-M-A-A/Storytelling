@@ -3,14 +3,11 @@ package Model;
 import it.unisa.emaa.www.sito.Model.ConnPool;
 import it.unisa.emaa.www.sito.Model.dao.StoriaDao;
 import it.unisa.emaa.www.sito.Model.entity.Storia;
-import it.unisa.emaa.www.sito.Model.entity.Utente;
 import org.junit.Test;
 
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -27,29 +24,25 @@ public class StoriaDaoTest {
     public void doRetrieveByPageTest() throws SQLException {
         Connection connection = ConnPool.getConnection();
         Statement statement = connection.createStatement();
-        statement.executeUpdate("DELETE FROM utente");
-        statement.executeUpdate("DELETE FROM storia");
-        statement.executeUpdate("ALTER TABLE storia AUTO_INCREMENT = 0;");
+        statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
+        statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
+        statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
+        statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         Storia oracolo1 = new Storia();
         Storia oracolo2 = new Storia();
         Storia oracolo3 = new Storia();
         ArrayList<Storia> oracoli = new ArrayList<Storia>();
         ArrayList<Storia> storieTest;
-        boolean test1;
-        boolean test2 = true;
-        oracolo1.setId(1);
         oracolo1.setUsername("emmavico");
         oracolo1.setContenuto("Questa è una bella storia");
         oracolo1.setNCommenti(0);
         oracolo1.setNReazioni(0);
         oracolo1.setDataCreazione(LocalDate.now());
-        oracolo2.setId(2);
         oracolo2.setUsername("emmavico");
         oracolo2.setContenuto("Una altra storia");
         oracolo2.setNCommenti(0);
         oracolo2.setNReazioni(0);
         oracolo2.setDataCreazione(LocalDate.now());
-        oracolo3.setId(3);
         oracolo3.setUsername("giaccarello");
         oracolo3.setContenuto("Una storia a parte");
         oracolo3.setNCommenti(0);
@@ -60,17 +53,26 @@ public class StoriaDaoTest {
         statement.executeUpdate(storiaquery1);
         statement.executeUpdate(storiaquery2);
         statement.executeUpdate(storiaquery3);
+        ResultSet rs = statement.executeQuery("SELECT MAX(id) FROM storia");
+        boolean test1 = rs.isBeforeFirst();
+        rs.next();
+        int lastId = rs.getInt(1);
+        oracolo1.setId(lastId-2);
+        oracolo2.setId(lastId-1);
+        oracolo3.setId(lastId);
         oracoli.add(oracolo1);
         oracoli.add(oracolo2);
         oracoli.add(oracolo3);
         storieTest = (ArrayList<Storia>) dao.doRetrieveByPage(3,0);
+        assertTrue("Errore con il recupero dell'ultimo id",test1);
         assertEquals("La lista di utenti non è restituita correttamente", oracoli,storieTest);
         try {
             connection = ConnPool.getConnection();
             statement = connection.createStatement();
-            statement.executeUpdate("DELETE FROM utente");
-            statement.executeUpdate("DELETE FROM storia");
-            statement.executeUpdate("ALTER TABLE storia AUTO_INCREMENT = 0;");
+            statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
+            statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
+            statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
+            statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,12 +81,12 @@ public class StoriaDaoTest {
     public void doRetrieveByIdTest() throws SQLException {
         Connection connection = ConnPool.getConnection();
         Statement statement = connection.createStatement();
-        statement.executeUpdate("DELETE FROM utente");
-        statement.executeUpdate("DELETE FROM storia");
-        statement.executeUpdate("ALTER TABLE storia AUTO_INCREMENT = 0;");
+        statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
+        statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
+        statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
+        statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         Storia oracolo = new Storia();
         Storia storiaTest;
-        oracolo.setId(1);
         oracolo.setUsername("emmavico");
         oracolo.setContenuto("Questa è una bella storia");
         oracolo.setNCommenti(0);
@@ -93,14 +95,21 @@ public class StoriaDaoTest {
         statement.executeUpdate(utentequery1);
         statement.executeUpdate(utentequery2);
         statement.executeUpdate(storiaquery1);
-        storiaTest = dao.doRetrieveById(1);
+        ResultSet rs = statement.executeQuery("SELECT MAX(id) FROM storia");
+        boolean test1 = rs.isBeforeFirst();
+        rs.next();
+        int lastId = rs.getInt(1);
+        oracolo.setId(lastId);
+        storiaTest = dao.doRetrieveById(lastId);
+        assertTrue("Errore nel recupero dell'ultimo id",test1);
         assertEquals("Incongruenza tra risultato e oracolo", oracolo, storiaTest);
         try {
             connection = ConnPool.getConnection();
             statement = connection.createStatement();
-            statement.executeUpdate("DELETE FROM utente");
-            statement.executeUpdate("DELETE FROM storia");
-            statement.executeUpdate("ALTER TABLE storia AUTO_INCREMENT = 0;");
+            statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
+            statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
+            statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
+            statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,14 +119,14 @@ public class StoriaDaoTest {
         Connection connection = ConnPool.getConnection();
         Statement statement = connection.createStatement();
         ResultSet risultati;
-        statement.executeUpdate("DELETE FROM utente");
-        statement.executeUpdate("DELETE FROM storia");
-        statement.executeUpdate("ALTER TABLE storia AUTO_INCREMENT = 0;");
+        statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
+        statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
+        statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
+        statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         Storia oracolo = new Storia();
         Storia storiaTest = new Storia();
         boolean test1;
         boolean test2 = true;
-        oracolo.setId(1);
         oracolo.setUsername("emmavico");
         oracolo.setContenuto("Questa è una bella storia");
         oracolo.setNCommenti(0);
@@ -126,6 +135,11 @@ public class StoriaDaoTest {
         statement.executeUpdate(utentequery1);
         statement.executeUpdate(utentequery2);
         test1 = dao.doSave(oracolo);
+        ResultSet rs = statement.executeQuery("SELECT MAX(id) FROM storia");
+        boolean testMax = rs.isBeforeFirst();
+        rs.next();
+        int lastId = rs.getInt(1);
+        oracolo.setId(lastId);
         risultati = statement.executeQuery("SELECT * FROM storia WHERE username = 'emmavico'");
         if (!risultati.isBeforeFirst())
             test2 = false;
@@ -138,6 +152,7 @@ public class StoriaDaoTest {
             storiaTest.setNReazioni(risultati.getInt("nReazioni"));
             storiaTest.setContenuto(risultati.getString("contenuto"));
             risultati.close();
+            assertTrue("Errore nel recupero dell'ultimo id",testMax);
             assertTrue("Errore nella doSave", test1);
             assertTrue("Tupla non trovata", test2);
             assertEquals("Incongruenza tra risultato e oracolo", oracolo, storiaTest);
@@ -146,9 +161,10 @@ public class StoriaDaoTest {
         try {
             connection = ConnPool.getConnection();
             statement = connection.createStatement();
-            statement.executeUpdate("DELETE FROM utente");
-            statement.executeUpdate("DELETE FROM storia");
-            statement.executeUpdate("ALTER TABLE storia AUTO_INCREMENT = 0;");
+            statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
+            statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
+            statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
+            statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         }
         catch(SQLException e){
             e.printStackTrace();

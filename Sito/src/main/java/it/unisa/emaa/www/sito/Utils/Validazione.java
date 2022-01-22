@@ -82,7 +82,6 @@ public class Validazione {
         String hashedPassword = passwordHasher(password);
         Utente utente = utenteDao.doRetrieveByEmail(email);
         return utente!=null && hashedPassword.equals(utente.getPassword());
-
     }
     /**
      * Il metodo effettua l'hashing della password passata come input con l'algoritmo SHA-512.

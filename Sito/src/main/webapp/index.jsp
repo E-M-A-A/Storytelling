@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%Object x =session.getAttribute("eliminato");%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +8,7 @@
     <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="./customcss/general.css"/>
 </head>
-
+<span id = "eliminato" hidden=""><%if(x !=null&&((boolean) x)==true)%><%=true%></span>
 <body class="text-center">
 
 <div id = "pageContenent">
@@ -32,12 +34,14 @@
 
 </div>
 <p class="mt-5 mb-3 text-muted">© E.M.A.A. corp</p>
-
-<!--   <%= "Ciao" %>
-
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
-
--->
 </body>
+<script>
+    /**
+     * Controlla se vi è scritto "true" nell'oggetto html eliminato per poter mostrare il messaggio di account eliminato
+     */
+    document.onload= function(){
+        if(document.getElementById("eliminato").innerText==="true")
+            alert("Account Eliminato");
+    }
+</script>
 </html>

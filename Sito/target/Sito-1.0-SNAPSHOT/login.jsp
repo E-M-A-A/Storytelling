@@ -39,6 +39,9 @@
 <% // if(session.getAttribute("LoginErrato")!=null)
     //session.removeAttribute("LoginErrato");%>
 <script>
+    /**
+     * Verifica che
+     */
     window.onload=function (){
         if(document.getElementById("LoginRiuscito").value==="false")
             document.getElementById("login-alert").hidden=false;

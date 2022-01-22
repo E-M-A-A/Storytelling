@@ -32,6 +32,9 @@ public class VisualizzaPost extends HttpServlet {
     private ReazioneDao reazioneDao;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       visualizzaPost(req,resp);
+    }
+    public void visualizzaPost(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String idStoriaString = req.getParameter("storia");
         Object obj = session.getAttribute("utente");

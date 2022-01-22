@@ -25,15 +25,17 @@ public class PubblicaStoria extends HttpServlet {
     private StoriaDao storiaDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       pubblicaStoria(req,resp);
+    }
+    public void pubblicaStoria(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException {
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         String storia = req.getParameter("contenuto");
-        resp.getWriter().print(pubblicaStoria(utente.getUsername(),storia));
+        resp.getWriter().print(pubblicazioneStoria(utente.getUsername(),storia));
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
         requestDispatcher.forward(req,resp);
     }
-
-    private boolean pubblicaStoria(String username,String contenuto){
+    private boolean pubblicazioneStoria(String username,String contenuto){
         if(contenuto.length()<1||contenuto.length()>500)
             return false;
         Storia storia = new Storia();

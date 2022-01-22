@@ -27,6 +27,10 @@ public class RegistrazioneUtente extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        registrazioneUtente(req,resp);
+    }
+
+    public void registrazioneUtente(HttpServletRequest req,HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession(true);
         String username = req.getParameter("username");
         String email = req.getParameter("email");
@@ -49,14 +53,19 @@ public class RegistrazioneUtente extends HttpServlet {
         utente.setPassword("");
         session.setAttribute("utente",utente);
         resp.sendRedirect("./VisualizzaHome");
-    }
 
+    }
     private boolean effettuaRegistrazione(Utente utente){
         return utenteDao.doSave(utente);
     }
 
     private boolean controllaDati(String email,String password,String passwordTest,String username, boolean eula){
-        return !Validazione.emailIsPresent(email,utenteDao) && !Validazione.usernameIsPresent(username,utenteDao) && Validazione.emailRegex(email) && Validazione.passwordRegex(password) && password.equals(passwordTest) && eula;
+        boolean emailPresente= Validazione.emailIsPresent(email,utenteDao);
+        boolean emailUsername=     Validazione.usernameIsPresent(username,utenteDao);
+        boolean emailRegex=         Validazione.emailRegex(email);
+        boolean passwordRegex=    Validazione.passwordRegex(password);
+        boolean passwordEquals =   password.equals(passwordTest);
+        return !emailPresente&&!emailUsername&&emailRegex&&passwordRegex&&passwordEquals;
     }
     public RegistrazioneUtente(){
         utenteDao = new UtenteDao();

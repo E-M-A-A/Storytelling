@@ -39,7 +39,7 @@
         <span id="password-alert"class="alert-info " hidden> La password non rispetta le caratteristiche richieste</span><br>
         <input type="checkbox" value="true" id="eula" name="eula"  required=""> Accetto le condizioni sulla privacy
 
-        <input id= "submit-registration" class="btn btn-lg btn-primary btn-block" type="submit">Conferma</input>
+        <input id= "submit-registration" class="btn btn-lg btn-primary btn-block" type="submit" value="Conferma"></input>
 
     </form>
 </div>

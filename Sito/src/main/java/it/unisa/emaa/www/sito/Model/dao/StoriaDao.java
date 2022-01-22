@@ -19,36 +19,6 @@ import java.util.List;
 
 public class StoriaDao implements IStoriaDao {
     /**
-     * effettua una query di selezione di ogni storia
-     * @return
-     */
-    @Override
-    public List<Storia> doRetrieveAll() {
-        try(Connection conn = ConnPool.getConnection()) {
-            try(PreparedStatement ps = conn.prepareStatement("Select * from storia")){
-                ResultSet rs = ps.executeQuery();
-                ArrayList<Storia> list =  new ArrayList<>();
-                while(rs.next()){
-                    Storia storia = new Storia();
-                    storia.setContenuto(rs.getString("contenuto"));
-                    storia.setDataCreazione(rs.getDate("dataCreazione").toLocalDate());
-                    storia.setNCommenti(rs.getInt("nCommenti"));
-                    storia.setNReazioni(rs.getInt("nReazioni"));
-                    storia.setUsername(rs.getString("username"));
-                    storia.setId(rs.getInt("id"));
-                    list.add(storia);
-                }
-                rs.close();
-                return list;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    /**
      * effettua una query di selezione di ogni storia in base all'ID
      * @param id
      * @return
@@ -82,28 +52,6 @@ public class StoriaDao implements IStoriaDao {
     }
 
     /**
-     * cancella una storia dalla base di dati partendo dall'ID
-     * @param id
-     * @return
-     */
-    @Override
-    public boolean doDelete(int id) {
-        try(Connection conn = ConnPool.getConnection()){
-            try(PreparedStatement ps = conn.prepareStatement("DELETE FROM Users WHERE id=?;")){
-                ps.setInt(1,id);
-                return ps.executeUpdate()>0;
-            }
-            catch(SQLException e){
-                throw new SQLException();
-            }
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    /**
      * salva una storia nella base di dati
      * @param storia
      * @return
@@ -133,34 +81,6 @@ public class StoriaDao implements IStoriaDao {
         return false;
 
     }
-/*
-    @Override
-    public List<Storia> doRetrieveByDate(Date date) {
-        try(Connection conn = ConnPool.getConnection()) {
-            try(PreparedStatement ps = conn.prepareStatement("Select * from storia where dataCreazione =?")){
-                ResultSet rs = ps.executeQuery();
-                ArrayList<Storia> list =  new ArrayList<>();
-                while(rs.next()){
-                    Storia storia = new Storia();
-                    storia.setContenuto(rs.getString("contenuto"));
-                    storia.setDataCreazione(rs.getDate("dataCreazione"));
-                    storia.setNCommenti(rs.getInt("nCommenti"));
-                    storia.setNReazioni(rs.getInt("nReazioni"));
-                    storia.setId(rs.getInt("id"));
-                    list.add(storia);
-                }
-                rs.close();    ???????????????????????? da vedereeeeeeee ??????????????????????????????
-                return list;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-
-    }
-*/
-
     /**
      * effettua una query prendendo le storie in base ad un limit ed offset che indicano la pagina
      * @param limit

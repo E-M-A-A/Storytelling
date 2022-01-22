@@ -4,7 +4,6 @@ import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +64,7 @@ public class RegistrazioneUtente extends HttpServlet {
         boolean emailRegex = Validazione.emailRegex(email);
         boolean passwordRegex = Validazione.passwordRegex(password);
         boolean passwordEquals = password.equals(passwordTest);
-        return !emailPresente&&!emailUsername&&emailRegex&&passwordRegex&&passwordEquals;
+        return !emailPresente&&!emailUsername&&emailRegex&&passwordRegex&&passwordEquals&&eula;
     }
     public RegistrazioneUtente(){
         utenteDao = new UtenteDao();

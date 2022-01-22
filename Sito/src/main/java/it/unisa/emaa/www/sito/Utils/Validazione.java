@@ -57,7 +57,7 @@ public class Validazione {
      * @return Il metodo ritorna un valore true o false a seconda se la password data in input rispetta o meno il pattern della regex per le password.
      */
     public static boolean passwordRegex(String password){
-        Pattern patternPassword = Pattern.compile("^(?=.*[a-z])(?=.*\\d)(?=.*[@#$._%-])(?=.*[A-Z]).{8,16}$");
+        Pattern patternPassword = Pattern.compile("^(?=.*[a-z])(?=.*\\d)(?=.*[A-Z]).{8,16}$");
         return patternPassword.matcher(password).matches();
     }
 
@@ -82,7 +82,6 @@ public class Validazione {
         String hashedPassword = passwordHasher(password);
         Utente utente = utenteDao.doRetrieveByEmail(email);
         return utente!=null && hashedPassword.equals(utente.getPassword());
-
     }
     /**
      * Il metodo effettua l'hashing della password passata come input con l'algoritmo SHA-512.

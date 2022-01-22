@@ -3,8 +3,10 @@
     <output-path>$PROJECT_DIR$/Sito/target</output-path>
     <properties id="maven-jee-properties">
       <options>
+        <exploded>false</exploded>
         <module>Sito</module>
         <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="archive" name="Sito-1.0-SNAPSHOT.war">

@@ -36,9 +36,10 @@ public class EliminazioneUtente extends HttpServlet {
         String password = req.getParameter("password");
         boolean matchedPassword = Validazione.datiCorrispondenti(utente.getId(),password,utenteDao);
         session.setAttribute("LoginErrato", !matchedPassword);
-        if(!matchedPassword||!eliminaUtente(utente.getId())){
+        if(!matchedPassword||!eliminaUtente(utente.getId())) {
             String referer = req.getHeader("referer");
             resp.sendRedirect(referer);
+            return;
         }
         session.setAttribute("utente",null);
         session.setAttribute("eliminato",true);

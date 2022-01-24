@@ -58,7 +58,7 @@ public class VisualizzaPost extends HttpServlet {
     }
     private Post recuperaPost(int idStoria,String email){
         Storia storia = storiaDao.doRetrieveById(idStoria);
-        ArrayList<Commento> listaCommenti = (ArrayList<Commento>) commentoDao.doRetrieveByStoria(idStoria);
+        ArrayList<Commento> listaCommenti = new ArrayList<>(commentoDao.doRetrieveByStoria(idStoria));
         Post post = new Post();
         post.setStoria(storia);
         post.setCommenti(listaCommenti);

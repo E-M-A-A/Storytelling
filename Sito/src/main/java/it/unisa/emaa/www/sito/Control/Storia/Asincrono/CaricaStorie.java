@@ -44,7 +44,7 @@ public class CaricaStorie extends HttpServlet {
     }
     public ArrayList<StoriaReazioni> recuperaListaStorie(int pagina, String email) {
         ArrayList<StoriaReazioni> storieReazioni = new ArrayList<>();
-        ArrayList<Storia> listaStorie = (ArrayList<Storia>) storiaDao.doRetrieveByPage(30,pagina*30);
+        ArrayList<Storia> listaStorie = new ArrayList<>(storiaDao.doRetrieveByPage(30,pagina*30));
         boolean present;
         for (Storia s : listaStorie) {
             StoriaReazioni storia = new StoriaReazioni();

@@ -32,7 +32,6 @@ public class VisualizzaBacheca extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
         dispatcher.forward(req,resp);
     }
-
-
-
+    public VisualizzaBacheca(){
+    }
 }

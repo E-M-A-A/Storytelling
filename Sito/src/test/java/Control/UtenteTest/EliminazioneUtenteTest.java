@@ -17,6 +17,9 @@ import java.security.NoSuchAlgorithmException;
 
 import static org.junit.Assert.assertTrue;
 
+//Author MurielRossi
+
+
 public class EliminazioneUtenteTest {
 
     @Test

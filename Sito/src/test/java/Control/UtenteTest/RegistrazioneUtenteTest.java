@@ -20,6 +20,7 @@ import java.security.NoSuchAlgorithmException;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+//Author MurielRossi
 
 public class RegistrazioneUtenteTest {
     UtenteDao dao = Mockito.mock(UtenteDao.class);

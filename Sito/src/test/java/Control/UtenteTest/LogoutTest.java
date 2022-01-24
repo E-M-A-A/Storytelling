@@ -15,7 +15,11 @@ import java.security.NoSuchAlgorithmException;
 
 import static org.junit.Assert.assertFalse;
 
+//Author MurielRossi
+
+
 public class LogoutTest  {
+
     /*
     @Test
     public void logoutSuccessoTest()
@@ -59,8 +63,8 @@ public class LogoutTest  {
         Logout controller = new Logout();
 
         request.addHeader("referer", "ciao");
-        controller.doGet(request, response);
-        assertFalse("Il logout è stato ",  ((boolean)request.getAttribute("LoginRiuscito")));
+        controller.logout(request, response);
+        assertFalse("Il logout non è stato eseguito correttamente",  request.getAttribute("utente") == nullz);
 
 
     }

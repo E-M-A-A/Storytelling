@@ -20,7 +20,8 @@ import static it.unisa.emaa.www.sito.Utils.Validazione.passwordHasher;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-//
+//Author MurielRossi
+
 public class LoginTest {
 
     @Test

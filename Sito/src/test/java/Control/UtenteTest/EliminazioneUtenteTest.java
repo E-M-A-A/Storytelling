@@ -74,6 +74,7 @@ public class EliminazioneUtenteTest {
         request.setParameter("password", "PassDiversa1");
         request.setParameter("email", "e.coppola37@studenti.unisa.it");
         Mockito.when(dao.doRetrieveByEmail("e.coppola37@studenti.unisa.it")).thenReturn(utente);
+        Mockito.when(dao.doDelete("e.coppola37@studenti.unisa.it")).thenReturn(true);
 
         EliminazioneUtente controller = new EliminazioneUtente(dao);
         request.addHeader("referer", "ciao");
@@ -83,7 +84,7 @@ public class EliminazioneUtenteTest {
     }
 
     @Test
-    public void eliminazioneUtenteTest() throws IOException {
+    public void eliminazioneUtenteFunzionanteTest() throws IOException {
         UtenteDao dao = Mockito.mock(UtenteDao.class);
         Utente utente = new Utente();
         utente.setUsername("emmavico");
@@ -122,11 +123,11 @@ public class EliminazioneUtenteTest {
         request.setParameter("password", "Casdwa324");
         request.setParameter("email", "e.coppola37@studenti.unisa.it");
         Mockito.when(dao.doRetrieveByEmail("e.coppola37@studenti.unisa.it")).thenReturn(utente);
-
+        Mockito.when(dao.doDelete("e.coppola37@studenti.unisa.it")).thenReturn(true);
         EliminazioneUtente controller = new EliminazioneUtente(dao);
         request.addHeader("referer", "ciao");
         controller.eliminazioneUtente(request, response);
-        assertTrue("L'utente è stato eliminato correttamente", response.getStatus() == 302 && (boolean)session.getAttribute("eliminato"));
+        assertTrue("L'utente non è stato eliminato correttamente", response.getStatus() == 302 && (boolean)session.getAttribute("eliminato"));
 
     }
 

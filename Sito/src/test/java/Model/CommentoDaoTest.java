@@ -103,7 +103,7 @@ public class CommentoDaoTest {
         oracolo.add(commento3);
 
 
-        test = dao.doRetrieveByAll();
+        test = dao.doRetrieveAll();
         boolean test1;
         boolean test2 = true;
         for (Commento x : oracolo) {

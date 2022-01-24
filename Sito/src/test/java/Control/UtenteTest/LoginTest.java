@@ -65,7 +65,7 @@ public class LoginTest {
          */
         request.setParameter("password", "Casdwa324");
         request.setParameter("email", "ciaociao@hotmail.it");
-        Mockito.when(dao.doRetrieveByEmail("ciaociao@hotmail.it")).thenReturn(utente);
+        Mockito.when(dao.doRetrieveByEmail("ciaociao@hotmail.it")).thenReturn(null);
 
         Login controller = new Login(dao);
 
@@ -115,7 +115,7 @@ public class LoginTest {
 
          */
         request.setParameter("password", "PasswordErrata1");
-        request.setParameter("email", "e.coppola37@studenti.unisa.it\"");
+        request.setParameter("email", "e.coppola37@studenti.unisa.it");
         Mockito.when(dao.doRetrieveByEmail("e.coppola37@studenti.unisa.it")).thenReturn(utente);
 
         Login controller = new Login(dao);

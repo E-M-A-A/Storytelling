@@ -1,5 +1,7 @@
 package it.unisa.emaa.www.sito.Control.Storia;
 
+import it.unisa.emaa.www.sito.Model.dao.CommentoDao;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,4 +32,7 @@ public class VisualizzaBacheca extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
         dispatcher.forward(req,resp);
     }
+
+
+
 }

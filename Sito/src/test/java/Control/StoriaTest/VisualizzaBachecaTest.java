@@ -1,6 +1,7 @@
 package Control.StoriaTest;
 
 import it.unisa.emaa.www.sito.Control.Storia.VisualizzaBacheca;
+import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -16,7 +17,6 @@ import static org.junit.Assert.assertTrue;
 public class VisualizzaBachecaTest {
     @Test
     public void successoTest() throws ServletException, IOException {
-        VisualizzaBacheca dao = Mockito.mock(VisualizzaBacheca.class);
 
         Utente utente = new Utente();
 
@@ -28,7 +28,7 @@ public class VisualizzaBachecaTest {
         HttpSession session = request.getSession();
         session.setAttribute("utente",utente);
 
-        VisualizzaBacheca controller = new VisualizzaBacheca(dao);
+        VisualizzaBacheca controller = new VisualizzaBacheca();
         controller.visualizzaBacheca(request, response);
         assertTrue(response.getStatus()==200);
 

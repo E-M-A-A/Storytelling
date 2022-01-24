@@ -3,6 +3,8 @@ package Control.StoriaTest;
 import it.unisa.emaa.www.sito.Control.Storia.InserisciCommento;
 import it.unisa.emaa.www.sito.Control.Storia.VisualizzaPost;
 import it.unisa.emaa.www.sito.Model.dao.CommentoDao;
+import it.unisa.emaa.www.sito.Model.dao.ReazioneDao;
+import it.unisa.emaa.www.sito.Model.dao.StoriaDao;
 import it.unisa.emaa.www.sito.Model.entity.Commento;
 import it.unisa.emaa.www.sito.Model.entity.Storia;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class VisualizzaPostTest {
@@ -24,12 +27,15 @@ public class VisualizzaPostTest {
     public void successoTest() throws ServletException, IOException {
 
 
-        VisualizzaPost dao = Mockito.mock(VisualizzaPost.class);
+        CommentoDao dao = Mockito.mock(CommentoDao.class);
+        StoriaDao dao2 = Mockito.mock(StoriaDao.class);
+        ReazioneDao dao3 = Mockito.mock(ReazioneDao.class);
 
         Utente utente = new Utente();
         Storia storia = new Storia();
         storia.setUsername("antonio");
         storia.setContenuto("blablablablablablablablablablablalba");
+        storia.setId(1);
         storia.setDataCreazione(LocalDate.now());;
 
 
@@ -41,11 +47,12 @@ public class VisualizzaPostTest {
         HttpSession session = request.getSession();
         session.setAttribute("utente",utente);
         request.setParameter("username","antonio");
+        request.setParameter("storia", "1");
         request.setParameter("contenuto","blablablablablablablablablablablalba");
 
-        VisualizzaPost controller = new VisualizzaPost(dao);
+        VisualizzaPost controller = new VisualizzaPost(dao,dao2,dao3);
         controller.visualizzaPost(request, response);
-        assertTrue(response.getStatus()==302);
+        assertEquals(response.getStatus(),302);
 
 
 
@@ -53,7 +60,9 @@ public class VisualizzaPostTest {
     }
     @Test
     public void noUtenteTest() throws ServletException, IOException {
-        VisualizzaPost dao = Mockito.mock(VisualizzaPost.class);
+        CommentoDao dao = Mockito.mock(CommentoDao.class);
+        StoriaDao dao2 = Mockito.mock(StoriaDao.class);
+        ReazioneDao dao3 = Mockito.mock(ReazioneDao.class);
 
         Storia storia = new Storia();
         storia.setUsername("antonio");
@@ -69,15 +78,16 @@ public class VisualizzaPostTest {
         request.setParameter("username","antoio");
         request.setParameter("contenuto","blablablablablablablablablablablalba");
 
-        VisualizzaPost controller = new VisualizzaPost(dao);
+        VisualizzaPost controller = new VisualizzaPost(dao,dao2,dao3);
         controller.visualizzaPost(request, response);
         assertTrue(response.getStatus()==403);
     }
 
     @Test
     public void noStoriaTest() throws ServletException, IOException {
-        VisualizzaPost dao = Mockito.mock(VisualizzaPost.class);
-
+        CommentoDao dao = Mockito.mock(CommentoDao.class);
+        StoriaDao dao2 = Mockito.mock(StoriaDao.class);
+        ReazioneDao dao3 = Mockito.mock(ReazioneDao.class);
     Utente utente = new Utente();
 
 
@@ -90,7 +100,7 @@ public class VisualizzaPostTest {
     HttpSession session = request.getSession();
         session.setAttribute("utente",utente);
 
-    VisualizzaPost controller = new VisualizzaPost(dao);
+    VisualizzaPost controller = new VisualizzaPost(dao,dao2,dao3);
         controller.visualizzaPost(request, response);
     assertTrue(response.getStatus()==500);
 }

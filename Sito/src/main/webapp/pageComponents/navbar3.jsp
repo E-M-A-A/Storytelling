@@ -14,7 +14,7 @@
                 <div class="col-sm-8 col-md-7 py-4">
                     <h4 class="text-white">Contact</h4>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Disconnettimi</a></li>
+                        <li><a href="./Logout" class="text-white">Disconnettimi</a></li>
 
                         <li><a href="./eliminazioneUtente.jsp" class="text-white">Elimina il mio account</a></li>
                     </ul>

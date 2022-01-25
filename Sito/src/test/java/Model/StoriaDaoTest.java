@@ -17,9 +17,9 @@ public class StoriaDaoTest {
     private String utentequery1 = "INSERT INTO utente VALUES('e.coppola37@studenti.unisa.it','Casdwa324$','emmavico')";
     private String utentequery2 = "INSERT INTO utente VALUES('pippo@gmail.com','GIAcc7£','giaccarello')";
 
-    private String storiaquery1 = "INSERT INTO storia(username,contenuto,nReazioni,nCommenti,dataCreazione) VALUES('emmavico','Questa è una bella storia',0,0,'"+ LocalDate.now()+"')";
-    private String storiaquery2 = "INSERT INTO storia(username,contenuto,nReazioni,nCommenti,dataCreazione) VALUES('emmavico','Una altra storia',0,0,'"+LocalDate.now()+"')";
-    private String storiaquery3 = "INSERT INTO storia(username,contenuto,nReazioni,nCommenti,dataCreazione) VALUES('giaccarello','Una storia a parte',0,0,'"+LocalDate.now()+"')";
+    private String storiaquery1 = "INSERT INTO storia(username,contenuto,nReazioni,nCommenti,dataCreazione) VALUES('emmavico','Questa è una bella storia',0,0,'"+"3000-12-11"+"')";
+    private String storiaquery2 = "INSERT INTO storia(username,contenuto,nReazioni,nCommenti,dataCreazione) VALUES('emmavico','Una altra storia',0,0,'"+"3000-12-10"+"')";
+    private String storiaquery3 = "INSERT INTO storia(username,contenuto,nReazioni,nCommenti,dataCreazione) VALUES('giaccarello','Una storia a parte',0,0,'"+"3000-12-09"+"')";
     @Test
     public void doRetrieveByPageTest() throws SQLException {
         Connection connection = ConnPool.getConnection();
@@ -37,17 +37,17 @@ public class StoriaDaoTest {
         oracolo1.setContenuto("Questa è una bella storia");
         oracolo1.setNCommenti(0);
         oracolo1.setNReazioni(0);
-        oracolo1.setDataCreazione(LocalDate.now());
+        oracolo1.setDataCreazione(LocalDate.of(3000,12,11));
         oracolo2.setUsername("emmavico");
         oracolo2.setContenuto("Una altra storia");
         oracolo2.setNCommenti(0);
         oracolo2.setNReazioni(0);
-        oracolo2.setDataCreazione(LocalDate.now());
+        oracolo2.setDataCreazione(LocalDate.of(3000,12,10));
         oracolo3.setUsername("giaccarello");
         oracolo3.setContenuto("Una storia a parte");
         oracolo3.setNCommenti(0);
         oracolo3.setNReazioni(0);
-        oracolo3.setDataCreazione(LocalDate.now());
+        oracolo3.setDataCreazione(LocalDate.of(3000,12,9));
         statement.executeUpdate(utentequery1);
         statement.executeUpdate(utentequery2);
         statement.executeUpdate(storiaquery1);
@@ -91,7 +91,7 @@ public class StoriaDaoTest {
         oracolo.setContenuto("Questa è una bella storia");
         oracolo.setNCommenti(0);
         oracolo.setNReazioni(0);
-        oracolo.setDataCreazione(LocalDate.now());
+        oracolo.setDataCreazione(LocalDate.of(3000,12,11));
         statement.executeUpdate(utentequery1);
         statement.executeUpdate(utentequery2);
         statement.executeUpdate(storiaquery1);
@@ -131,7 +131,7 @@ public class StoriaDaoTest {
         oracolo.setContenuto("Questa è una bella storia");
         oracolo.setNCommenti(0);
         oracolo.setNReazioni(0);
-        oracolo.setDataCreazione(LocalDate.now());
+        oracolo.setDataCreazione(LocalDate.of(3000,12,11));
         statement.executeUpdate(utentequery1);
         statement.executeUpdate(utentequery2);
         test1 = dao.doSave(oracolo);

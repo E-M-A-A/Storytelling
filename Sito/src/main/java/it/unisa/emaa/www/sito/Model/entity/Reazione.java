@@ -1,6 +1,5 @@
 package it.unisa.emaa.www.sito.Model.entity;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 

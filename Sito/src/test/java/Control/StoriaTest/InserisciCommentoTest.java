@@ -15,6 +15,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class InserisciCommentoTest {
@@ -26,17 +27,16 @@ public class InserisciCommentoTest {
 
         Utente utente = new Utente();
         Commento commento = new Commento();
+        utente.setId("ciao@gmail.com");
+        utente.setUsername("emmavico");
         commento.setUsername("emmavico");
         commento.setContenuto("hihi bellissimo");
         commento.setIdStoria(1);
 
         Mockito.when(dao.doSave(commento)).thenReturn(true);
-
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.addHeader("referer","ciao");
-
         MockHttpServletResponse response = new MockHttpServletResponse();
-
         HttpSession session = request.getSession();
         session.setAttribute("utente",utente);
         request.setParameter("storia","1");
@@ -44,7 +44,7 @@ public class InserisciCommentoTest {
 
         InserisciCommento controller = new InserisciCommento(dao);
         controller.inserisciCommento(request, response);
-        assertTrue(response.getStatus()==302);
+        assertEquals(302,response.getStatus());
 
 
 

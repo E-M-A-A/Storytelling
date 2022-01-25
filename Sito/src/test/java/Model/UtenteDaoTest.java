@@ -23,8 +23,8 @@ public class UtenteDaoTest {
     private static Utente utente;
     private UtenteDao dao = new UtenteDao();
 
-    private String data1 = "INSERT INTO utente VALUES('e.coppola37@studenti.unisa.it','Casdwa324$','emmavico')";
-    private String data2 = "INSERT INTO utente VALUES('pippo@gmail.com','GIAcc7£','giaccarello')";
+    private String data1 = "INSERT INTO utente VALUES('e.coppola37@studenti.unisa.it','Casdwa324','emmavico')";
+    private String data2 = "INSERT INTO utente VALUES('pippo@gmail.com','GIAcc7','giaccarello')";
 
 
     private void setup() {
@@ -32,7 +32,7 @@ public class UtenteDaoTest {
 
         utente = new Utente();
         utente.setId("e.coppola37@studenti.unisa.it");
-        utente.setPassword("Casdwa324$");
+        utente.setPassword("Casdwa324");
         utente.setUsername("emmavico");
     }
 
@@ -87,7 +87,7 @@ public class UtenteDaoTest {
         Connection connection;
         Utente utente1, utente2;
         utente2 = new Utente();
-        utente2.setPassword("GIAcc7£");
+        utente2.setPassword("GIAcc7");
         utente2.setId("pippo@gmail.com");
         utente2.setUsername("giaccarello");
 
@@ -116,7 +116,7 @@ public class UtenteDaoTest {
         Connection connection;
         Utente utente1, utente2;
         utente2 = new Utente();
-        utente2.setPassword("GIAcc7£");
+        utente2.setPassword("GIAcc7");
         utente2.setId("pippo@gmail.com");
         utente2.setUsername("giaccarello");
 
@@ -146,7 +146,7 @@ public class UtenteDaoTest {
         Connection connection;
         Utente utente1, utente2;
         utente2 = new Utente();
-        utente2.setPassword("GIAcc7£");
+        utente2.setPassword("GIAcc7");
         utente2.setId("pippo@gmail.com");
         utente2.setUsername("giaccarello");
         String username;
@@ -196,38 +196,49 @@ public class UtenteDaoTest {
     @Test
     public void doRetrieveAllTest() {
         List<Utente> listaUtenti = new ArrayList<Utente>();
-        List<Utente> listaUtentiTest = null;
+        List<Utente> listaUtentiTest;
         Connection connection;
 
         Utente utente1, utente2;
         utente1 = new Utente();
         utente2 = new Utente();
+
+        try {
+            connection = ConnPool.getConnection();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
+            statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
+            statement.executeUpdate(data1);
+            statement.executeUpdate(data2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         utente1.setId("e.coppola37@studenti.unisa.it");
-        utente1.setPassword("Casdwa324$");
+        utente1.setPassword(null);
         utente1.setUsername("emmavico");
-        utente2.setPassword("GIAcc7£");
+        utente2.setPassword(null);
         utente2.setId("pippo@gmail.com");
         utente2.setUsername("giaccarello");
 
         listaUtenti.add(utente1);
         listaUtenti.add(utente2);
 
+
         listaUtentiTest = dao.doRetrieveAll();
-        boolean test1 = true;
         boolean test2 = true;
-        for(Utente x: listaUtentiTest)
+        for(Utente x: listaUtenti)
         {
-            test1 = false;
-            for(Utente y: listaUtenti)
+            test2 = false;
+
+            if(listaUtentiTest.contains(x))
             {
-                if(x.equals(y))
-                {
-                    test1 = true;
-                }
+                test2 = true;
             }
-            if(test1 == false)
+            else
             {
-                test2 = false;
+                break;
             }
         }
 

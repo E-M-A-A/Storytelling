@@ -52,7 +52,7 @@ public class VisualizzaPostTest {
 
         VisualizzaPost controller = new VisualizzaPost(dao,dao2,dao3);
         controller.visualizzaPost(request, response);
-        assertEquals(response.getStatus(),302);
+        assertEquals(response.getStatus(),200);
 
 
 

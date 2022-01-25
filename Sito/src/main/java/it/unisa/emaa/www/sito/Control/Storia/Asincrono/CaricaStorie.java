@@ -41,6 +41,7 @@ public class CaricaStorie extends HttpServlet {
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().print(json);
+
     }
     public ArrayList<StoriaReazioni> recuperaListaStorie(int pagina, String email) {
         ArrayList<StoriaReazioni> storieReazioni = new ArrayList<>();

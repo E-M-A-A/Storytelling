@@ -242,12 +242,8 @@ public class ReazioneDaoTest {
 
 
         test = dao.doRetrieve("e.coppola37@studenti.unisa.it", 1);
-        boolean test2 = false;
 
-        if(oracolo.equals(test))
-            test2 = true;
-
-        assertTrue("La reazione non è restituita correttamente", test2);
+        assertEquals("La reazione non è restituita correttamente", oracolo,test);
 
         try {
             connection = ConnPool.getConnection();

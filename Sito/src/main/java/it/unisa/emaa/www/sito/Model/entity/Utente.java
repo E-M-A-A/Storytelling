@@ -34,10 +34,6 @@ public class Utente {
         return id.equals(utente.id) && Objects.equals(password, utente.password) && Objects.equals(username, utente.username);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, password, username);
-    }
 
     public String getUsername() {
         return username;

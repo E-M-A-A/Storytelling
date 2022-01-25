@@ -49,10 +49,6 @@ public class Reazione implements Serializable {
                 return idStoria == reazione.idStoria && emailUtente.equals(reazione.emailUtente);
         }
 
-        @Override
-        public int hashCode() {
-                return Objects.hash(idStoria, emailUtente);
-        }
 
         private int idStoria;
         private String emailUtente;

@@ -20,19 +20,15 @@ public class Post {
                 ", reazione=" + reazione +
                 '}';
     }
-
+/*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
         return storia.equals(post.storia) && Objects.equals(commenti, post.commenti) && Objects.equals(reazione, post.reazione);
-    }
+    }*/
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(storia, commenti, reazione);
-    }
 
     public Post(){}
     public Post(Storia storia, ArrayList<Commento> commenti){

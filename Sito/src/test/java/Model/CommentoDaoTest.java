@@ -47,7 +47,7 @@ public class CommentoDaoTest {
 
     @Test
     public void doRetrieveAllTest() throws SQLException {
-      /*  Connection connection;
+       Connection connection;
         Statement statement;
         try {
             connection = ConnPool.getConnection();
@@ -292,6 +292,6 @@ public class CommentoDaoTest {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }

@@ -20,7 +20,7 @@
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.9" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jdbc:9.0.50" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.50" />
-          <element id="library" level="project" name="Maven: org.jacoco:jacoco-maven-plugin:0.8.7" />
+          <element id="library" level="project" name="Maven: org.jacoco:jacoco-maven-plugin:maven-plugin:0.8.7" />
           <element id="library" level="project" name="Maven: org.apache.maven:maven-plugin-api:3.0" />
           <element id="library" level="project" name="Maven: org.apache.maven:maven-model:3.0" />
           <element id="library" level="project" name="Maven: org.apache.maven:maven-artifact:3.0" />

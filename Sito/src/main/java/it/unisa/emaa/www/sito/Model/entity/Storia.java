@@ -44,10 +44,6 @@ public class Storia {
         return id == storia.id && nReazioni == storia.nReazioni && nCommenti == storia.nCommenti && username.equals(storia.username) && contenuto.equals(storia.contenuto) && Objects.equals(dataCreazione, storia.dataCreazione);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, username, contenuto, nReazioni, nCommenti, dataCreazione);
-    }
 
     public LocalDate getDataCreazione() {
         return dataCreazione;

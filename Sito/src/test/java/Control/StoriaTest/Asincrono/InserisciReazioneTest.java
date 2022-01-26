@@ -6,7 +6,6 @@ import it.unisa.emaa.www.sito.Model.entity.Reazione;
 import it.unisa.emaa.www.sito.Model.entity.Storia;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 import org.junit.Test;
-//import org.mockito.Mockito;
 import org.mockito.Mockito;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -15,6 +14,15 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
+
+/**
+ * @author Antonio Scotellaro
+ * testing per l'inserimento di reazione all'interno di una storia. Viene testato il caso di successo dove viene effettuato
+ * l'inserimento in modo corretto e il caso di fallimento dove la reazione è già presente.
+
+ */
+
+
 
 public class InserisciReazioneTest {
     @Test

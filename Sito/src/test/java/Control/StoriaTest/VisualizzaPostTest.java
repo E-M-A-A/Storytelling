@@ -22,6 +22,13 @@ import java.time.LocalDate;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * @author Antonio Scotellaro
+ * Testing per la visualizzazione di post, vengono testati i casi di successo, dove il post viene fatto visualizzare poiché
+ * presenti sia l'utente che la storia e i casi di fallimento dove non sono presenti la storia e l'utente
+ */
+
+
 public class VisualizzaPostTest {
     @Test
     public void successoTest() throws ServletException, IOException {

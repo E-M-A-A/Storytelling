@@ -22,7 +22,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
+/**
+ * @autor Antonio Scotellaro
+ * Testing per l'inserimento di storie, vengono gestiti i casi di successo caricamento storia e fallimento caricamento storia
+ * nel caso in cui non siano presenti elementi nella pagina richiesta.
+ *
+ *
+ */
+
+
+
 import static org.junit.Assert.assertEquals;
+
+
 
 
 public class CaricaStorieTest {

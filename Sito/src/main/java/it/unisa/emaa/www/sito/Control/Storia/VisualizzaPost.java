@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Questa servlet gestisce la visualizzazione di una storia con i relativi commenti.
@@ -58,7 +59,8 @@ public class VisualizzaPost extends HttpServlet {
     }
     private Post recuperaPost(int idStoria,String email){
         Storia storia = storiaDao.doRetrieveById(idStoria);
-        ArrayList<Commento> listaCommenti = new ArrayList<>(commentoDao.doRetrieveByStoria(idStoria));
+        List<Commento> commenti = commentoDao.doRetrieveByStoria(idStoria);
+        ArrayList<Commento> listaCommenti = commenti==null?new ArrayList<>():new ArrayList<>(commenti);
         Post post = new Post();
         post.setStoria(storia);
         post.setCommenti(listaCommenti);

@@ -14,6 +14,12 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertTrue;
 
+/**
+ * @author Antonio Scotellaro
+ * Testing per l'avvenuto successo di visualizzazione bacheca dove viene controllata la presenza dell'utente in sessione
+ */
+
+
 public class VisualizzaBachecaTest {
     @Test
     public void successoTest() throws ServletException, IOException {

@@ -17,6 +17,17 @@ import java.time.LocalDate;
 
 import static org.junit.Assert.assertTrue;
 
+
+/**
+ * @author Antonio Scotellaro
+ * Testing per la pubblicazione di una storia, vengono gestiti i casi di successo, ovvero l'avvenuta pubblicazione della storia
+ * e i casi di fallimento dove la storia non viene pubblicata poiché il suo contenuto è minore di 1 o maggiore di 500
+ *
+ */
+
+
+
+
 public class PubblicaStoriaTest {
 
     @Test

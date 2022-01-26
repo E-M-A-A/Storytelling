@@ -18,6 +18,16 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+
+/**
+ * @author Antonio Scotellaro
+ * Testing per l'inserimento commento, vengono testati i casi di successo inserimento e di fallimento inserimento nel momento in cui
+ * non è presente l'utente, l'id storia di riferimento, il commento e i casi dove il commento è minore di 3 e maggiore di 100
+ *
+ */
+
+
+
 public class InserisciCommentoTest {
 
 

@@ -8,6 +8,7 @@ import it.unisa.emaa.www.sito.Model.entity.Reazione;
 import it.unisa.emaa.www.sito.Model.entity.Storia;
 import it.unisa.emaa.www.sito.Model.entity.StoriaReazioni;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
+import org.eclipse.persistence.oxm.MediaType;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -25,10 +26,10 @@ import static org.junit.Assert.assertEquals;
 
 
 public class CaricaStorieTest {
-@Ignore
+
     @Test
     public void successoTest() throws IOException {
-    /*    Utente utente = new Utente();
+        Utente utente = new Utente();
         Storia storia = new Storia();
         Storia storia1 = new Storia();
         Storia storia2 = new Storia();
@@ -81,16 +82,11 @@ public class CaricaStorieTest {
 
         Mockito.when(dao.doRetrieveByPage(30,pagina*30)).thenReturn(lista);
         Mockito.when(dao2.doRetrieve(utente.getId(), storia.getId())).thenReturn(reazione);
-
+        request.setCookies();
         CaricaStorie controller = new CaricaStorie(dao, dao2);
         controller.caricaStorie(request,response);
-        response.setContentType("plain/text");
-        response.setCharacterEncoding("UTF-8");
+
         assertEquals(response.getContentAsString(),risultato);
 
-
-
-
-*/
     }
 }

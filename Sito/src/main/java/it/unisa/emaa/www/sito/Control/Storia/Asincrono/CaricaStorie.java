@@ -7,6 +7,7 @@ import it.unisa.emaa.www.sito.Model.entity.Storia;
 import it.unisa.emaa.www.sito.Model.entity.StoriaReazioni;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
+import org.eclipse.persistence.oxm.MediaType;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,7 +39,7 @@ public class CaricaStorie extends HttpServlet {
         ArrayList<StoriaReazioni> storieReazioni = recuperaListaStorie(pagina,utente.getId());
         Gson gson = new Gson();
         String json = gson.toJson(storieReazioni);
-        resp.setContentType("plain/text");
+        resp.setContentType(String.valueOf(MediaType.APPLICATION_JSON));
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().print(json);
 

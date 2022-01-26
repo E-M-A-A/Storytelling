@@ -33,13 +33,7 @@ public class Reazione implements Serializable {
                 this.emailUtente = emailUtente;
         }
 
-        @Override
-        public String toString() {
-                return "Reazione{" +
-                        "idStoria=" + idStoria +
-                        ", emailUtente='" + emailUtente + '\'' +
-                        '}';
-        }
+
 
         @Override
         public boolean equals(Object o) {

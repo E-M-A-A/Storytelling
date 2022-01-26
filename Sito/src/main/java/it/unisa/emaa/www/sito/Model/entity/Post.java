@@ -12,14 +12,7 @@ public class Post {
     private ArrayList<Commento> commenti;
     private Boolean reazione;
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "storia=" + storia +
-                ", commenti=" + commenti +
-                ", reazione=" + reazione +
-                '}';
-    }
+
 /*
     @Override
     public boolean equals(Object o) {
@@ -35,10 +28,8 @@ public class Post {
         this.storia = storia;
         this.commenti = commenti;
     }
-    public Storia getStoria(){ return storia;}
-    public ArrayList<Commento> getCommenti(){return commenti;}
+
     public void setStoria(Storia storia){ this.storia = storia;}
     public void setCommenti(ArrayList<Commento> commenti){ this.commenti = commenti;}
-    public Boolean getReazione(){ return reazione;}
     public void setReazione(Boolean reazione){ this.reazione=reazione;}
 }

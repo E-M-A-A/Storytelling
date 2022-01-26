@@ -2,12 +2,11 @@ package Control.StoriaTest;
 
 import it.unisa.emaa.www.sito.Control.Storia.InserisciCommento;
 import it.unisa.emaa.www.sito.Model.dao.CommentoDao;
-import it.unisa.emaa.www.sito.Model.dao.ICommentoDao;
-import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
 import it.unisa.emaa.www.sito.Model.entity.Commento;
 import it.unisa.emaa.www.sito.Model.entity.Utente;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.Mock;
+
 import org.mockito.Mockito;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -20,33 +19,35 @@ import static org.junit.Assert.assertTrue;
 
 public class InserisciCommentoTest {
 
-
     @Test
     public void successoTest() throws IOException {
-        CommentoDao dao = Mockito.mock(CommentoDao.class);
 
-        Utente utente = new Utente();
-        Commento commento = new Commento();
-        utente.setId("ciao@gmail.com");
-        utente.setUsername("emmavico");
-        commento.setUsername("emmavico");
-        commento.setContenuto("hihi bellissimo");
-        commento.setIdStoria(1);
-
-        Mockito.when(dao.doSave(commento)).thenReturn(true);
         MockHttpServletRequest request = new MockHttpServletRequest();
-        request.addHeader("referer","ciao");
         MockHttpServletResponse response = new MockHttpServletResponse();
         HttpSession session = request.getSession();
+
+        Utente utente = new Utente();
+        utente.setId("ciao@gmail.com");
+        utente.setUsername("emmavico");
+
+        Commento commento = new Commento();
+        commento.setUsername(utente.getUsername());
+        commento.setContenuto("Incredibile");
+        commento.setIdStoria(1);
+
+        CommentoDao dao = Mockito.mock(CommentoDao.class);
+        Mockito.when(dao.doSave(commento)).thenReturn(true);
+
+        request.addHeader("referer","ciao");
         session.setAttribute("utente",utente);
+
         request.setParameter("storia","1");
-        request.setParameter("commento","hihi bellissimo");
+        request.setParameter("commento","Incredibile");
 
         InserisciCommento controller = new InserisciCommento(dao);
         controller.inserisciCommento(request, response);
+
         assertEquals(302,response.getStatus());
-
-
 
     }
     @Test

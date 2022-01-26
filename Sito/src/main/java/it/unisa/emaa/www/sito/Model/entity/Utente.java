@@ -18,13 +18,7 @@ public class Utente {
     private String password;
     private String username;
 
-    @Override
-    public String toString() {
-        return "Utente{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                '}';
-    }
+
 
     @Override
     public boolean equals(Object o) {

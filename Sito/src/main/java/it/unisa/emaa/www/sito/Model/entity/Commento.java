@@ -21,7 +21,7 @@ public class Commento {
     private int idStoria;
     private String username;
     private String contenuto;
-/*
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -29,18 +29,10 @@ public class Commento {
         Commento commento = (Commento) o;
         return id == commento.id && idStoria == commento.idStoria && username.equals(commento.username) && Objects.equals(contenuto, commento.contenuto);
     }
-*/
 
 
-    @Override
-    public String toString() {
-        return "Commento{" +
-                "id=" + id +
-                ", idStoria=" + idStoria +
-                ", username='" + username + '\'' +
-                ", contenuto='" + contenuto + '\'' +
-                '}';
-    }
+
+
 
     public String getContenuto() {
         return contenuto;

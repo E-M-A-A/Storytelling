@@ -24,17 +24,6 @@ public class Storia {
     private int nCommenti;
     private LocalDate dataCreazione;
 
-    @Override
-    public String toString() {
-        return "Storia{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", contenuto='" + contenuto + '\'' +
-                ", nReazioni=" + nReazioni +
-                ", nCommenti=" + nCommenti +
-                ", dataCreazione=" + dataCreazione +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -97,11 +86,4 @@ public class Storia {
 
     }
 
-    public Storia( String username, String contenuto, Integer nReazioni, Integer nCommenti, LocalDate dataCreazione) {
-        this.username = username;
-        this.contenuto = contenuto;
-        this.nReazioni = nReazioni;
-        this.nCommenti = nCommenti;
-        this.dataCreazione = dataCreazione;
-    }
 }

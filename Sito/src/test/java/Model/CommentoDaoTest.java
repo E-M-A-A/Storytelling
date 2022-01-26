@@ -41,9 +41,9 @@ public class CommentoDaoTest {
     private String storiaquery2 = "INSERT INTO storia VALUES(2, 'emmavico','Una altra storia',0,0,'" + LocalDate.now() + "')";
     private String storiaquery3 = "INSERT INTO storia VALUES(3, 'giaccarello','Una storia a parte',0,0,'" + LocalDate.now() + "')";
 
-    private String commentoquery1 = "INSERT INTO commento VALUES('1','1', 'emmavico', 'Ciao io sono Emmanuele')";
-    private String commentoquery2 = "INSERT INTO commento VALUES('2','1', 'emmavico', 'Mi piace scrivere commenti')";
-    private String commentoquery3 = "INSERT INTO commento VALUES('3','2','giaccarello', 'Ciao, bella storia!')";
+    private String commentoquery1 = "INSERT INTO commento VALUES(1,'1', 'emmavico', 'Ciao io sono Emmanuele')";
+    private String commentoquery2 = "INSERT INTO commento VALUES(2,'1', 'emmavico', 'Mi piace scrivere commenti')";
+    private String commentoquery3 = "INSERT INTO commento VALUES(3,'2','giaccarello', 'Ciao, bella storia!')";
 
     @Test
     public void doRetrieveAllTest() throws SQLException {
@@ -57,16 +57,17 @@ public class CommentoDaoTest {
             statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
             statement.executeUpdate("DELETE FROM storia WHERE id  = 1");
             statement.executeUpdate("DELETE FROM storia WHERE id  = 2");
+            statement.executeUpdate("DELETE FROM storia WHERE id  = 3");
 
-            statement.executeUpdate("DELETE FROM commento WHERE id = '1'");
-            statement.executeUpdate("DELETE FROM commento WHERE id = '2'");
-            statement.executeUpdate("DELETE FROM commento WHERE id = '3'");
+            statement.executeUpdate("DELETE FROM commento WHERE id = 1");
+            statement.executeUpdate("DELETE FROM commento WHERE id = 2");
+            statement.executeUpdate("DELETE FROM commento WHERE id = 3");
 
             statement.executeUpdate(data1);
             statement.executeUpdate(data2);
             statement.executeUpdate(storiaquery1);
             statement.executeUpdate(storiaquery2);
-
+            statement.executeUpdate(storiaquery3);
             statement.executeUpdate(commentoquery1);
             statement.executeUpdate(commentoquery2);
             statement.executeUpdate(commentoquery3);
@@ -104,7 +105,6 @@ public class CommentoDaoTest {
 
 
         test = dao.doRetrieveAll();
-        boolean test1;
         boolean test2 = true;
         for (Commento x : oracolo) {
             test2 = false;

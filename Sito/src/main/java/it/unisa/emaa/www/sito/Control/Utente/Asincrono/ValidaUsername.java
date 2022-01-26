@@ -16,10 +16,13 @@ public class ValidaUsername extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            String username = req.getParameter("username");
-            resp.setContentType("plain/text");
-            resp.setCharacterEncoding("UTF-8");
-            resp.getWriter().print(Validazione.usernameIsPresent(username,utenteDao));
+          validazioneUsername(req,resp);
+    }
+    public void validazioneUsername(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String username = req.getParameter("username");
+        resp.setContentType("plain/text");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().print(Validazione.usernameIsPresent(username,utenteDao));
     }
     public ValidaUsername(){
         utenteDao = new UtenteDao();

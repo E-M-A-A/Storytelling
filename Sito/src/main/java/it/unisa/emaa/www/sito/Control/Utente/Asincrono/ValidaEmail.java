@@ -15,6 +15,9 @@ public class ValidaEmail extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        validaEmail(req,resp);
+    }
+    public void validaEmail(HttpServletRequest req,HttpServletResponse resp) throws IOException {
         String email = req.getParameter("email");
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");

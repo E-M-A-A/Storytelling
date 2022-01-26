@@ -52,6 +52,9 @@ public class CaricaStorieTest {
         storia.setNReazioni(0);
         storia.setNCommenti(1);
 
+
+        lista.add(storia);
+
         utente.setPassword("");
         utente.setUsername("pippo2");
         utente.setId("gaiusgi@yagdaygs.com");
@@ -86,7 +89,64 @@ public class CaricaStorieTest {
         CaricaStorie controller = new CaricaStorie(dao, dao2);
         controller.caricaStorie(request,response);
 
-        assertEquals(response.getContentAsString(),risultato);
+        assertEquals(risultato,response.getContentAsString());
 
     }
+
+
+    @Test
+    public void noElementiPaginaTest() throws IOException {
+        Utente utente = new Utente();
+        Storia storia = new Storia();
+        int pagina = 1;
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.addHeader("referer", "ciao");
+
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        javax.servlet.http.HttpSession session = request.getSession();
+        session.setAttribute("utente", utente);
+        request.setParameter("pagina", pagina + "");
+
+        ArrayList<Storia> lista = new ArrayList<>();
+
+        utente.setPassword("");
+        utente.setUsername("pippo2");
+        utente.setId("gaiusgi@yagdaygs.com");
+
+        Reazione reazione = new Reazione();
+        reazione.setEmailUtente("gaiusgi@yagdaygs.com");
+        reazione.setIdStoria(1);
+
+        StoriaReazioni storiareazioni = new StoriaReazioni();
+        storiareazioni.setStoria(storia);
+        storiareazioni.setReazionata(true);
+
+
+        ArrayList<StoriaReazioni> lista2 = new ArrayList<>();
+
+
+
+        Gson gson = new Gson();
+
+        String risultato = gson.toJson(lista2);
+
+
+
+
+        StoriaDao dao = Mockito.mock(StoriaDao.class);
+
+        ReazioneDao dao2 = Mockito.mock(ReazioneDao.class);
+
+        Mockito.when(dao.doRetrieveByPage(30,pagina*30)).thenReturn(lista);
+        Mockito.when(dao2.doRetrieve(utente.getId(), storia.getId())).thenReturn(reazione);
+        request.setCookies();
+        CaricaStorie controller = new CaricaStorie(dao, dao2);
+        controller.caricaStorie(request,response);
+
+        assertEquals(risultato,response.getContentAsString());
+
+    }
+
 }

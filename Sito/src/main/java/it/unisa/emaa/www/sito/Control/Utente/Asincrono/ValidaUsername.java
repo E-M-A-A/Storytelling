@@ -1,7 +1,6 @@
 package it.unisa.emaa.www.sito.Control.Utente.Asincrono;
 
 import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
-import it.unisa.emaa.www.sito.Model.entity.Utente;
 import it.unisa.emaa.www.sito.Utils.Validazione;
 
 import javax.servlet.ServletException;
@@ -16,9 +15,9 @@ public class ValidaUsername extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-          validazioneUsername(req,resp);
+          validaUsername(req,resp);
     }
-    public void validazioneUsername(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void validaUsername(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String username = req.getParameter("username");
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");

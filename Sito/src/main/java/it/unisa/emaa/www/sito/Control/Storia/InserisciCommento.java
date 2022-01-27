@@ -32,7 +32,7 @@ public class InserisciCommento extends HttpServlet {
         String commento = req.getParameter("commento");
         if(obj == null){
             resp.setStatus(403);
-            return;
+            throw new RuntimeException();
         }
         if(idStoriaString == null || commento == null){
             resp.setStatus(500);

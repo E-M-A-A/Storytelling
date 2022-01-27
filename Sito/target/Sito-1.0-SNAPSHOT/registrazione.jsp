@@ -88,7 +88,6 @@
         document.getElementById("password-alert").hidden=false;
     }
     else document.getElementById("password-alert").hidden=true;
-
     return submitable;
   }
 

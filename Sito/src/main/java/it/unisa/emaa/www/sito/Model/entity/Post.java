@@ -24,11 +24,6 @@ public class Post {
 
 
     public Post(){}
-    public Post(Storia storia, ArrayList<Commento> commenti){
-        this.storia = storia;
-        this.commenti = commenti;
-    }
-
     public void setStoria(Storia storia){ this.storia = storia;}
     public void setCommenti(ArrayList<Commento> commenti){ this.commenti = commenti;}
     public void setReazione(Boolean reazione){ this.reazione=reazione;}

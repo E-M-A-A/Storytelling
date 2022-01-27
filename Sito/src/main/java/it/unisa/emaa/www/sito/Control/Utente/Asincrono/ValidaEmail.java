@@ -9,15 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name="EmailPresente",urlPatterns = "/EmailPresente")
 public class ValidaEmail extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        validaEmail(req,resp);
+        try {
+            validaEmail(req,resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void validaEmail(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+    public void validaEmail(HttpServletRequest req,HttpServletResponse resp) throws IOException, SQLException {
         String email = req.getParameter("email");
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");

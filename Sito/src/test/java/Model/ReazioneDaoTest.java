@@ -118,7 +118,7 @@ public class ReazioneDaoTest {
     }
 
     @Test
-    public void doRetrieveByEmailTest() {
+    public void doRetrieveByEmailTest() throws SQLException {
         Connection connection;
         Statement statement;
         try {
@@ -188,7 +188,7 @@ public class ReazioneDaoTest {
     }
 
     @Test
-    public void doRetrieveTest() {
+    public void doRetrieveTest() throws SQLException {
         Connection connection;
         Statement statement;
         try {

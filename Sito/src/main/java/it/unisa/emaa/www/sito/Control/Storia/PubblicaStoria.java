@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 /**
@@ -25,9 +26,13 @@ public class PubblicaStoria extends HttpServlet {
     private StoriaDao storiaDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       pubblicaStoria(req,resp);
+        try {
+            pubblicaStoria(req,resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void pubblicaStoria(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException {
+    public void pubblicaStoria(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException, SQLException {
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         String storia = req.getParameter("contenuto");
@@ -35,7 +40,7 @@ public class PubblicaStoria extends HttpServlet {
         resp.sendRedirect("/Sito_war_exploded/VisualizzaHome");
     }
 
-    private boolean pubblicazioneStoria(String username,String contenuto){
+    private boolean pubblicazioneStoria(String username,String contenuto) throws SQLException {
         if(contenuto.length()<1||contenuto.length()>500)
             return false;
         Storia storia = new Storia();

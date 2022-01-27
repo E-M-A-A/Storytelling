@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterFia extends HttpServlet {
     @Override
@@ -22,8 +23,9 @@ public class AdapterFia extends HttpServlet {
             case "ricezione":
                 CommentoDao commentoDao = new CommentoDao();
                 try {
-                    ArrayList<Commento> commenti = (ArrayList<Commento>) commentoDao.doRetrieveAll();
-                    String json = gson.toJson(commenti);
+                    List<Commento> commenti = commentoDao.doRetrieveAll();
+                    ArrayList<Commento> commentiList = commenti==null?new ArrayList<>():new ArrayList<>(commenti);
+                    String json = gson.toJson(commentiList);
                     resp.setCharacterEncoding("UTF-8");
                     resp.setContentType("plain/text");
                     resp.getWriter().print(json);
@@ -32,6 +34,7 @@ public class AdapterFia extends HttpServlet {
                 }
                 break;
             case "invio":
+                String json = gson.toJson(messaggio.getUtenti());
 
                 break;
         }

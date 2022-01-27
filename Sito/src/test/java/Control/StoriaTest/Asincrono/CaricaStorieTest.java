@@ -18,6 +18,7 @@ import org.springframework.mock.web.MockHttpSession;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -40,7 +41,7 @@ import static org.junit.Assert.assertEquals;
 public class CaricaStorieTest {
 
     @Test
-    public void successoTest() throws IOException {
+    public void successoTest() throws IOException, SQLException {
         Utente utente = new Utente();
         Storia storia = new Storia();
         Storia storia1 = new Storia();
@@ -107,7 +108,7 @@ public class CaricaStorieTest {
 
 
     @Test
-    public void noElementiPaginaTest() throws IOException {
+    public void noElementiPaginaTest() throws IOException, SQLException {
         Utente utente = new Utente();
         Storia storia = new Storia();
         int pagina = 1;

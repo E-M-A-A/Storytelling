@@ -22,8 +22,6 @@ public class Utente {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
         Utente utente = (Utente) o;
         return id.equals(utente.id) && Objects.equals(password, utente.password) && Objects.equals(username, utente.username);
     }

@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
@@ -42,7 +43,7 @@ public class EliminazioneUtenteTest {
     }
 
     @Test
-    public void usernameErrataTest() throws IOException {
+    public void usernameErrataTest() throws IOException, SQLException {
 
         UtenteDao dao = Mockito.mock(UtenteDao.class);
         Utente utente = new Utente();
@@ -94,7 +95,7 @@ public class EliminazioneUtenteTest {
     }
 
     @Test
-    public void passwordErrataTest() throws IOException {
+    public void passwordErrataTest() throws IOException, SQLException {
 
         UtenteDao dao = Mockito.mock(UtenteDao.class);
         Utente utente = new Utente();
@@ -146,7 +147,7 @@ public class EliminazioneUtenteTest {
     }
 
     @Test
-    public void eliminazioneUtenteFunzionanteTest() throws IOException {
+    public void eliminazioneUtenteFunzionanteTest() throws IOException, SQLException {
         UtenteDao dao = Mockito.mock(UtenteDao.class);
         Utente utente = new Utente();
         utente.setUsername("emmavico");

@@ -59,89 +59,98 @@ public class UtenteDaoTest {
     }
 
     @Test
-    public void deleteTest() {
+    public void deleteTest() throws SQLException {
         Connection connection;
-        try {
-            connection = ConnPool.getConnection();
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(data1);
-            statement.executeUpdate(data2);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        connection = ConnPool.getConnection();
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(data1);
+        statement.executeUpdate(data2);
         dao.doDelete("pippo@gmail.com");
-        try {
-            connection = ConnPool.getConnection();
-            Statement statement = connection.createStatement();
-            String qry = "Select * FROM utente Where email = 'pippo@gmail.com'";
-            ResultSet rs = statement.executeQuery(qry);
-            assertTrue("Oggetto ancora presente nonostante la cancellazione", !rs.isBeforeFirst());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        connection = ConnPool.getConnection();
+        statement = connection.createStatement();
+        String qry = "Select * FROM utente Where email = 'pippo@gmail.com'";
+        ResultSet rs = statement.executeQuery(qry);
+        assertFalse("Oggetto ancora presente nonostante la cancellazione", rs.isBeforeFirst());
     }
 
 
     @Test
-    public void RetrieveByEmailTest() {
+    public void RetrieveByEmailTestPresent() throws SQLException {
         Connection connection;
-        Utente utente1, utente2;
+        Utente utente2;
+        connection = ConnPool.getConnection();
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
         utente2 = new Utente();
         utente2.setPassword("GIAcc7");
         utente2.setId("pippo@gmail.com");
         utente2.setUsername("giaccarello");
-
-
-        try {
-            connection = ConnPool.getConnection();
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(data2);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        connection = ConnPool.getConnection();
+        statement = connection.createStatement();
+        statement.executeUpdate(data2);
         utente = dao.doRetrieveByEmail("pippo@gmail.com");
-        assertTrue("Ritornato un utente Errato per email", utente.equals(utente2));
-
-        try {
-            connection = ConnPool.getConnection();
-            Statement statement = connection.createStatement();
-            statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        assertEquals("Ritornato un utente Errato per email", utente, utente2);
+        connection = ConnPool.getConnection();
+        statement = connection.createStatement();
+        statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
     }
-
     @Test
-    public void RetrieveByUsernameTest() {
+    public void RetrieveByEmailTestNotPresent() throws SQLException {
         Connection connection;
-        Utente utente1, utente2;
+        connection = ConnPool.getConnection();
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
+        utente = dao.doRetrieveByEmail("pippo@gmail.com");
+        assertNull(utente);
+        statement = connection.createStatement();
+        statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
+    }
+    @Test
+    public void RetrieveByUsernameTest() throws SQLException {
+        Connection connection;
+        Utente utente2;
+        connection = ConnPool.getConnection();
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
         utente2 = new Utente();
         utente2.setPassword("GIAcc7");
         utente2.setId("pippo@gmail.com");
         utente2.setUsername("giaccarello");
-
-
-        try {
-            connection = ConnPool.getConnection();
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(data2);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        statement = connection.createStatement();
+        statement.executeUpdate(data2);
         utente = dao.doRetrieveByUsername("giaccarello");
-        assertTrue("Ritornato un utente Errato per username", utente.equals(utente2));
-
+        assertEquals("Ritornato un utente Errato per username", utente, utente2);
         try {
             connection = ConnPool.getConnection();
-            Statement statement = connection.createStatement();
+            statement = connection.createStatement();
             statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
     @Test
-    public void doSaveTest() {
+    public void RetrieveByUsernameTestNotPresent() throws SQLException {
+        Connection connection;
+        Utente utente2;
+        connection = ConnPool.getConnection();
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
+        utente2 = new Utente();
+        utente2.setPassword("GIAcc7");
+        utente2.setId("pippo@gmail.com");
+        utente2.setUsername("giaccarello");
+        utente = dao.doRetrieveByUsername("giaccarello");
+        assertNull(utente);
+        try {
+            connection = ConnPool.getConnection();
+            statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void doSaveTest() throws SQLException {
 
         Connection connection;
         Utente utente1, utente2;
@@ -153,8 +162,6 @@ public class UtenteDaoTest {
         String email;
         String password;
         Utente utente = new Utente();
-
-
         dao.doSave(utente2);
         try {
             connection = ConnPool.getConnection();
@@ -194,7 +201,7 @@ public class UtenteDaoTest {
     }
 
     @Test
-    public void doRetrieveAllTest() {
+    public void doRetrieveAllTest() throws SQLException {
         List<Utente> listaUtenti = new ArrayList<Utente>();
         List<Utente> listaUtentiTest;
         Connection connection;

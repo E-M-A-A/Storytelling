@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ValidaUsernameTest {
 
     @Test
-    public void validaTest() throws IOException {
+    public void validaTest() throws IOException, SQLException {
         UtenteDao dao = Mockito.mock(UtenteDao.class);
         Utente utente = new Utente();
 
@@ -69,7 +70,7 @@ public class ValidaUsernameTest {
 
 
     @Test
-    public void validaUsernameNonPresenteTest() throws IOException {
+    public void validaUsernameNonPresenteTest() throws IOException, SQLException {
         UtenteDao dao = Mockito.mock(UtenteDao.class);
         Utente utente = new Utente();
 

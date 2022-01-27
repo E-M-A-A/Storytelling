@@ -9,21 +9,21 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockHttpSession;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 //Author MurielRossi
 
 
 public class LogoutTest  {
 
-    /*
+
     @Test
-    public void logoutSuccessoTest()
-    {
+    public void logoutSuccessoTest() throws IOException {
         Utente utente = new Utente();
         utente.setUsername("emmavico");
         utente.setId("e.coppola37@studenti.unisa.it");
@@ -64,9 +64,8 @@ public class LogoutTest  {
 
         request.addHeader("referer", "ciao");
         controller.logout(request, response);
-        assertFalse("Il logout non è stato eseguito correttamente",  request.getAttribute("utente") == nullz);
-
-
+        session = (MockHttpSession) request.getSession();
+        assertEquals(true,session.getAttribute("uscito"));
     }
-    */
+
 }

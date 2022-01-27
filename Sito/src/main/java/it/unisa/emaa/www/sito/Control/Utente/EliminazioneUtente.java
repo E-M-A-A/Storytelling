@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Questa servlet effettua l'eliminazione di un utente dal database.
@@ -23,9 +24,13 @@ public class EliminazioneUtente extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        eliminazioneUtente(req,resp);
+        try {
+            eliminazioneUtente(req,resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void eliminazioneUtente(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+    public void eliminazioneUtente(HttpServletRequest req,HttpServletResponse resp) throws IOException, SQLException {
         HttpSession session = req.getSession();
         Object obj = session.getAttribute("utente");
         if(obj == null){
@@ -50,7 +55,7 @@ public class EliminazioneUtente extends HttpServlet {
      * @param email L'email dell'utente che si vuole eliminare.
      * @return Il metodo ritorna il risultato dell'operazione.
      */
-    public boolean eliminaUtente(String email){
+    public boolean eliminaUtente(String email) throws SQLException {
         return utenteDao.doDelete(email);
     }
     public EliminazioneUtente(){

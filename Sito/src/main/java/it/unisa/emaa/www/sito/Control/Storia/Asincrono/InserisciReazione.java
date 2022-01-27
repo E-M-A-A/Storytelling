@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Questa servlet gestisce l'inserimento di una reazione da parte di un utente.
@@ -23,9 +24,13 @@ public class InserisciReazione extends HttpServlet {
     private ReazioneDao reazioneDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        inserisciReazione(req,resp);
+        try {
+            inserisciReazione(req,resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void inserisciReazione(HttpServletRequest req,HttpServletResponse resp){
+    public void inserisciReazione(HttpServletRequest req,HttpServletResponse resp) throws SQLException {
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         int idStoria = Integer.parseInt(req.getParameter("storia"));
@@ -35,7 +40,7 @@ public class InserisciReazione extends HttpServlet {
         }
 
     }
-    private boolean inserimentoReazione(String email,int idStoria){
+    private boolean inserimentoReazione(String email,int idStoria) throws SQLException {
         if(Validazione.reactionIsPresent(email,idStoria,reazioneDao))
             return false;
         Reazione reazione = new Reazione();

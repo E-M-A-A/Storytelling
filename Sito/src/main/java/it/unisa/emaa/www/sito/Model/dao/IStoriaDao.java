@@ -1,6 +1,8 @@
 package it.unisa.emaa.www.sito.Model.dao;
 
 import it.unisa.emaa.www.sito.Model.entity.Storia;
+
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -15,9 +17,9 @@ import java.util.List;
 
 
 public interface IStoriaDao {
-    Storia doRetrieveById(int id);
-    boolean doSave(Storia storia);
-    List<Storia> doRetrieveByPage(int limit, int offset);
+    Storia doRetrieveById(int id) throws SQLException;
+    boolean doSave(Storia storia) throws SQLException;
+    List<Storia> doRetrieveByPage(int limit, int offset) throws SQLException;
 
 
 

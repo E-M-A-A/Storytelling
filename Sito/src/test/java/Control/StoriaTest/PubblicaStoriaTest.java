@@ -13,6 +13,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
@@ -32,7 +33,7 @@ import static org.junit.Assert.assertTrue;
 public class PubblicaStoriaTest {
 
     @Test
-    public void successoTest() throws IOException, ServletException {
+    public void successoTest() throws IOException, ServletException, SQLException {
         StoriaDao dao = Mockito.mock(StoriaDao.class);
 
         Utente utente = new Utente();
@@ -63,7 +64,7 @@ public class PubblicaStoriaTest {
     }
 
     @Test
-    public void contenutoMinoreDi1() throws ServletException, IOException {
+    public void contenutoMinoreDi1() throws ServletException, IOException, SQLException {
         StoriaDao dao = Mockito.mock(StoriaDao.class);
 
         Utente utente = new Utente();
@@ -95,7 +96,7 @@ public class PubblicaStoriaTest {
     }
 
     @Test
-    public void contenutoMaggioreDi500() throws ServletException, IOException {
+    public void contenutoMaggioreDi500() throws ServletException, IOException, SQLException {
         StoriaDao dao = Mockito.mock(StoriaDao.class);
 
         Utente utente = new Utente();

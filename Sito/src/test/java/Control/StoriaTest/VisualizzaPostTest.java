@@ -19,8 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * @author Antonio Scotellaro
@@ -86,8 +85,10 @@ public class VisualizzaPostTest {
         request.setParameter("contenuto","blablablablablablablablablablablalba");
 
         VisualizzaPost controller = new VisualizzaPost(dao,dao2,dao3);
-        controller.visualizzaPost(request, response);
-        assertTrue(response.getStatus()==403);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.visualizzaPost(request, response);
+        });
+        assertEquals("Utente non loggato",exception.getMessage());
     }
 
     @Test
@@ -108,8 +109,10 @@ public class VisualizzaPostTest {
         session.setAttribute("utente",utente);
 
     VisualizzaPost controller = new VisualizzaPost(dao,dao2,dao3);
-        controller.visualizzaPost(request, response);
-    assertTrue(response.getStatus()==500);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.visualizzaPost(request, response);
+        });
+        assertEquals("Id Storia non trovato",exception.getMessage());
 }
 
 

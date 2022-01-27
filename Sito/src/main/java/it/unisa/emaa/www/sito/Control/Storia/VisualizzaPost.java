@@ -41,11 +41,12 @@ public class VisualizzaPost extends HttpServlet {
         Object obj = session.getAttribute("utente");
         if(obj == null){
             resp.setStatus(403);
-            return;
+            throw new RuntimeException("Utente non loggato");
         }
-        if(idStoriaString==null){
+        if(idStoriaString==null||idStoriaString==""){
             resp.setStatus(500);
-            return;
+            throw new RuntimeException("Id Storia non trovato");
+
         }
         int idStoria = Integer.parseInt(idStoriaString);
         Utente utente = (Utente) obj;

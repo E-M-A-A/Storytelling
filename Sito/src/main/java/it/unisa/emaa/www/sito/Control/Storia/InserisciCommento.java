@@ -32,18 +32,21 @@ public class InserisciCommento extends HttpServlet {
         String commento = req.getParameter("commento");
         if(obj == null){
             resp.setStatus(403);
-            throw new RuntimeException();
+            throw new RuntimeException("Utente non è loggato,Riprovare il login");
         }
         if(idStoriaString == null || commento == null){
             resp.setStatus(500);
-            return;
+            throw new RuntimeException("ID storia o commento non Presente");
         }
+
         Utente utente = (Utente) session.getAttribute("utente");
         int idStoria = Integer.parseInt(idStoriaString);
         if(inserimentoCommento(utente.getUsername(),idStoria,commento))
             resp.sendRedirect(req.getHeader("referer"));
-        else
+        else {
             resp.setStatus(500);
+            throw new RuntimeException("Errore nel salvataggio del commento");
+        }
     }
     private boolean inserimentoCommento(String username,int idStoria,String contenuto){
         if(contenuto.length()<3||contenuto.length()>100)

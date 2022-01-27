@@ -30,7 +30,7 @@ public class EliminazioneUtente extends HttpServlet {
         Object obj = session.getAttribute("utente");
         if(obj == null){
             resp.setStatus(403);
-            return;
+            throw new RuntimeException("Loggati prima di effetture l'eliminazione");
         }
         Utente utente = (Utente) obj;
         String password = req.getParameter("password");

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 /**
  * @author Antonio Scotellaro
@@ -96,8 +97,10 @@ public class InserisciReazioneTest {
 
 
         InserisciReazione controller = new InserisciReazione(dao);
-        controller.inserisciReazione(request,response);
-        assertEquals(500,response.getStatus());
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.inserisciReazione(request, response);
+        });
+        assertEquals("Errore nell'insermento della Reazione",exception.getMessage());
 
 
     }

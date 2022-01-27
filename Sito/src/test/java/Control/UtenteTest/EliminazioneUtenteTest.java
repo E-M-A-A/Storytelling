@@ -16,6 +16,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -33,8 +34,10 @@ public class EliminazioneUtenteTest {
         request.setParameter("email", "e.coppola37@studenti.unisa.it");
         request.setParameter("username", "emmavico");
         EliminazioneUtente controller = new EliminazioneUtente(dao);
-        controller.eliminazioneUtente(request, response);
-        Assert.assertEquals( "La sessione nulla non è stata segnalata ",response.getStatus(), 403);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.eliminazioneUtente(request, response);
+        });
+        Assert.assertEquals("Loggati prima di effetture l'eliminazione",exception.getMessage());
 
     }
 

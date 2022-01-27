@@ -27,7 +27,7 @@ public class VisualizzaBacheca extends HttpServlet {
         Object user = session.getAttribute("utente");
         if(user == null) {
             resp.setStatus(403);
-            return;
+            throw new RuntimeException("Utente non è loggato");
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
         dispatcher.forward(req,resp);

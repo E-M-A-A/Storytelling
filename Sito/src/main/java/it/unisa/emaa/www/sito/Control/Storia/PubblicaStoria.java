@@ -34,6 +34,7 @@ public class PubblicaStoria extends HttpServlet {
         resp.getWriter().print(pubblicazioneStoria(utente.getUsername(),storia));
         resp.sendRedirect("/Sito_war_exploded/VisualizzaHome");
     }
+
     private boolean pubblicazioneStoria(String username,String contenuto){
         if(contenuto.length()<1||contenuto.length()>500)
             return false;

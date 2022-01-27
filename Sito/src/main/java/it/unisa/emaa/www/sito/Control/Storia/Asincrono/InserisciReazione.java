@@ -29,8 +29,11 @@ public class InserisciReazione extends HttpServlet {
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         int idStoria = Integer.parseInt(req.getParameter("storia"));
-        if(!inserimentoReazione(utente.getId(),idStoria))
+        if(!inserimentoReazione(utente.getId(),idStoria)) {
             resp.setStatus(500);
+            throw new RuntimeException("Errore nell'insermento della Reazione");
+        }
+
     }
     private boolean inserimentoReazione(String email,int idStoria){
         if(Validazione.reactionIsPresent(email,idStoria,reazioneDao))

@@ -17,8 +17,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 //Author MurielRossi
 
@@ -116,10 +116,11 @@ public class RegistrazioneUtenteTest {
         RegistrazioneUtente controller = new RegistrazioneUtente(dao);
 
         request.addHeader("referer", "ciao");
-        controller.registrazioneUtente(request, response);
-        utente.setPassword("");
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.registrazioneUtente(request, response);
+        });
+        assertEquals("Dati non Corretti",exception.getMessage());
 
-        assertTrue("L'email errata non è individuata correttamente", response.getStatus() == 500);
     }
 
     @Test
@@ -164,10 +165,11 @@ public class RegistrazioneUtenteTest {
         RegistrazioneUtente controller = new RegistrazioneUtente(dao);
 
         request.addHeader("referer", "ciao");
-        controller.registrazioneUtente(request, response);
-        utente.setPassword("");
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.registrazioneUtente(request, response);
+        });
+        assertEquals("Utente già Presente",exception.getMessage());
 
-        assertTrue("L'email già esistente non è individuata correttamente", response.getStatus() == 500);
     }
 
     @Test
@@ -212,10 +214,10 @@ public class RegistrazioneUtenteTest {
         RegistrazioneUtente controller = new RegistrazioneUtente(dao);
 
         request.addHeader("referer", "ciao");
-        controller.registrazioneUtente(request, response);
-        utente.setPassword("");
-
-        assertTrue("La password errata non è individuata correttamente", response.getStatus() == 500);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.registrazioneUtente(request, response);
+        });
+        assertEquals("Dati non Corretti",exception.getMessage());
     }
 
     @Test
@@ -260,10 +262,10 @@ public class RegistrazioneUtenteTest {
         RegistrazioneUtente controller = new RegistrazioneUtente(dao);
 
         request.addHeader("referer", "ciao");
-        controller.registrazioneUtente(request, response);
-        utente.setPassword("");
-
-        assertTrue("La password Test non coincidente non è individuata correttamente", response.getStatus() == 500);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.registrazioneUtente(request, response);
+        });
+        assertEquals("Dati non Corretti",exception.getMessage());
     }
 
     @Test
@@ -308,10 +310,10 @@ public class RegistrazioneUtenteTest {
         RegistrazioneUtente controller = new RegistrazioneUtente(dao);
 
         request.addHeader("referer", "ciao");
-        controller.registrazioneUtente(request, response);
-        utente.setPassword("");
-
-        assertTrue("L'username già esistente non è individuato correttamente", response.getStatus() == 500);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.registrazioneUtente(request, response);
+        });
+        assertEquals("Utente già Presente",exception.getMessage());
     }
 
 

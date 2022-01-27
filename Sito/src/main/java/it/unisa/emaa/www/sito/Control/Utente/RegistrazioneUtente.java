@@ -38,7 +38,7 @@ public class RegistrazioneUtente extends HttpServlet {
         boolean eula = Boolean.parseBoolean(req.getParameter("eula"));
         if(!controllaDati(email,password,passwordTest,username,eula)) {
             resp.setStatus(500);
-            return;
+            throw new RuntimeException("Dati non Corretti");
         }
         password = Validazione.passwordHasher(password);
         Utente utente = new Utente();
@@ -47,7 +47,7 @@ public class RegistrazioneUtente extends HttpServlet {
         utente.setPassword(password);
         if(!effettuaRegistrazione(utente)) {
             resp.setStatus(500);
-            return;
+            throw new RuntimeException("Utente già Presente");
         }
         utente.setPassword("");
         session.setAttribute("utente",utente);

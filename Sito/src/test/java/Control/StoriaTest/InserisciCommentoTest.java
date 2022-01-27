@@ -14,8 +14,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 /**
@@ -81,8 +80,11 @@ public class InserisciCommentoTest {
         request.setParameter("commento","ciaoo");
 
         InserisciCommento controller = new InserisciCommento(dao);
-        controller.inserisciCommento(request, response);
-        assertTrue(response.getStatus()==403);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.inserisciCommento(request, response);
+        });
+        assertEquals("Utente non è loggato,Riprovare il login",exception.getMessage());
 
 
     }
@@ -108,8 +110,11 @@ public class InserisciCommentoTest {
         request.setParameter("commento","hihi bellissimo");
 
         InserisciCommento controller = new InserisciCommento(dao);
-        controller.inserisciCommento(request, response);
-        assertTrue(response.getStatus()==500);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.inserisciCommento(request, response);
+        });
+        assertEquals("ID storia o commento non Presente",exception.getMessage());
+
 
     }
 
@@ -135,8 +140,11 @@ public class InserisciCommentoTest {
         request.setParameter("storia","1");
 
         InserisciCommento controller = new InserisciCommento(dao);
-        controller.inserisciCommento(request, response);
-        assertTrue(response.getStatus()==500);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.inserisciCommento(request, response);
+        });
+        assertEquals("ID storia o commento non Presente",exception.getMessage());
+
 
 
     }
@@ -164,11 +172,12 @@ public class InserisciCommentoTest {
         request.setParameter("commento","hi");
 
         InserisciCommento controller = new InserisciCommento(dao);
-        controller.inserisciCommento(request, response);
-        assertTrue(response.getStatus()==500); // da sistemare il return false nella servlet InserisciCommento
-
-
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.inserisciCommento(request, response);
+        });
+        assertEquals("Errore nel salvataggio del commento",exception.getMessage());
     }
+
     @Test
     public void commentoMaggioreDi100() throws IOException{
         CommentoDao dao = Mockito.mock(CommentoDao.class);
@@ -192,8 +201,10 @@ public class InserisciCommentoTest {
         request.setParameter("commento","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
         InserisciCommento controller = new InserisciCommento(dao);
-        controller.inserisciCommento(request, response);
-        assertTrue(response.getStatus()==500); // da sistemare il return false nella servlet InserisciCommento
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.inserisciCommento(request, response);
+        });
+        assertEquals("Errore nel salvataggio del commento",exception.getMessage());
     }
 
 

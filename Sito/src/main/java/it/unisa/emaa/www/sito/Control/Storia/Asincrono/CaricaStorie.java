@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 @WebServlet(name="CaricaStorie" ,value="/CaricaStorie" )
@@ -32,7 +33,7 @@ public class CaricaStorie extends HttpServlet {
         String stringPagina = req.getParameter("pagina");
         if(obj == null || stringPagina == null){
             resp.setStatus(500);
-            return;
+            throw new RuntimeException("pagina o utente non passati");
         }
         Utente utente = (Utente) obj;
         int pagina = Integer.parseInt(stringPagina);

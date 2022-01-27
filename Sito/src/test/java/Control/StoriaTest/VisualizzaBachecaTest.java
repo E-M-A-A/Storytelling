@@ -12,7 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * @author Antonio Scotellaro
@@ -33,12 +33,27 @@ public class VisualizzaBachecaTest {
 
         HttpSession session = request.getSession();
         session.setAttribute("utente",utente);
-
+        request.setParameter("storia","1");
         VisualizzaBacheca controller = new VisualizzaBacheca();
         controller.visualizzaBacheca(request, response);
         assertTrue(response.getStatus()==200);
 
-
-
     }
+    @Test
+    public void noUtenteTest() throws ServletException, IOException {
+
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.addHeader("referer","ciao");
+
+        MockHttpServletResponse response = new MockHttpServletResponse();
+        request.setParameter("storia","1");
+
+        VisualizzaBacheca controller = new VisualizzaBacheca();
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.visualizzaBacheca(request, response);
+        });
+        assertEquals("Utente non è loggato",exception.getMessage());
+    }
+
 }

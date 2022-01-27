@@ -32,8 +32,7 @@ public class PubblicaStoria extends HttpServlet {
         Utente utente = (Utente) session.getAttribute("utente");
         String storia = req.getParameter("contenuto");
         resp.getWriter().print(pubblicazioneStoria(utente.getUsername(),storia));
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/visualizzaBacheca.jsp");
-        requestDispatcher.forward(req,resp);
+        resp.sendRedirect("/Sito_war_exploded/VisualizzaHome");
     }
     private boolean pubblicazioneStoria(String username,String contenuto){
         if(contenuto.length()<1||contenuto.length()>500)

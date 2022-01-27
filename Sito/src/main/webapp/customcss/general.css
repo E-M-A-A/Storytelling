@@ -11,6 +11,15 @@
     --bg-storia:#55595C;
     overflow: auto;
 }
+.card-text {
+    width: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card {
+    margin-bottom: 10px;
+}
 
 .btn-primary:hover {
     color: #fff;

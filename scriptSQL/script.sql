@@ -8,7 +8,10 @@ create table storia
     contenuto     varchar(512) not null,
     nReazioni     int          not null,
     nCommenti     int          not null,
-    dataCreazione date         not null
+    dataCreazione date         not null,
+
+    foreign key (username) references utente(username)
+        on delete cascade on update cascade
 );
 
 create table utente

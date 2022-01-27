@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
@@ -54,7 +55,7 @@ public class PubblicaStoriaTest {
 
         PubblicaStoria controller = new PubblicaStoria(dao);
         controller.pubblicaStoria(request,response);
-        assertTrue(response.getStatus()==200);
+        assertEquals(302, response.getStatus());
 
 
 
@@ -86,7 +87,7 @@ public class PubblicaStoriaTest {
         PubblicaStoria controller = new PubblicaStoria(dao);
         controller.pubblicaStoria(request,response);
 
-        assertTrue(response.getStatus()==200);   // da controllare numero di confronto status
+        assertEquals(302,response.getStatus());   // da controllare numero di confronto status
 
 
 
@@ -127,7 +128,7 @@ public class PubblicaStoriaTest {
 
         PubblicaStoria controller = new PubblicaStoria(dao);
         controller.pubblicaStoria(request,response);
-        assertTrue(response.getStatus()==200);   // da controllare numero di confronto status
+        assertEquals(302,response.getStatus());   // da controllare numero di confronto status
 
     }
 

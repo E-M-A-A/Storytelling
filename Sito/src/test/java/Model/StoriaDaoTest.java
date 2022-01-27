@@ -26,8 +26,6 @@ public class StoriaDaoTest {
         Statement statement = connection.createStatement();
         statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
         statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
-        statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
-        statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         Storia oracolo1 = new Storia();
         Storia oracolo2 = new Storia();
         Storia oracolo3 = new Storia();
@@ -71,8 +69,6 @@ public class StoriaDaoTest {
             statement = connection.createStatement();
             statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
             statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
-            statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
-            statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -83,8 +79,6 @@ public class StoriaDaoTest {
         Statement statement = connection.createStatement();
         statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
         statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
-        statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
-        statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         Storia oracolo = new Storia();
         Storia storiaTest;
         oracolo.setUsername("emmavico");
@@ -108,8 +102,6 @@ public class StoriaDaoTest {
             statement = connection.createStatement();
             statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
             statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
-            statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
-            statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -121,8 +113,6 @@ public class StoriaDaoTest {
         ResultSet risultati;
         statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
         statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
-        statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
-        statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         Storia oracolo = new Storia();
         Storia storiaTest = new Storia();
         boolean test1;
@@ -163,8 +153,6 @@ public class StoriaDaoTest {
             statement = connection.createStatement();
             statement.executeUpdate("DELETE FROM utente WHERE username = 'emmavico'");
             statement.executeUpdate("DELETE FROM utente WHERE username = 'giaccarello'");
-            statement.executeUpdate("DELETE FROM storia WHERE username = 'emmavico'");
-            statement.executeUpdate("DELETE FROM storia WHERE username = 'giaccarello'");
         }
         catch(SQLException e){
             e.printStackTrace();

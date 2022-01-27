@@ -66,10 +66,6 @@ public class ReazioneDaoTest {
 
             statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
             statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 1");
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'pippo@gmail.com'");
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'e.coppola37@studenti.unisa.it'");
-
             statement.executeUpdate(data1);
             statement.executeUpdate(data2);
             statement.executeUpdate(storiaquery1);
@@ -131,11 +127,6 @@ public class ReazioneDaoTest {
 
             statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
             statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 1");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 2");
-
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'pippo@gmail.com'");
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'e.coppola37@studenti.unisa.it'");
 
             statement.executeUpdate(data1);
             statement.executeUpdate(data2);
@@ -191,12 +182,6 @@ public class ReazioneDaoTest {
             statement = connection.createStatement();
             statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
             statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 1");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 2");
-
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'pippo@gmail.com'");
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'e.coppola37@studenti.unisa.it'");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -212,11 +197,6 @@ public class ReazioneDaoTest {
 
             statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
             statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 1");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 2");
-
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'pippo@gmail.com'");
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'e.coppola37@studenti.unisa.it'");
 
             statement.executeUpdate(data1);
             statement.executeUpdate(data2);
@@ -250,12 +230,6 @@ public class ReazioneDaoTest {
             statement = connection.createStatement();
             statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
             statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 1");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 2");
-
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'pippo@gmail.com'");
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'e.coppola37@studenti.unisa.it'");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -284,11 +258,6 @@ public class ReazioneDaoTest {
 
             statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
             statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 1");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 2");
-
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'pippo@gmail.com'");
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'e.coppola37@studenti.unisa.it'");
 
             statement.executeUpdate(data1);
             statement.executeUpdate(data2);
@@ -322,12 +291,6 @@ public class ReazioneDaoTest {
             statement = connection.createStatement();
             statement.executeUpdate("DELETE FROM utente WHERE email = 'pippo@gmail.com'");
             statement.executeUpdate("DELETE FROM utente WHERE email = 'e.coppola37@studenti.unisa.it'");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 1");
-            statement.executeUpdate("DELETE FROM storia WHERE id  = 2");
-
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'pippo@gmail.com'");
-            statement.executeUpdate("DELETE FROM reazione WHERE emailUtente = 'e.coppola37@studenti.unisa.it'");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

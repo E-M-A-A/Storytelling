@@ -30,16 +30,16 @@
         <span id="email-alert" class="alert-info " hidden>Questa email risulta già iscritta!</span>
 
         <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password"  name="password"  class="form-control" placeholder="Password" required="">
-        <input type="password" id="passwordTest"  name="passwordTest"  class="form-control" placeholder="Conferma la password" required="">
+        <input type="password" id="password"  name="password"  class="form-control" placeholder="Password" required="" onfocusout="passwordRegexCheck()">
+        <input type="password" id="passwordTest"  name="passwordTest"  class="form-control" placeholder="Conferma la password" required="" >
 
-        <span id="password-info" class="text-muted">La password deve contenere 8-15 carattere, <br>almeno una lettera Maiuscola,<br> almeno una minuscola,<br>e almeno un numero</span><br>
+        <span id="password-info">La password deve contenere 8-15 caratteri, <br>almeno una lettera Maiuscola,<br> almeno una minuscola,<br>e almeno un numero</span><br>
         <span id="passwordTest-alert"class="alert-info " hidden> Le due password non coincidono!</span><br>
 
         <span id="password-alert"class="alert-info " hidden> La password non rispetta le caratteristiche richieste</span><br>
         <input type="checkbox" value="true" id="eula" name="eula"  required=""> Accetto le condizioni sulla privacy
 
-        <input id= "submit-registration" class="btn btn-lg btn-primary btn-block" type="submit" value="Conferma"></input>
+        <input id= "submit-registration" class="btn btn-lg btn-primary btn-block" type="submit" value="Conferma">
 
     </form>
 </div>
@@ -72,23 +72,37 @@
 
     else document.getElementById("email-alert").hidden=true;
 
-    let passAlert= document.getElementById("password-alert");
-    let pass = document.getElementById("password").value.match(regexPattern);
-    let passTest = document.getElementById("passwordTest").value;
 
-    if(passTest != pass)
-    {
-        submitable = false;
-        document.getElementById("passwordTest-alert").hidden=false;
-    }
 
-    if(pass!=document.getElementById("password").value){
-      submitable =false;
 
-        document.getElementById("password-alert").hidden=false;
-    }
-    else document.getElementById("password-alert").hidden=true;
+    if(!passwordTest())
+        submitable= false
+     if(!passwordRegexCheck())
+         submitable = false
+
+
     return submitable;
+  }
+  function passwordTest(){
+      let pass = document.getElementById("password").value.match(regexPattern);
+      let passTest = document.getElementById("passwordTest").value;
+      if(passTest != pass)
+      {
+          document.getElementById("passwordTest-alert").hidden=false
+          return false
+      }
+      document.getElementById("passwordTest-alert").hidden=true
+  }
+
+  function passwordRegexCheck(){
+      let pass = document.getElementById("password").value.match(regexPattern);
+      if(pass!=document.getElementById("password").value){
+
+          document.getElementById("password-alert").hidden=false
+          document.getElementById("passwordTest-alert").hidden=true
+          return false
+      }
+      else document.getElementById("password-alert").hidden=true;
   }
 
 

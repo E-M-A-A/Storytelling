@@ -87,7 +87,7 @@
                         <span id="lenght-alert" class="alert-info " hidden>Questa storia non ha il numero adeguato di caratteri!</span>
                     </td>
                     <td style="width:5%; height: 100%">
-                        <button class="btn btn-lg btn-primary btn-block" style="width: 100%; height: 100%" type="submit"> <%@include file="/images/icone/pubblica.svg"%>
+                        <button class="btn btn-lg btn-primary btn-block" style="width: 100%; height: 100%" type="submit" id = "submit-button"> <%@include file="/images/icone/pubblica.svg"%>
                         </button>
                     </td>
                 </tr>
@@ -155,6 +155,15 @@
         xhttp.open("POST", "/Sito_war_exploded/CaricaStorie", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("pagina="+pagina);
+    }
+    function validateData(){
+        let storia = document.getElementById("contenuto").value;
+        if(storia.length<3||storia.length>500)
+        {
+            alert("La Storia deve essere compresa tra i 3 e i 500 caratteri")
+            return false
+        }else
+            return true;
     }
     function hashMapConverter(obj){
 

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Questa servlet effettua la registrazione di un utente.
@@ -26,10 +27,14 @@ public class RegistrazioneUtente extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        registrazioneUtente(req,resp);
+        try {
+            registrazioneUtente(req,resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void registrazioneUtente(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+    public void registrazioneUtente(HttpServletRequest req,HttpServletResponse resp) throws IOException, SQLException {
         HttpSession session = req.getSession(true);
         String username = req.getParameter("username");
         String email = req.getParameter("email");
@@ -54,11 +59,11 @@ public class RegistrazioneUtente extends HttpServlet {
         resp.sendRedirect("./VisualizzaHome");
 
     }
-    private boolean effettuaRegistrazione(Utente utente){
+    private boolean effettuaRegistrazione(Utente utente) throws SQLException {
         return utenteDao.doSave(utente);
     }
 
-    private boolean controllaDati(String email,String password,String passwordTest,String username, boolean eula){
+    private boolean controllaDati(String email,String password,String passwordTest,String username, boolean eula) throws SQLException {
         boolean emailPresente = Validazione.emailIsPresent(email,utenteDao);
         boolean emailUsername = Validazione.usernameIsPresent(username,utenteDao);
         boolean emailRegex = Validazione.emailRegex(email);

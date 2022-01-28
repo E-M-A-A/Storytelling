@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 import static it.unisa.emaa.www.sito.Utils.Validazione.passwordHasher;
 import static org.junit.Assert.assertFalse;
@@ -25,7 +26,7 @@ import static org.junit.Assert.assertTrue;
 public class LoginTest {
 
     @Test
-    public void loginEmailErrataTest() throws IOException, ServletException {
+    public void loginEmailErrataTest() throws IOException, ServletException, SQLException {
         UtenteDao dao = Mockito.mock(UtenteDao.class);
         Utente utente = new Utente();
         utente.setUsername("emmavico");
@@ -76,7 +77,7 @@ public class LoginTest {
     }
 
     @Test
-    public void loginPasswordErrataTest() throws IOException, ServletException {
+    public void loginPasswordErrataTest() throws IOException, ServletException, SQLException {
         UtenteDao dao = Mockito.mock(UtenteDao.class);
         Utente utente = new Utente();
         utente.setUsername("emmavico");
@@ -128,7 +129,7 @@ public class LoginTest {
 
 
     @Test
-    public void loginTest() throws ServletException, IOException {
+    public void loginTest() throws ServletException, IOException, SQLException {
         UtenteDao dao = Mockito.mock(UtenteDao.class);
         Utente utente = new Utente();
         utente.setUsername("emmavico");

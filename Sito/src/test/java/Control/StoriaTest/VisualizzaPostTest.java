@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import static org.junit.Assert.*;
@@ -30,7 +31,7 @@ import static org.junit.Assert.*;
 
 public class VisualizzaPostTest {
     @Test
-    public void successoTest() throws ServletException, IOException {
+    public void successoTest() throws ServletException, IOException, SQLException {
 
 
         CommentoDao dao = Mockito.mock(CommentoDao.class);

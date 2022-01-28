@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
@@ -27,7 +28,7 @@ public class RegistrazioneUtenteTest {
     Utente utente = new Utente();
 
     @Test
-    public void registrazioneTest() throws IOException {
+    public void registrazioneTest() throws IOException, SQLException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -75,7 +76,7 @@ public class RegistrazioneUtenteTest {
     }
 
     @Test
-    public void registrazioneEmailErrataTest() throws IOException {
+    public void registrazioneEmailErrataTest() throws IOException, SQLException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -124,7 +125,7 @@ public class RegistrazioneUtenteTest {
     }
 
     @Test
-    public void registrazioneEmailEsistenteTest() throws IOException {
+    public void registrazioneEmailEsistenteTest() throws IOException, SQLException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -173,7 +174,7 @@ public class RegistrazioneUtenteTest {
     }
 
     @Test
-    public void registrazionePasswordNonValidaTest() throws IOException {
+    public void registrazionePasswordNonValidaTest() throws IOException, SQLException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -221,7 +222,7 @@ public class RegistrazioneUtenteTest {
     }
 
     @Test
-    public void registrazionePasswordTestNonCoincidenteTest() throws IOException {
+    public void registrazionePasswordTestNonCoincidenteTest() throws IOException, SQLException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -269,7 +270,7 @@ public class RegistrazioneUtenteTest {
     }
 
     @Test
-    public void registrazioneUsernameEsistenteTest() throws IOException {
+    public void registrazioneUsernameEsistenteTest() throws IOException, SQLException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();

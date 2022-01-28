@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Questa servlet gestisce l'inserimento di un commento relativo a una storia.
@@ -23,9 +24,13 @@ public class InserisciCommento extends HttpServlet {
     private CommentoDao commentoDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        inserisciCommento(req,resp);
+        try {
+            inserisciCommento(req,resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void inserisciCommento(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void inserisciCommento(HttpServletRequest req, HttpServletResponse resp) throws IOException, SQLException {
         HttpSession session = req.getSession();
         Object obj = session.getAttribute("utente");
         String idStoriaString = req.getParameter("storia");
@@ -48,7 +53,7 @@ public class InserisciCommento extends HttpServlet {
             throw new RuntimeException("Errore nel salvataggio del commento");
         }
     }
-    private boolean inserimentoCommento(String username,int idStoria,String contenuto){
+    private boolean inserimentoCommento(String username,int idStoria,String contenuto) throws SQLException {
         if(contenuto.length()<3||contenuto.length()>100)
             return false;
         Commento commento = new Commento();

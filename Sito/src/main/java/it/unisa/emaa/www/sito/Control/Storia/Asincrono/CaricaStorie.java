@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 @WebServlet(name="CaricaStorie" ,value="/CaricaStorie" )
@@ -25,9 +26,13 @@ public class CaricaStorie extends HttpServlet {
     private ReazioneDao reazioneDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        caricaStorie(req,resp);
+        try {
+            caricaStorie(req,resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void caricaStorie(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+    public void caricaStorie(HttpServletRequest req,HttpServletResponse resp) throws IOException, SQLException {
         HttpSession session = req.getSession();
         Object obj = session.getAttribute("utente");
         String stringPagina = req.getParameter("pagina");
@@ -45,7 +50,7 @@ public class CaricaStorie extends HttpServlet {
         resp.getWriter().print(json);
 
     }
-    public ArrayList<StoriaReazioni> recuperaListaStorie(int pagina, String email) {
+    public ArrayList<StoriaReazioni> recuperaListaStorie(int pagina, String email) throws SQLException {
         ArrayList<StoriaReazioni> storieReazioni = new ArrayList<>();
         ArrayList<Storia> listaStorie = new ArrayList<>(storiaDao.doRetrieveByPage(30,pagina*30));
         boolean present;

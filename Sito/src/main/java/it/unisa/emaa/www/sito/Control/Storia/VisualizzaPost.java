@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +34,13 @@ public class VisualizzaPost extends HttpServlet {
     private ReazioneDao reazioneDao;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       visualizzaPost(req,resp);
+        try {
+            visualizzaPost(req,resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void visualizzaPost(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+    public void visualizzaPost(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException, SQLException {
         HttpSession session = req.getSession();
         String idStoriaString = req.getParameter("storia");
         Object obj = session.getAttribute("utente");
@@ -58,7 +63,7 @@ public class VisualizzaPost extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzazionePost.jsp");
         dispatcher.forward(req,resp);
     }
-    private Post recuperaPost(int idStoria,String email){
+    private Post recuperaPost(int idStoria,String email) throws SQLException {
         Storia storia = storiaDao.doRetrieveById(idStoria);
         List<Commento> commenti = commentoDao.doRetrieveByStoria(idStoria);
         ArrayList<Commento> listaCommenti = commenti==null?new ArrayList<>():new ArrayList<>(commenti);

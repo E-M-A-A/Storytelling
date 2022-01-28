@@ -9,15 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name="UsernamePresente",urlPatterns = "/UsernamePresente")
 public class ValidaUsername extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-          validaUsername(req,resp);
+        try {
+            validaUsername(req,resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void validaUsername(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void validaUsername(HttpServletRequest req, HttpServletResponse resp) throws IOException, SQLException {
         String username = req.getParameter("username");
         resp.setContentType("plain/text");
         resp.setCharacterEncoding("UTF-8");

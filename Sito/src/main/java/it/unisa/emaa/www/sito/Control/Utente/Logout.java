@@ -16,6 +16,8 @@ public class Logout extends HttpServlet {
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         session.invalidate();
+        session = request.getSession(true);
+        session.setAttribute("uscito",true);
         response.sendRedirect("/Sito_war_exploded/");
     }
 }

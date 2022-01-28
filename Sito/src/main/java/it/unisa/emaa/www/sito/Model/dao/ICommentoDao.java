@@ -15,8 +15,8 @@ import java.util.List;
 
 public interface ICommentoDao {
     public List<Commento> doRetrieveAll() throws SQLException;
-    public List<Commento> doRetrieveByStoria(int idStoria);
-    public boolean doSave(Commento commento);
+    public List<Commento> doRetrieveByStoria(int idStoria) throws SQLException;
+    public boolean doSave(Commento commento) throws SQLException;
 
 
 

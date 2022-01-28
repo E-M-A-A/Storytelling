@@ -134,7 +134,7 @@ public class CommentoDaoTest {
     }
 
     @Test
-    public void doRetrieveByStoriaTest() {
+    public void doRetrieveByStoriaTest() throws SQLException {
         Connection connection;
         Statement statement;
         try {

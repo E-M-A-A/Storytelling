@@ -1,6 +1,8 @@
 package it.unisa.emaa.www.sito.Model.dao;
 
 import it.unisa.emaa.www.sito.Model.entity.Reazione;
+
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -15,10 +17,10 @@ import java.util.List;
 
 public interface IReazioneDao {
 
-    public List<Reazione> doRetrieveByStoria(int idStoria);
-    public List<Reazione> doRetrieveByEmail(String email);
-    public Reazione doRetrieve(String email,int idStoria);
-    public boolean doSave(Reazione reazione);
+    public List<Reazione> doRetrieveByStoria(int idStoria) throws SQLException;
+    public List<Reazione> doRetrieveByEmail(String email) throws SQLException;
+    public Reazione doRetrieve(String email,int idStoria) throws SQLException;
+    public boolean doSave(Reazione reazione) throws SQLException;
 
 
 }

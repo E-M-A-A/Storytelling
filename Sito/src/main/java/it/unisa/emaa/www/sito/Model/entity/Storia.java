@@ -27,8 +27,6 @@ public class Storia {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
         Storia storia = (Storia) o;
         return id == storia.id && nReazioni == storia.nReazioni && nCommenti == storia.nCommenti && username.equals(storia.username) && contenuto.equals(storia.contenuto) && Objects.equals(dataCreazione, storia.dataCreazione);
     }

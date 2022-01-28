@@ -11,6 +11,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
@@ -27,7 +28,7 @@ import static org.junit.Assert.assertThrows;
 
 public class InserisciReazioneTest {
     @Test
-    public void successoTest(){
+    public void successoTest() throws SQLException {
         ReazioneDao dao =  Mockito.mock(ReazioneDao.class);
         Utente utente = new Utente();
         Storia storia = new Storia();
@@ -65,7 +66,7 @@ public class InserisciReazioneTest {
 
     }
     @Test
-    public void reazionePresenteTest(){
+    public void reazionePresenteTest() throws SQLException {
         ReazioneDao dao =  Mockito.mock(ReazioneDao.class);
         Utente utente = new Utente();
         Storia storia = new Storia();

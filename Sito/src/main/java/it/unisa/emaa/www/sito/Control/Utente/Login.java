@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Questa servlet effettua il login di un utente.
@@ -25,9 +26,13 @@ public class Login extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        login(req,resp);
+        try {
+            login(req,resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void login(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException {
+    public void login(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException, SQLException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         boolean login = Validazione.datiCorrispondenti(email,password,utenteDao);
@@ -42,7 +47,7 @@ public class Login extends HttpServlet {
         session.setAttribute("utente",utente);
         resp.sendRedirect("./VisualizzaHome");
     }
-    private Utente recuperaUtente(String email){
+    private Utente recuperaUtente(String email) throws SQLException {
         Utente utente = utenteDao.doRetrieveByEmail(email);
         utente.setPassword("");
         return utente;

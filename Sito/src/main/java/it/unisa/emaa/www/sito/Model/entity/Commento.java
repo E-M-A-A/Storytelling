@@ -24,16 +24,9 @@ public class Commento {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
         Commento commento = (Commento) o;
         return id == commento.id && idStoria == commento.idStoria && username.equals(commento.username) && Objects.equals(contenuto, commento.contenuto);
     }
-
-
-
-
-
     public String getContenuto() {
         return contenuto;
     }

@@ -13,6 +13,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 
@@ -29,7 +30,7 @@ import static org.junit.Assert.*;
 public class InserisciCommentoTest {
 
     @Test
-    public void successoTest() throws IOException {
+    public void successoTest() throws IOException, SQLException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -60,7 +61,7 @@ public class InserisciCommentoTest {
 
     }
     @Test
-    public void noUtenteTest() throws IOException {
+    public void noUtenteTest() throws IOException, SQLException {
         CommentoDao dao = Mockito.mock(CommentoDao.class);
 
         Commento commento = new Commento();
@@ -89,7 +90,7 @@ public class InserisciCommentoTest {
 
     }
     @Test
-    public void noIdStoriaTest() throws IOException{
+    public void noIdStoriaTest() throws IOException, SQLException {
         CommentoDao dao = Mockito.mock(CommentoDao.class);
 
         Utente utente = new Utente();
@@ -119,7 +120,7 @@ public class InserisciCommentoTest {
     }
 
     @Test
-    public void noCommentoTest() throws  IOException{
+    public void noCommentoTest() throws IOException, SQLException {
         CommentoDao dao = Mockito.mock(CommentoDao.class);
 
         Utente utente = new Utente();
@@ -150,7 +151,7 @@ public class InserisciCommentoTest {
     }
 
     @Test
-    public void commentoMinore3() throws IOException {
+    public void commentoMinore3() throws IOException, SQLException {
         CommentoDao dao = Mockito.mock(CommentoDao.class);
 
         Utente utente = new Utente();
@@ -179,7 +180,7 @@ public class InserisciCommentoTest {
     }
 
     @Test
-    public void commentoMaggioreDi100() throws IOException{
+    public void commentoMaggioreDi100() throws IOException, SQLException {
         CommentoDao dao = Mockito.mock(CommentoDao.class);
 
         Utente utente = new Utente();

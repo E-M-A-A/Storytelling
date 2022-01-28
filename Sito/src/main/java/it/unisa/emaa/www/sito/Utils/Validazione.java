@@ -79,10 +79,10 @@ public class Validazione {
      * @param password
      * @return Il metodo ritorna true o false a seconda se i dati sono corretti.
      */
-    public static boolean datiCorrispondenti(String email,String password,UtenteDao utenteDao) throws SQLException {
+    public static boolean datiCorrispondenti(String email,String username,String password,UtenteDao utenteDao) throws SQLException {
         String hashedPassword = passwordHasher(password);
         Utente utente = utenteDao.doRetrieveByEmail(email);
-        return utente!=null && hashedPassword.equals(utente.getPassword());
+        return utente!=null && hashedPassword.equals(utente.getPassword()) && username.equals(utente.getUsername());
     }
     /**
      * Il metodo effettua l'hashing della password passata come input con l'algoritmo SHA-512.

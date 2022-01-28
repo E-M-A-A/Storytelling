@@ -38,8 +38,14 @@ public class EliminazioneUtente extends HttpServlet {
             throw new RuntimeException("Loggati prima di effetture l'eliminazione");
         }
         Utente utente = (Utente) obj;
+        String email = req.getParameter("email");
+        if(!utente.getId().equals(email)){
+            resp.setStatus(403);
+            throw new RuntimeException("Inserisci i dati del tuo profilo");
+        }
+        String username = req.getParameter("username");
         String password = req.getParameter("password");
-        boolean matchedPassword = Validazione.datiCorrispondenti(utente.getId(),password,utenteDao);
+        boolean matchedPassword = Validazione.datiCorrispondenti(email,username,password,utenteDao);
         session.setAttribute("LoginErrato", !matchedPassword);
         if(!matchedPassword||!eliminaUtente(utente.getId())) {
             String referer = req.getHeader("referer");
@@ -48,7 +54,7 @@ public class EliminazioneUtente extends HttpServlet {
         }
         session.setAttribute("utente",null);
         session.setAttribute("eliminato",true);
-        resp.sendRedirect("/Sito_war_exploded");
+        resp.sendRedirect("/Sito_war_exploded/");
     }
     /**
      * Il metodo elimina l'utente con l'email data dal database.

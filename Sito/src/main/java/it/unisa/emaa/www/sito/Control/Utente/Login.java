@@ -35,22 +35,21 @@ public class Login extends HttpServlet {
     public void login(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException, SQLException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        boolean login = Validazione.datiCorrispondenti(email,password,utenteDao);
-        req.setAttribute("LoginRiuscito",login);
+        password = Validazione.passwordHasher(password);
+        Utente utente = recuperaUtente(email);
+        boolean login = utente!=null&&password.equals(utente.getPassword());
         if(!login) {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/login.jsp");
             dispatcher.forward(req,resp);
             return;
         }
+        req.setAttribute("LoginRiuscito",login);
         HttpSession session = req.getSession(true);
-        Utente utente = recuperaUtente(email);
         session.setAttribute("utente",utente);
         resp.sendRedirect("./VisualizzaHome");
     }
     private Utente recuperaUtente(String email) throws SQLException {
-        Utente utente = utenteDao.doRetrieveByEmail(email);
-        utente.setPassword("");
-        return utente;
+        return utenteDao.doRetrieveByEmail(email);
     }
     public Login(){
         utenteDao = new UtenteDao();

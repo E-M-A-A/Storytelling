@@ -38,12 +38,12 @@ public class Login extends HttpServlet {
         password = Validazione.passwordHasher(password);
         Utente utente = recuperaUtente(email);
         boolean login = utente!=null&&password.equals(utente.getPassword());
+        req.setAttribute("LoginRiuscito",login);
         if(!login) {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/login.jsp");
             dispatcher.forward(req,resp);
             return;
         }
-        req.setAttribute("LoginRiuscito",login);
         HttpSession session = req.getSession(true);
         session.setAttribute("utente",utente);
         resp.sendRedirect("./VisualizzaHome");

@@ -1,10 +1,9 @@
 package it.unisa.emaa.www.sito.Utils;
 
-import it.unisa.emaa.www.sito.Model.dao.IUtenteDao;
-import it.unisa.emaa.www.sito.Model.dao.ReazioneDao;
-import it.unisa.emaa.www.sito.Model.dao.UtenteDao;
-import it.unisa.emaa.www.sito.Model.entity.Reazione;
-import it.unisa.emaa.www.sito.Model.entity.Utente;
+import it.unisa.emaa.www.sito.Data.dao.ReazioneDao;
+import it.unisa.emaa.www.sito.Data.dao.UtenteDao;
+import it.unisa.emaa.www.sito.Data.entity.Reazione;
+import it.unisa.emaa.www.sito.Data.entity.Utente;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

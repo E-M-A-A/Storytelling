@@ -32,7 +32,7 @@
 
 </body>
 
-<% // @ page import="Model.Utente" %>
+<% // @ page import="Data.Utente" %>
 <% //Utente utente= (Utente) session.getAttribute("utente");%>
 
 <input type="hidden" id="LoginRiuscito" value="${LoginRiuscito}">

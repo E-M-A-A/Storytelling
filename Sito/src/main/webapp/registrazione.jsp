@@ -90,8 +90,10 @@
       {
           document.getElementById("passwordTest-alert").hidden=false
           return false
+      }else {
+          document.getElementById("passwordTest-alert").hidden = true
+          return true
       }
-      document.getElementById("passwordTest-alert").hidden=true
   }
 
   function passwordRegexCheck(){
@@ -102,7 +104,11 @@
           document.getElementById("passwordTest-alert").hidden=true
           return false
       }
-      else document.getElementById("password-alert").hidden=true;
+      else {
+          document.getElementById("password-alert").hidden = true;
+          return true
+      }
+
   }
 
 

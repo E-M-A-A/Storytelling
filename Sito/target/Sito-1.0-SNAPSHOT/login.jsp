@@ -38,6 +38,7 @@
 <input type="hidden" id="LoginRiuscito" value="${LoginRiuscito}">
 <% // if(session.getAttribute("LoginErrato")!=null)
     //session.removeAttribute("LoginErrato");%>
+
 <script>
     /**
      * Verifica che

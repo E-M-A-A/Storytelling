@@ -78,7 +78,7 @@
                 <tr>
                     <td style="width: 95%">
 
-                        <textarea id="commento" name="commento" style="width: 100%" rows="3" placeholder="Scrivi un commento..." required=""></textarea>
+                        <textarea id="commento" name="commento" style="width: 100%" rows="3" placeholder="Scrivi un commento..."></textarea>
                         <span id="lenght-alert" class="alert-info " hidden>Questo commento non ha il numero adeguato di caratteri!</span>
                     </td>
                     <td style="width:5%; height: 100%">
@@ -97,9 +97,13 @@
 </div>
 <span id = "post" hidden="">${post}</span>
 </body>
-<script src="./jslibraries/popper.js"></script>
-<script src="./jslibraries/holder.min.js"></script>
-<script src="./jslibraries/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="jslibraries/popper.js"></script>
+<script src="jslibraries/holder.min.js"></script>
+<script src="jslibraries/bootstrap.min.js"></script>
+<script src="jslibraries/utils.js"></script>
+
 <script>
 let listaCommenti;
 let storia;
@@ -176,12 +180,16 @@ function caricaStoria(){
 
     function validaCommento(){
         let commento = document.getElementById("commento").value;
-        if (commento.length>=3&&commento.length<=100)
-            return true
-        else{
-            alert("Commento non compreso tra i 3 e 100 caratteri")
-            return false
-        }
+        if (commento.length<3)
+        {
+            createToast("Errore Commento","Il commento deve essere di almeno 3 caratteri")
+            return false;
+        }else if(commento.length>100){
+                createToast("Errore Commento","Il commento deve essere meno di 100 caratteri")
+                return false;
+            }
+        else return true;
+
     }
 
 
@@ -213,7 +221,6 @@ function impostaReazione(storia)
     console.log("pubblicando la reazione a "+storia);
 }
 
-// verificare per poi clonare
 function aggiungiReazione(storia)
 {
     var icona =document.getElementById(storia+"i");

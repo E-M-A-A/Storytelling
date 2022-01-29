@@ -83,7 +83,7 @@
                 <tr>
                     <td style="width: 95%">
 
-                        <textarea id="contenuto" name="contenuto" style="width: 100%" rows="3" placeholder="Scrivi la tua storia..." required=""></textarea>
+                        <textarea id="contenuto" name="contenuto" style="width: 100%" rows="3" placeholder="Scrivi la tua storia..."></textarea>
                         <span id="lenght-alert" class="alert-info " hidden>Questa storia non ha il numero adeguato di caratteri!</span>
                     </td>
                     <td style="width:5%; height: 100%">

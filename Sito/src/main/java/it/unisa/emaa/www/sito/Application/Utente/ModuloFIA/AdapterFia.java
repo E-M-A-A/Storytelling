@@ -27,9 +27,11 @@ public class AdapterFia{
         if(!socket.isConnected()){
             throw new RuntimeException("Connessione alla socket non riuscita");
         }
-        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+        System.out.println("Connessione riuscita");
+
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
         objectOutputStream.writeObject(jsonCommenti);
+        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
         String jsonUtenti = (String) objectInputStream.readObject();
         return gson.fromJson(jsonUtenti,new TypeToken<ArrayList<String>>(){}.getType());
     }

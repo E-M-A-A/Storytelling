@@ -1,3 +1,5 @@
+package src.main.java;
+
 public class CommentoSemplice {
     public String getContenuto() {
         return contenuto;

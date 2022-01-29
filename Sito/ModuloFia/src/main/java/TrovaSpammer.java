@@ -1,3 +1,5 @@
+package src.main.java;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -14,16 +16,20 @@ public class TrovaSpammer {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(2020);
         while(true) {
+            System.out.println("Attendo un client");
             Socket socket = serverSocket.accept();
+            System.out.println("Client accettato");
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             String jsonCommenti = (String) objectInputStream.readObject();
             Gson gson = new Gson();
             ArrayList<CommentoSemplice> commenti = gson.fromJson(jsonCommenti, new TypeToken<ArrayList<CommentoSemplice>>() {
             }.getType());
+            System.out.println("Commenti ricevuti: "+commenti);
             ArrayList<String> utentiSpammer = controllaSpammer(commenti);
             String jsonSpammer = gson.toJson(utentiSpammer);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(jsonSpammer);
+            System.out.println("Utenti inviati: "+jsonSpammer);
         }
     }
     public static ArrayList<String> controllaSpammer(ArrayList<CommentoSemplice> commenti){

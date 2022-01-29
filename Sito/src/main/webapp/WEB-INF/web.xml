@@ -18,4 +18,9 @@
         <error-code>403</error-code>
         <location>/WEB-INF/error.jsp</location>
     </error-page>
+    <servlet>
+        <servlet-name>Modulo</servlet-name>
+        <servlet-class>it.unisa.emaa.www.sito.Application.Utente.ModuloFIA.EliminazioneSpammer</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
 </web-app>

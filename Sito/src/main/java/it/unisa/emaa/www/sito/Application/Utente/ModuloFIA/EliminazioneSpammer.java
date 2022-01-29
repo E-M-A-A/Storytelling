@@ -20,7 +20,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CompletionException;
 
-@WebServlet(name="Modulo",loadOnStartup = 0)
 public class EliminazioneSpammer extends HttpServlet{
     @Override
     public void init() throws ServletException {
@@ -32,6 +31,7 @@ public class EliminazioneSpammer extends HttpServlet{
     private static class TaskFia extends TimerTask {
         @Override
         public void run() {
+            System.out.println("Task avviato");
             CommentoDao commentoDao = new CommentoDao();
             try {
                 List<Commento> commentoList = commentoDao.doRetrieveAll();

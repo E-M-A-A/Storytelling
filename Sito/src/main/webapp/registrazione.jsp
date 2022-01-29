@@ -22,7 +22,7 @@
         <img class="mb-4" src="./images/logo3.png" alt="" width="130" height="90">
         <h1 style="padding: 10px; background-color: rgba(0,0,0,0.3); text-align: center">Registrati</h1>
         <label for="username" class="sr-only" >Nome Utente:</label>
-        <input type="text" id="username" name="username" class="form-control" onfocusout="existingUsername()" placeholder="Nome Utente" required="" autofocus="">
+        <input type="text" id="username" name="username" class="form-control" onfocusout="controlliUsername()" placeholder="Nome Utente" required="" autofocus="">
         <span id="usernametest-alert" class="alert-info " hidden>Questo nome utente esiste già!</span>
 
         <label for="email" class="sr-only">Email</label>
@@ -50,7 +50,7 @@
     let regexPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,15}$"
 
   function validateData(){
-    existingUsername();
+    controlliUsername();
     existingEmail();
     let submitable = true;
     let emailvalid=true;
@@ -112,10 +112,16 @@
   }
 
 
-  function existingUsername(){
+  function controlliUsername(){
     let xhttp = new XMLHttpRequest();
     let usernametestalert = document.getElementById("usernametest-alert");
     let submit = document.getElementById("submit-registration");
+    if(document.getElementById("username").value.length>20)
+    {
+        usernametestalert.innerText="Nome utente troppo lungo"
+        usernametestalert.hidden = false;
+        return;
+    }
     if(document.getElementById("username").value==""){
         usernametestalert.innerText="Nessun nome utente inserito"
         usernametestalert.hidden = false;

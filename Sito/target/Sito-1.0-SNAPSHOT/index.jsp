@@ -1,10 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%Object x =session.getAttribute("uscito");
-    boolean uscito=false;
-if(x !=null&&((boolean) x)==true) {
-        session.invalidate();
-       uscito=(boolean) x;
-    };%>
+
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +8,8 @@ if(x !=null&&((boolean) x)==true) {
     <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="./customcss/general.css"/>
 </head>
-<span id = "eliminato" hidden=""><%if(uscito)%><%=true%></span>
+<span id = "uscito" hidden="">${uscito}</span>
+<span id = "eliminato" hidden="">${eliminato}</span>
 <body class="text-center">
 
 <div id = "pageContenent">
@@ -44,9 +40,12 @@ if(x !=null&&((boolean) x)==true) {
     /**
      * Controlla se vi è scritto "true" nell'oggetto html eliminato per poter mostrare il messaggio di account eliminato
      */
-    document.onload= function(){
+    window.onload= function(){
+        if(document.getElementById("uscito").innerText==="true")
+            alert("Account Disconnesso");
         if(document.getElementById("eliminato").innerText==="true")
             alert("Account Eliminato");
     }
 </script>
 </html>
+<% session.invalidate();%>

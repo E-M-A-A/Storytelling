@@ -17,7 +17,7 @@
 </head>
 <body >
     <div id = "pageContenent">
-        <form class="form-signin" id="form-elimina-utente" onsubmit="return eliminaUtente()">
+        <form class="form-signin" id="form-elimina-utente" method ="post" action="./EliminazioneUtente"><!--onsubmit="return eliminaUtente()"-->
             <div class="text-center mb-4">
                 <img class="mb-4" src="images/logo3.png" alt="" width="100" height="84">
                 <h1 class="h3 mb-3 font-weight-normal" style=" background-color: rgba(0,0,0,0.3)">Eliminazione account</h1>
@@ -71,8 +71,7 @@ function eliminaUtente(){
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                alert("Eliminazione effettuata con successo");
-                setTimeout(paginaPrincipale,10000)
+                paginaPrincipale()
             }
             else if (this.readyState==4){
                 alert("Dati non corrispondono")
@@ -86,7 +85,7 @@ function eliminaUtente(){
         return false
 }
 function paginaPrincipale(){
-    location.replace("../")
+    location.replace("./")
 }
 
 </script>

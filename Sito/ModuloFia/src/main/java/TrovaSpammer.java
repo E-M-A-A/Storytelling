@@ -3,13 +3,12 @@ package src.main.java;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.TreeSet;
 
 public class TrovaSpammer {
@@ -19,16 +18,16 @@ public class TrovaSpammer {
             System.out.println("Attendo un client");
             Socket socket = serverSocket.accept();
             System.out.println("Client accettato");
-            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-            String jsonCommenti = (String) objectInputStream.readObject();
+            Scanner objectInputStream = new Scanner(socket.getInputStream());
+            String jsonCommenti = objectInputStream.nextLine();
             Gson gson = new Gson();
             ArrayList<CommentoSemplice> commenti = gson.fromJson(jsonCommenti, new TypeToken<ArrayList<CommentoSemplice>>() {
             }.getType());
             System.out.println("Commenti ricevuti: "+commenti);
             ArrayList<String> utentiSpammer = controllaSpammer(commenti);
             String jsonSpammer = gson.toJson(utentiSpammer);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectOutputStream.writeObject(jsonSpammer);
+            PrintWriter objectOutputStream = new PrintWriter(socket.getOutputStream(),true);
+            objectOutputStream.println(jsonSpammer);
             System.out.println("Utenti inviati: "+jsonSpammer);
         }
     }

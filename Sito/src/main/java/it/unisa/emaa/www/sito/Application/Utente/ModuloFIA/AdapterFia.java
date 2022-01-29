@@ -10,13 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class AdapterFia{
 
@@ -28,11 +27,11 @@ public class AdapterFia{
             throw new RuntimeException("Connessione alla socket non riuscita");
         }
         System.out.println("Connessione riuscita");
-
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-        objectOutputStream.writeObject(jsonCommenti);
-        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-        String jsonUtenti = (String) objectInputStream.readObject();
+        PrintWriter objectOutputStream = new PrintWriter(socket.getOutputStream(),true);
+        objectOutputStream.println(jsonCommenti);
+        Scanner objectInputStream = new Scanner(socket.getInputStream());
+        String jsonUtenti = objectInputStream.nextLine();
+        socket.close();
         return gson.fromJson(jsonUtenti,new TypeToken<ArrayList<String>>(){}.getType());
     }
 }

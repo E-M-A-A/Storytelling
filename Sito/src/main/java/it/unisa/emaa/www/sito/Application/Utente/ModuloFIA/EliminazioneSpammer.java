@@ -35,7 +35,7 @@ public class EliminazioneSpammer extends HttpServlet{
             CommentoDao commentoDao = new CommentoDao();
             try {
                 List<Commento> commentoList = commentoDao.doRetrieveAll();
-                if(commentoList==null)
+                if(commentoList.isEmpty())
                     return;
                 ArrayList<Commento> commenti = new ArrayList<>(commentoList);
                 ArrayList<String> utentiUsername = AdapterFia.utentiSpammer(commenti);

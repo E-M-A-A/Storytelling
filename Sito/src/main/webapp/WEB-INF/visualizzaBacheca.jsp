@@ -158,9 +158,13 @@
     }
     function validateData(){
         let storia = document.getElementById("contenuto").value;
-        if(storia.length<3||storia.length>500)
+        if(storia.length<3){
+            createToast("Errore Storia","La storia deve essere più lunga di 3 caratteri");
+            return false
+        }else
+        if(storia.length>500)
         {
-            alert("La Storia deve essere compresa tra i 3 e i 500 caratteri")
+            createToast("Errore Storia","La storia deve essere più corta di 500 caratteri");
             return false
         }else
             return true;
@@ -297,7 +301,20 @@
 
     }
 
-
+    function createToast(title,message){
+        let toastHtml;
+        toastHtml="<div id=\"toast\" class=\"toast-box\">\n" +
+            "    <div class=\"toast-header\">" +
+            "<button onclick=\"closeToast()\" style=\"padding: ;margin: 6px;\" class=\"btn-danger btn\">X</button>" +
+            "<h3 id=\"toastTitle\">"+title+"</h3></div>" +
+            "    <div class=\"toast-body\"><span id=\"toastMessage\">"+message+"</span></div>\n" +
+            "</div>";
+        $("body").append(toastHtml);
+        setTimeout(closeToast,50000)
+    }
+    function closeToast(){
+        $("#toast").remove();
+    }
 
 
 </script>

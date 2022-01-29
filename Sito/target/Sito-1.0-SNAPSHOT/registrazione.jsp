@@ -116,10 +116,17 @@
     let xhttp = new XMLHttpRequest();
     let usernametestalert = document.getElementById("usernametest-alert");
     let submit = document.getElementById("submit-registration");
+    if(document.getElementById("username").value==""){
+        usernametestalert.innerText="Nessun nome utente inserito"
+        usernametestalert.hidden = false;
+        return;
+    }
+
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         if (this.responseText == "true") {
           submit.disabled = true;
+          usernametestalert.innerText="Questo nome utente esiste già!"
           usernametestalert.hidden = false;
           console.log("username rejected");
         } else{

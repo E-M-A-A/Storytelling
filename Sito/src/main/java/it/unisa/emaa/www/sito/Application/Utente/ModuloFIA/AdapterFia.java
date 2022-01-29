@@ -1,42 +1,36 @@
 package it.unisa.emaa.www.sito.Application.Utente.ModuloFIA;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import it.unisa.emaa.www.sito.Data.dao.CommentoDao;
 import it.unisa.emaa.www.sito.Data.entity.Commento;
+import it.unisa.emaa.www.sito.Data.entity.Utente;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterFia extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String stringa = req.getParameter("messaggio");
-        Gson gson = new Gson();
-        Messaggio messaggio = gson.fromJson(stringa,Messaggio.class);
-        switch (messaggio.getOperazione()){
-            case "ricezione":
-                CommentoDao commentoDao = new CommentoDao();
-                try {
-                    List<Commento> commenti = commentoDao.doRetrieveAll();
-                    ArrayList<Commento> commentiList = commenti==null?new ArrayList<>():new ArrayList<>(commenti);
-                    String json = gson.toJson(commentiList);
-                    resp.setCharacterEncoding("UTF-8");
-                    resp.setContentType("plain/text");
-                    resp.getWriter().print(json);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "invio":
-                String json = gson.toJson(messaggio.getUtenti());
+public class AdapterFia{
 
-                break;
+    public static ArrayList<String> utentiSpammer(ArrayList<Commento> commenti) throws IOException, ClassNotFoundException {
+        Gson gson = new Gson();
+        String jsonCommenti = gson.toJson(commenti);
+        Socket socket = new Socket("localhost",2020);
+        if(!socket.isConnected()){
+            throw new RuntimeException("Connessione alla socket non riuscita");
         }
+        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+        objectOutputStream.writeObject(jsonCommenti);
+        String jsonUtenti = (String) objectInputStream.readObject();
+        return gson.fromJson(jsonUtenti,new TypeToken<ArrayList<String>>(){}.getType());
     }
 }

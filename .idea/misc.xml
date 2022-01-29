@@ -10,7 +10,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/Sito/pom.xml" />
         <option value="$PROJECT_DIR$/Sito/ModuloFia/pom.xml" />
       </list>
     </option>

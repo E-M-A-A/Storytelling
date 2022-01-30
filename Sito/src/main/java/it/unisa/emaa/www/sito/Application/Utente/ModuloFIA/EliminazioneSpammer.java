@@ -25,7 +25,10 @@ public class EliminazioneSpammer extends HttpServlet{
     @Override
     public void init() throws ServletException {
        super.init();
-       TaskFia task = new TaskFia();
+       creaTask();
+    }
+    public void creaTask(){
+        TaskFia task = new TaskFia();
         Timer t = new Timer();
         t.scheduleAtFixedRate(task,0,86400000);
     }

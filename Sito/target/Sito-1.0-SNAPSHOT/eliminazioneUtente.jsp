@@ -88,6 +88,10 @@ function eliminaUtente(){
                     createToast("Errore Eliminazione", "Non inserire dati di altri utenti")
                     return false
                 }
+                if (this.responseText.includes("Dati inseriti non validi")) {
+                    createToast("Errore Eliminazione", "Dati inseriti non validi")
+                    return false
+                }
             }
         }
         xhttp.open("POST", "./EliminazioneUtente", true);

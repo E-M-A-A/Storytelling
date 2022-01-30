@@ -28,11 +28,13 @@ public class EliminazioneUtente extends HttpServlet {
     private UtenteDao utenteDao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         try {
             eliminazioneUtente(req,resp);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
     public void eliminazioneUtente(HttpServletRequest req,HttpServletResponse resp) throws IOException, SQLException {
         HttpSession session = req.getSession(false);
@@ -40,11 +42,12 @@ public class EliminazioneUtente extends HttpServlet {
         if(session ==null||(obj = session.getAttribute("utente"))==null){
             resp.setStatus(403);
             throw new RuntimeException("Loggati prima di effetture l'eliminazione");
+
         }
         Utente utente = (Utente) obj;
         String email = req.getParameter("email");
         if(!utente.getId().equals(email)){
-            resp.setStatus(403);
+            resp.setStatus(406);
             throw new RuntimeException("Inserisci i dati del tuo profilo");
         }
         String username = req.getParameter("username");
@@ -52,9 +55,7 @@ public class EliminazioneUtente extends HttpServlet {
         boolean matchedPassword = Validazione.datiCorrispondenti(email,username,password,utenteDao);
         session.setAttribute("LoginErrato", !matchedPassword);
         if(!matchedPassword||!eliminaUtente(utente.getId())) {
-            String referer = req.getHeader("referer");
-            resp.sendRedirect(referer);
-            return;
+           throw new RuntimeException("Dati inseriti non validi");
         }
         session.setAttribute("utente",null);
         session.setAttribute("eliminato",true);

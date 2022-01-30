@@ -36,15 +36,18 @@
 </div>
 <p class="mt-5 mb-3 text-muted">© E.M.A.A. corp</p>
 </body>
+<script src="./jslibraries/utils.js"></script>
+
 <script>
     /**
      * Controlla se vi è scritto "true" nell'oggetto html eliminato per poter mostrare il messaggio di account eliminato
      */
     window.onload= function(){
         if(document.getElementById("uscito").innerText==="true")
-            alert("Account Disconnesso");
+            createToast("Arrivederci","Disconnessione effettuata con successo")
         if(document.getElementById("eliminato").innerText==="true")
-            alert("Account Eliminato");
+            createToast("Successo","Account eliminato con successo")
+
     }
 </script>
 </html>

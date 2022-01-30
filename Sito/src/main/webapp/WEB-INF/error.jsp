@@ -35,9 +35,9 @@
 <body>
 <div class="fullHeightFooter">
     <h1>Ops....Qualcosa è andato storto!!</h1>
-    <h2>Tipo Errore:<br><%=exceptionType%></h2>
     <h2>Messaggio di errore:<br><%=errorMessage%></h2>
-    <h2>Codice di Errore :<br><%=statusCode%></h2>
+    <h3>Tipo Errore:<br><%=exceptionType%></h3>
+    <h3>Codice di Errore :<br><%=statusCode%></h3>
 
 <!--<h2>Servlet who gived the error:<br><%=servletName%></h2>-->
 <!--<h2>The Uri who caused the error:<br><%=requestUri%></h2>-->

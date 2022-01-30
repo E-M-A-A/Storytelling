@@ -54,6 +54,8 @@
     <script src="./jslibraries/popper.js"></script>
     <script src="./jslibraries/holder.min.js"></script>
     <script src="./jslibraries/bootstrap.min.js"></script>
+    <script src="./jslibraries/utils.js"></script>
+
 
 </body>
 

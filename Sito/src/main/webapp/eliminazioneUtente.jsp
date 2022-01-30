@@ -80,9 +80,10 @@ function eliminaUtente(){
                     createToast("Errore Eliminazione", "Effettuare il login e poi ritentare")
                     return false
                 }
-            if (this.responseText.includes("Inserisci i dati del tuo profilo"))
+            if (this.responseText.includes("Inserisci i dati del tuo profilo")) {
                 createToast("Errore Eliminazione", "Non inserire dati di altri utenti")
-            return false
+                return false
+            }
         }
 
 

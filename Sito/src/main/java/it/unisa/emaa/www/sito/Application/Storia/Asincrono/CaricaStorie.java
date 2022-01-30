@@ -37,6 +37,14 @@ public class CaricaStorie extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Il metodo assicura che l'utente sia loggato in sessione e invia le storie ricevute in formato JSON.
+     * @param req
+     * @param resp
+     * @throws IOException
+     * @throws SQLException
+     */
     public void caricaStorie(HttpServletRequest req,HttpServletResponse resp) throws IOException, SQLException {
         HttpSession session = req.getSession();
         Object obj = session.getAttribute("utente");

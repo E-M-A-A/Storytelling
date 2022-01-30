@@ -29,6 +29,14 @@ public class InserisciCommento extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Il metodo assicura che l'utente sia loggato e non si tenti di inserire un commento su una storia inesistente.
+     * @param req
+     * @param resp
+     * @throws IOException
+     * @throws SQLException
+     */
     public void inserisciCommento(HttpServletRequest req, HttpServletResponse resp) throws IOException, SQLException {
         HttpSession session = req.getSession();
         Object obj = session.getAttribute("utente");
@@ -52,6 +60,15 @@ public class InserisciCommento extends HttpServlet {
             throw new RuntimeException("Errore nel salvataggio del commento");
         }
     }
+
+    /**
+     * Il metodo effettua un controllo sul commento, fallisce se non rispetta il formato prestabilito.
+     * @param username
+     * @param idStoria
+     * @param contenuto
+     * @return
+     * @throws SQLException
+     */
     private boolean inserimentoCommento(String username,int idStoria,String contenuto) throws SQLException {
         if(contenuto.length()<3||contenuto.length()>100)
             return false;

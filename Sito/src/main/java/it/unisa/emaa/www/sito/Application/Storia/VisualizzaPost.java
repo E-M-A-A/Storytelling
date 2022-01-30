@@ -40,6 +40,15 @@ public class VisualizzaPost extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Il metodo assicura che l'utente sia loggato in sessione, recupera il post e lo invia in formato JSON.
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     * @throws SQLException
+     */
     public void visualizzaPost(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException, SQLException {
         HttpSession session = req.getSession();
         String idStoriaString = req.getParameter("storia");
@@ -62,6 +71,14 @@ public class VisualizzaPost extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/visualizzazionePost.jsp");
         dispatcher.forward(req,resp);
     }
+
+    /**
+     * Il metodo recupera una storia con i relativi commenti.
+     * @param idStoria
+     * @param email
+     * @return
+     * @throws SQLException
+     */
     private Post recuperaPost(int idStoria,String email) throws SQLException {
         Storia storia = storiaDao.doRetrieveById(idStoria);
         List<Commento> commenti = commentoDao.doRetrieveByStoria(idStoria);

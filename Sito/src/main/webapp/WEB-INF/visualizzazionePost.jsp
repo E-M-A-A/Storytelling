@@ -26,7 +26,6 @@
     <main role="main">
         <div class="album py-5" style= "background-color: rgba(0,0,0,0.3)">
             <div class="container" id = "bacheca">
-
             </div>
 
             <div class="container" >

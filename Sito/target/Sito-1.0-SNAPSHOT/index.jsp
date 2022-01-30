@@ -36,6 +36,8 @@
 </div>
 <p class="mt-5 mb-3 text-muted">© E.M.A.A. corp</p>
 </body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="./jslibraries/utils.js"></script>
 
 <script>

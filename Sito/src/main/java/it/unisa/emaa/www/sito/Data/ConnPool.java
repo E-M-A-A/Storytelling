@@ -24,15 +24,18 @@ import java.util.TimeZone;
 
     public class ConnPool {
         private static DataSource datasource;
-
+        private static String connectionUrl ="jdbc:mysql://localhost:3306/storytelling?serverTimezone=";
+        private static String driverClassName="com.mysql.cj.jdbc.Driver";
+        private static String usernameUserDB="Storytelling";
+        private static String passwordUserDB="Ciao.123";
 
         public static Connection getConnection() throws SQLException {
             if (datasource == null) {
                 PoolProperties p = new PoolProperties();
-                p.setUrl("jdbc:mysql://localhost:3306/storytelling?serverTimezone=" + TimeZone.getDefault().getID());
-                p.setDriverClassName("com.mysql.cj.jdbc.Driver");
-                p.setUsername("Storytelling");
-                p.setPassword("Ciao.123");
+                p.setUrl( connectionUrl + TimeZone.getDefault().getID());
+                p.setDriverClassName(driverClassName);
+                p.setUsername(usernameUserDB);
+                p.setPassword(passwordUserDB);
                 p.setMaxActive(100);
                 p.setInitialSize(10);
                 p.setMinIdle(10);

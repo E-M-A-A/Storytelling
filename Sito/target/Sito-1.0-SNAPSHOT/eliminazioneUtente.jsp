@@ -17,7 +17,7 @@
 </head>
 <body >
     <div id = "pageContenent">
-        <form class="form-signin" id="form-elimina-utente" method ="post" action="./EliminazioneUtente"><!--onsubmit="return eliminaUtente()"-->
+        <form class="form-signin" id="form-elimina-utente" method ="post" action="./EliminazioneUtente" onsubmit="return eliminaUtente()">
             <div class="text-center mb-4">
                 <img class="mb-4" src="images/logo3.png" alt="" width="100" height="84">
                 <h1 class="h3 mb-3 font-weight-normal" style=" background-color: rgba(0,0,0,0.3)">Eliminazione account</h1>
@@ -46,15 +46,6 @@
     </div>
 
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="./jslibraries/popper.js"></script>
-    <script src="./jslibraries/holder.min.js"></script>
-    <script src="./jslibraries/bootstrap.min.js"></script>
-    <script src="./jslibraries/utils.js"></script>
 
 
 </body>
@@ -62,6 +53,15 @@
 <footer>
     <p class="mt-5 mb-3 text-muted text-center">© E.M.A.A. Corp </p>
 </footer>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="./jslibraries/popper.js"></script>
+<script src="./jslibraries/holder.min.js"></script>
+<script src="./jslibraries/bootstrap.min.js"></script>
+<script src="./jslibraries/utils.js"></script>
 
 <script>
 function eliminaUtente(){
@@ -72,20 +72,28 @@ function eliminaUtente(){
 
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState == 4 && this.status == 200){
                 paginaPrincipale()
-            }
-            else if (this.readyState==4){
-                alert("Dati non corrispondono")
-                return false
-            }
-
+            return false
+            }else if (this.readyState == 4)
+                if (this.status == 500){
+                    createToast("Errore Eliminazione", "Effettuare il login e poi ritentare")
+                    return false
+                }
+            if (this.status == 406)
+                createToast("Errore Eliminazione", "Non inserire dati di altri utenti")
+            return false
         }
+
+
+
+
         xhttp.open("POST", "./EliminazioneUtente", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("password="+password+"&email="+email+"&username="+username);
         return false
 }
+
 function paginaPrincipale(){
     location.replace("./")
 }

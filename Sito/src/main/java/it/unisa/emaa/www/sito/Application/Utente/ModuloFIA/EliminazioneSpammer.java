@@ -7,19 +7,20 @@ import it.unisa.emaa.www.sito.Data.entity.Commento;
 import it.unisa.emaa.www.sito.Data.entity.Utente;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.swing.*;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.CompletionException;
 
+/**
+ * Questa servlet comunica a un modulo di intelligenza artificiale la lista dei commenti presenti nella piattaforma.
+ * Riceve poi una lista di utenti trovati come spammer dal modulo e procede a eliminarli.
+ * La servlet si avvia all'accensione del server e viene rieseguita ogni giorno, in caso il server rimanesse attivo
+ * @author Alessandro Marigliano
+ */
 public class EliminazioneSpammer extends HttpServlet{
     @Override
     public void init() throws ServletException {

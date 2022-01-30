@@ -94,6 +94,55 @@ public class EliminazioneUtenteTest {
     }
 
     @Test
+    public void emailErrataTest() throws IOException, SQLException {
+
+        Utente utente = new Utente();
+        utente.setUsername("emmavico");
+        utente.setId("e.coppola37@studenti.unisa.it");
+        try
+        {
+            // getInstance() method is called with algorithm SHA-512
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            // digest() method is called
+            // to calculate message digest of the input string
+            // returned as array of byte
+            byte[] messageDigest = md.digest("Casdwa324".getBytes());
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            // Add preceding 0s to make it 32 bit
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            // return the HashText
+            utente.setPassword(hashtext);
+        }
+        // For specifying wrong message digest algorithms
+        catch(NoSuchAlgorithmException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        MockHttpServletResponse response = new MockHttpServletResponse();
+        HttpSession session = request.getSession();
+
+        session.setAttribute("utente",utente);
+
+        request.setParameter("password", "PassDiversa1");
+        request.setParameter("email", "pippo@gmail.com");
+        request.setParameter("username", "emmavico");
+
+        EliminazioneUtente controller = new EliminazioneUtente();
+        request.addHeader("referer", "ciao");
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.eliminazioneUtente(request, response);
+        });
+        assertEquals("Inserisci i dati del tuo profilo",exception.getMessage());
+    }
+
+    @Test
     public void passwordErrataTest() throws IOException, SQLException {
 
         UtenteDao dao = Mockito.mock(UtenteDao.class);
@@ -192,6 +241,101 @@ public class EliminazioneUtenteTest {
         controller.eliminazioneUtente(request, response);
         assertTrue("L'utente non è stato eliminato correttamente", response.getStatus() == 302 && (boolean)session.getAttribute("eliminato"));
 
+    }
+    @Test
+    public void noSessionTest(){
+
+        Utente utente = new Utente();
+        utente.setUsername("emmavico");
+        utente.setId("e.coppola37@studenti.unisa.it");
+        try
+        {
+            // getInstance() method is called with algorithm SHA-512
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            // digest() method is called
+            // to calculate message digest of the input string
+            // returned as array of byte
+            byte[] messageDigest = md.digest("Casdwa324".getBytes());
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            // Add preceding 0s to make it 32 bit
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            // return the HashText
+            utente.setPassword(hashtext);
+        }
+        // For specifying wrong message digest algorithms
+        catch(NoSuchAlgorithmException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        MockHttpServletResponse response = new MockHttpServletResponse();
+        HttpSession session = request.getSession();
+
+        session.setAttribute("utente",utente);
+        session.invalidate();
+        request.setParameter("password", "PassDiversa1");
+        request.setParameter("email", "pippo@gmail.com");
+        request.setParameter("username", "emmavico");
+
+        EliminazioneUtente controller = new EliminazioneUtente();
+        request.addHeader("referer", "ciao");
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.eliminazioneUtente(request, response);
+        });
+        assertEquals("Loggati prima di effetture l'eliminazione",exception.getMessage());
+    }
+    @Test
+    public void noUtenteInSessioneTest(){
+
+        Utente utente = new Utente();
+        utente.setUsername("emmavico");
+        utente.setId("e.coppola37@studenti.unisa.it");
+        try
+        {
+            // getInstance() method is called with algorithm SHA-512
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            // digest() method is called
+            // to calculate message digest of the input string
+            // returned as array of byte
+            byte[] messageDigest = md.digest("Casdwa324".getBytes());
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            // Add preceding 0s to make it 32 bit
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            // return the HashText
+            utente.setPassword(hashtext);
+        }
+        // For specifying wrong message digest algorithms
+        catch(NoSuchAlgorithmException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        MockHttpServletResponse response = new MockHttpServletResponse();
+        HttpSession session = request.getSession();
+
+        session.setAttribute("utente",null);
+        request.setParameter("password", "PassDiversa1");
+        request.setParameter("email", "pippo@gmail.com");
+        request.setParameter("username", "emmavico");
+
+        EliminazioneUtente controller = new EliminazioneUtente();
+        request.addHeader("referer", "ciao");
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.eliminazioneUtente(request, response);
+        });
+        assertEquals("Loggati prima di effetture l'eliminazione",exception.getMessage());
     }
 
 }

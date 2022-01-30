@@ -16,7 +16,11 @@ import java.sql.SQLException;
 
 /**
  * Questa servlet effettua l'eliminazione di un utente dal database.
- * L'operazione fallisce se la password data non corrisponde a quella dell'utente.
+ * L'operazione fallisce se:
+ * L'email inserita non corrisponde a quella dell'utente;
+ * L'username inserito non corrisponde a quello dell'utente;
+ * la password inserita non corrisponde a quella dell'utente.
+ * @see Validazione
  * @author Alessandro Marigliano
  */
 @WebServlet(name="EliminazioneUtente",value = "/EliminazioneUtente")
@@ -31,9 +35,9 @@ public class EliminazioneUtente extends HttpServlet {
         }
     }
     public void eliminazioneUtente(HttpServletRequest req,HttpServletResponse resp) throws IOException, SQLException {
-        HttpSession session = req.getSession();
-        Object obj = session.getAttribute("utente");
-        if(obj == null){
+        HttpSession session = req.getSession(false);
+        Object obj;
+        if(session ==null||(obj = session.getAttribute("utente"))==null){
             resp.setStatus(403);
             throw new RuntimeException("Loggati prima di effetture l'eliminazione");
         }
@@ -61,7 +65,7 @@ public class EliminazioneUtente extends HttpServlet {
      * @param email L'email dell'utente che si vuole eliminare.
      * @return Il metodo ritorna il risultato dell'operazione.
      */
-    public boolean eliminaUtente(String email) throws SQLException {
+    private boolean eliminaUtente(String email) throws SQLException {
         return utenteDao.doDelete(email);
     }
     public EliminazioneUtente(){

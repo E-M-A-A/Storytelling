@@ -11,6 +11,12 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+/**
+ * La classe crea una server socket per ricevere una lista di commenti in formato JSON e li trasforma in oggetti Java.
+ * Gli oggetti creati vengono usati per il controllo di potenziali spammer.
+ * Restituisce in output alla socket gli utenti risultati spammer dall'algoritmo.
+ * @author Alessandro Marigliano
+ */
 public class TrovaSpammer {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(2020);
@@ -31,6 +37,14 @@ public class TrovaSpammer {
             System.out.println("Utenti inviati: "+jsonSpammer);
         }
     }
+
+    /**
+     * Il metodo definisce un algoritmo per il riconoscimento di utenti spammer.
+     * Gli utenti creatori di commenti vengono inseriti all'interno di un insieme per non averne duplicati.
+     * Ritorna gli utenti trovati spammer.
+     * @param commenti Lista di tutti i commenti presenti sulla piattaforma.
+     * @return Ritorna gli utenti ritenuti spammer.
+     */
     public static ArrayList<String> controllaSpammer(ArrayList<CommentoSemplice> commenti){
         TreeSet<String> utenti = new TreeSet<>();
         for(CommentoSemplice commento:commenti)

@@ -9,8 +9,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class StoriaDaoTest {
     private StoriaDao dao = new StoriaDao();
@@ -157,6 +156,12 @@ public class StoriaDaoTest {
         catch(SQLException e){
             e.printStackTrace();
         }
+    }
+    @Test
+    public void storiaNonTrovataTest() throws SQLException {
+        StoriaDao storiaDao = new StoriaDao();
+        Storia storia = storiaDao.doRetrieveById(-1);
+        assertNull("Storia stranamente trovata",storia);
     }
 }
 

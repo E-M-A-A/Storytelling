@@ -48,10 +48,9 @@ public class VisualizzaPost extends HttpServlet {
             resp.setStatus(403);
             throw new RuntimeException("Utente non loggato");
         }
-        if(idStoriaString==null||idStoriaString==""){
+        if(idStoriaString==null||idStoriaString.isEmpty()){
             resp.setStatus(500);
             throw new RuntimeException("Id Storia non trovato");
-
         }
         int idStoria = Integer.parseInt(idStoriaString);
         Utente utente = (Utente) obj;

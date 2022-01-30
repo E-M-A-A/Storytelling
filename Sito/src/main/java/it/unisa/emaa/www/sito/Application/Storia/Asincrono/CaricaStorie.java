@@ -19,6 +19,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * La servlet si occupa del caricamento delle storie nella bacheca.
+ * Il caricamento viene effettuato secondo un numero di pagina per suddividere i risultati durante il caricamento.
+ * L'invio avviene trasformando gli oggetti in una stringa JSON.
+ * @author Alessandro Marigliano
+ */
 @WebServlet(name="CaricaStorie" ,value="/CaricaStorie" )
 public class CaricaStorie extends HttpServlet {
     private StoriaDao storiaDao;
@@ -49,7 +55,7 @@ public class CaricaStorie extends HttpServlet {
         resp.getWriter().print(json);
 
     }
-    public ArrayList<StoriaReazioni> recuperaListaStorie(int pagina, String email) throws SQLException {
+    private ArrayList<StoriaReazioni> recuperaListaStorie(int pagina, String email) throws SQLException {
         ArrayList<StoriaReazioni> storieReazioni = new ArrayList<>();
         ArrayList<Storia> listaStorie = new ArrayList<>(storiaDao.doRetrieveByPage(30,pagina*30));
         boolean present;

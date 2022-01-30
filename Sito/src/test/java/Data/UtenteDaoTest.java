@@ -24,38 +24,6 @@ public class UtenteDaoTest {
     private String data1 = "INSERT INTO utente VALUES('e.coppola37@studenti.unisa.it','Casdwa324','emmavico')";
     private String data2 = "INSERT INTO utente VALUES('pippo@gmail.com','GIAcc7','giaccarello')";
 
-
-    private void setup() {
-
-
-        utente = new Utente();
-        utente.setId("e.coppola37@studenti.unisa.it");
-        utente.setPassword("Casdwa324");
-        utente.setUsername("emmavico");
-    }
-
-    private void generazioneTupleTest() {
-        Connection connection;
-
-    }
-
-
-    void rimozioneDatiTest() {
-        Connection connection;
-        try {
-            connection = ConnPool.getConnection();
-            Statement statement = connection.createStatement();
-            String qry1 = "DELETE FROM utente Where email = 'pippo@gmail.com'";
-            String qry2 = "DELETE FROM utente Where email = 'e.coppola37@studenti.unisa.it'";
-            statement.executeUpdate(qry1);
-            statement.executeUpdate(qry2);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        this.rimozioneDatiTest();
-    }
-
     @Test
     public void deleteTest() throws SQLException {
         Connection connection;
@@ -258,6 +226,5 @@ public class UtenteDaoTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

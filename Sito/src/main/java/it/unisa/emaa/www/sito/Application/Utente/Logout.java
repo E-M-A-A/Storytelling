@@ -6,6 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+/**
+ * La servlet effettua il logout dell'utente dalla piattaforma.
+ * Viene effettuato un controllo in caso si siano presentati problemi con un logout precedente.
+ * @author Alessandro Marigliano
+ */
 @WebServlet(name="Logout",value="/Logout")
 public class Logout extends HttpServlet {
     @Override

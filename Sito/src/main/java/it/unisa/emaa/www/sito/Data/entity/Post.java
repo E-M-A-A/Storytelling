@@ -11,17 +11,6 @@ public class Post {
     private ArrayList<Commento> commenti;
     private Boolean reazione;
 
-
-/*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Post post = (Post) o;
-        return storia.equals(post.storia) && Objects.equals(commenti, post.commenti) && Objects.equals(reazione, post.reazione);
-    }*/
-
-
     public Post(){}
     public void setStoria(Storia storia){ this.storia = storia;}
     public void setCommenti(ArrayList<Commento> commenti){ this.commenti = commenti;}

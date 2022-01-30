@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * La servlet effettua un controllo durante la registrazione che l'username inserito non sia già presente sulla piattaforma.
+ * @author Alessandro Marigliano
+ */
 @WebServlet(name="UsernamePresente",urlPatterns = "/UsernamePresente")
 public class ValidaUsername extends HttpServlet {
     private UtenteDao utenteDao;

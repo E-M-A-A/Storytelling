@@ -17,6 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Questa classe viene utilizzata come adattatore per la comunicazione tra un modulo di intelligenza artificiale e il database della piattaforma.
+ * Presenta un solo metodo statico che riceve la lista di tutti i commenti presenti sulla piattaforma.
+ * Invia i commenti al modulo in formato JSON e riceve una lista commenti in formato JSON, restituita poi dal metodo.
+ * La comunicazione avviene tramite l'utilizzo di una socket.
+ * @author Alessandro Marigliano
+ */
 public class AdapterFia{
 
     public static ArrayList<String> utentiSpammer(ArrayList<Commento> commenti) throws IOException, ClassNotFoundException {

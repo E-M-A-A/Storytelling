@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="customcss/general.css"/>
 
 </head>
-<body >
+<body>
     <div id = "pageContenent">
-        <form class="form-signin" id="form-elimina-utente" method ="post" action="./EliminazioneUtente" onsubmit="return eliminaUtente()">
+        <form class="form-signin" id="form-elimina-utente" >
             <div class="text-center mb-4">
                 <img class="mb-4" src="images/logo3.png" alt="" width="100" height="84">
                 <h1 class="h3 mb-3 font-weight-normal" style=" background-color: rgba(0,0,0,0.3)">Eliminazione account</h1>
@@ -39,7 +39,7 @@
                 <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="">
             </div>
             <div class="form-label-group">
-                <button class="btn btn-lg btn-primary btn-block" >Conferma</button>
+                <span class="btn btn-lg btn-primary btn-block" onclick="return controllo()">Conferma</span>
             </div>
 
         </form>
@@ -64,6 +64,10 @@
 <script src="./jslibraries/utils.js"></script>
 
 <script>
+    function controllo(){
+        eliminaUtente()
+        return false
+    }
 function eliminaUtente(){
     let username= document.getElementById("inputNomeUtente").value;
     let email= document.getElementById("inputEmail").value;
@@ -72,22 +76,24 @@ function eliminaUtente(){
 
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200){
+            if (this.readyState == 4 && this.status == 200) {
                 paginaPrincipale()
-            return false
-            }else if (this.readyState == 4)
-                if (this.status == 500){
+                return false
+            }else if (this.readyState == 4) {
+                if (this.responseText.includes("Loggati prima di effetture l'eliminazione")) {
                     createToast("Errore Eliminazione", "Effettuare il login e poi ritentare")
                     return false
                 }
-            if (this.status == 406)
-                createToast("Errore Eliminazione", "Non inserire dati di altri utenti")
-            return false
+                if (this.responseText.includes("Inserisci i dati del tuo profilo")) {
+                    createToast("Errore Eliminazione", "Non inserire dati di altri utenti")
+                    return false
+                }
+                if (this.responseText.includes("Dati inseriti non validi")) {
+                    createToast("Errore Eliminazione", "Dati inseriti non validi")
+                    return false
+                }
+            }
         }
-
-
-
-
         xhttp.open("POST", "./EliminazioneUtente", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("password="+password+"&email="+email+"&username="+username);

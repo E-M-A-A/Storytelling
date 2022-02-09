@@ -19,7 +19,6 @@ import java.sql.SQLException;
  * se la password non corrisponde alla password nella conferma password;
  * se email o password non seguono il pattern.
  * Utilizza i metodi statici della classe Validazione.
- * @see it.unisa.emaa.www.sito.Utils.Validazione
  * @author Alessandro Marigliano
  */
 @WebServlet(name = "RegistraUtente",urlPatterns = "/RegistraUtente")

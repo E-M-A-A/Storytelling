@@ -88,9 +88,10 @@ public class EliminazioneUtenteTest {
 
         EliminazioneUtente controller = new EliminazioneUtente(dao);
         request.addHeader("referer", "ciao");
-        controller.eliminazioneUtente(request, response);
-        Assert.assertEquals("La password non coincidente non è stata segnalata", 302, response.getStatus());
-
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.eliminazioneUtente(request, response);
+        });
+        assertEquals("Dati inseriti non validi",exception.getMessage());
     }
 
     @Test
@@ -189,8 +190,10 @@ public class EliminazioneUtenteTest {
 
         EliminazioneUtente controller = new EliminazioneUtente(dao);
         request.addHeader("referer", "ciao");
-        controller.eliminazioneUtente(request, response);
-        assertTrue("La password non coincidente non è stata segnalata", response.getStatus() == 302);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            controller.eliminazioneUtente(request, response);
+        });
+        assertEquals("Dati inseriti non validi",exception.getMessage());
 
     }
 

@@ -18,7 +18,6 @@ import java.sql.SQLException;
  * L'operazione fallisce se:
  * non è presente nel database un utente con l'email data;
  * è presente un utente con l'email data ma la password non corrisponde con la sua.
- * @see it.unisa.emaa.www.sito.Utils.Validazione
  * @author Alessandro Marigliano
  */
 @WebServlet(name = "Login",urlPatterns = "/Login")

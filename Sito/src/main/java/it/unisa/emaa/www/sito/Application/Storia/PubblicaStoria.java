@@ -31,6 +31,7 @@ public class PubblicaStoria extends HttpServlet {
             e.printStackTrace();
         }
     }
+
     public void pubblicaStoria(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException, SQLException {
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
@@ -39,6 +40,13 @@ public class PubblicaStoria extends HttpServlet {
         resp.sendRedirect("/Sito_war_exploded/VisualizzaHome");
     }
 
+    /**
+     * Il metodo effettua un controllo sulla storia, fallisce se non rispetta il formato prestabilito.
+     * @param username
+     * @param contenuto
+     * @return
+     * @throws SQLException
+     */
     private boolean pubblicazioneStoria(String username,String contenuto) throws SQLException {
         if(contenuto.length()<1||contenuto.length()>500)
             return false;

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  * Questa servlet gestisce la visualizzazione della bacheca(homepage).
- * Viene richiesto il numero di pagina per selezionare solo una parte delle storie da visualizzare.
+ * Assicura che l'utente sia loggato in sessione e rimanda alla pagina di visualizzazione bacheca.
  * @author Alessandro Marigliano
  */
 @WebServlet(name = "VisualizzaHome",urlPatterns = "/VisualizzaHome")

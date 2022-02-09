@@ -38,8 +38,15 @@ public class InserisciReazione extends HttpServlet {
             resp.setStatus(500);
             throw new RuntimeException("Errore nell'insermento della Reazione");
         }
-
     }
+
+    /**
+     * Il metodo inserisce la reazione nel database, fallisce se è già presente
+     * @param email
+     * @param idStoria
+     * @return
+     * @throws SQLException
+     */
     private boolean inserimentoReazione(String email,int idStoria) throws SQLException {
         if(Validazione.reactionIsPresent(email,idStoria,reazioneDao))
             return false;

@@ -1,0 +1,15 @@
+SPECIFICHE PEAS:
+
+P = Performance. Misura di prestazione per valutare l'operato di un agente.
+Percentauale di commenti spam categorizzati correttamente.
+
+E = Environment. Vanno descritti gli elementi che formano l'ambiente.
+Completamente Osservabile, Deterministico, Episodico, Statico, Discreto, Singolo.
+Social Network, utenti della piattaforma
+
+A = Actuators. Gli attuatori disponibili all'agente per intraprendere le azioni.
+List di email relative ai commenti spammer identificati                    
+
+S = i sensori attraverso cui riceve gli input percettivi.
+Dataset di commenti
+

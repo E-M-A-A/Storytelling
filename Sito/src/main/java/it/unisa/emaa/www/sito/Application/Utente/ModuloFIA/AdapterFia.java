@@ -29,7 +29,8 @@ public class AdapterFia{
     public static ArrayList<String> utentiSpammer(ArrayList<Commento> commenti) throws IOException, ClassNotFoundException {
         Gson gson = new Gson();
         String jsonCommenti = gson.toJson(commenti);
-        Socket socket = new Socket("localhost",2020);
+        System.out.println("Sto per connettermi");
+        Socket socket = new Socket("localhost",9997);
         if(!socket.isConnected()){
             throw new RuntimeException("Connessione alla socket non riuscita");
         }

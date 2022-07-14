@@ -12,7 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ModuloFia" target="15" />
-      <module name="Sito" target="1.8" />
+      <module name="Sito" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>

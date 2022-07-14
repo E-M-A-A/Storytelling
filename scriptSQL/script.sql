@@ -1,5 +1,16 @@
+drop database storytelling;
 create database storytelling;
 use storytelling;
+create table utente
+(
+    email    varchar(300) not null
+        primary key,
+    password varchar(128)  not null,
+    username varchar(20)  not null,
+    constraint Utente_username_uindex
+        unique (username)
+);
+
 create table storia
 (
     id            int auto_increment
@@ -12,16 +23,6 @@ create table storia
 
     foreign key (username) references utente(username)
         on delete cascade on update cascade
-);
-
-create table utente
-(
-    email    varchar(300) not null
-        primary key,
-    password varchar(128)  not null,
-    username varchar(20)  not null,
-    constraint Utente_username_uindex
-        unique (username)
 );
 
 create table commento
@@ -55,11 +56,19 @@ create table reazione
 create index emailUtente
     on reazione (emailUtente);
 
-CREATE TRIGGER aggiorna_nReazioni AFTER INSERT ON reazione
+CREATE TRIGGER aggiorna_nReazioniAdd AFTER INSERT ON reazione
     FOR EACH ROW
     UPDATE storia s SET nReazioni = nReazioni+1  WHERE s.id = NEW.idStoria;
 
-CREATE TRIGGER aggiorna_nCommenti AFTER INSERT ON commento
+CREATE TRIGGER aggiorna_nCommentiAdd AFTER INSERT ON commento
     FOR EACH ROW
     UPDATE storia s SET nCommenti = nCommenti+1  WHERE s.id = NEW.idStoria;
+
+CREATE TRIGGER aggiorna_nReazioniRem AFTER DELETE ON reazione
+    FOR EACH ROW
+    UPDATE storia s SET nReazioni = nReazioni-1  WHERE s.id = OLD.idStoria;
+
+CREATE TRIGGER aggiorna_nCommentiRem AFTER DELETE ON commento
+    FOR EACH ROW
+    UPDATE storia s SET nCommenti = nCommenti-1  WHERE s.id = OLD.idStoria;
 

@@ -30,7 +30,7 @@ public class AdapterFia{
         Gson gson = new Gson();
         String jsonCommenti = gson.toJson(commenti);
         System.out.println("Sto per connettermi");
-        Socket socket = new Socket("localhost",9997);
+        Socket socket = new Socket("localhost",9998);
         if(!socket.isConnected()){
             throw new RuntimeException("Connessione alla socket non riuscita");
         }
@@ -38,7 +38,9 @@ public class AdapterFia{
         PrintWriter objectOutputStream = new PrintWriter(socket.getOutputStream(),true);
         objectOutputStream.println(jsonCommenti);
         Scanner objectInputStream = new Scanner(socket.getInputStream());
+        System.out.println("Sto leggendo dalla socket");
         String jsonUtenti = objectInputStream.nextLine();
+        System.out.println("Ho letto dalla socket");
         socket.close();
         return gson.fromJson(jsonUtenti,new TypeToken<ArrayList<String>>(){}.getType());
     }

@@ -47,6 +47,7 @@ public class EliminazioneSpammer extends HttpServlet{
                 for(String username:utentiUsername){
                     Utente utente = utenteDao.doRetrieveByUsername(username);
                     utenteDao.doDelete(utente.getId());
+                    System.out.println(utente);
                 }
             } catch (SQLException | ClassNotFoundException | IOException e) {
                 e.printStackTrace();
